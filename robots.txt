@@ -1,0 +1,26 @@
+User-agent: *
+Allow: /
+
+# Disallow development and build files
+Disallow: /node_modules/
+Disallow: /.github/
+Disallow: /dist/
+Disallow: /temp/
+Disallow: /.git/
+Disallow: /*.json$
+Disallow: /package*.json
+Disallow: /Makefile
+Disallow: /.*
+
+# Allow important directories
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /tjenester/
+Allow: /content/
+
+# Sitemap location
+Sitemap: https://synkope.github.io/synkope-website/sitemap.xml
+
+# Crawl delay (optional, be respectful)
+Crawl-delay: 1
