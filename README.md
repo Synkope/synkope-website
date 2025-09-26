@@ -2,7 +2,7 @@
 
 A modern, responsive website for Synkope consulting company, built as a single-page application with pure HTML, CSS, and JavaScript.
 
-🌐 **Live Demo**: [https://vildestromb.github.io/synkope-website/](https://vildestromb.github.io/synkope-website/)
+🌐 **Live Demo**: [https://synkope.github.io/synkope-website/](https://synkope.github.io/synkope-website/)
 
 ## 🚀 About the Project
 
@@ -15,15 +15,18 @@ Synkope is a consulting company that offers expertise in:
 ## 🎨 Design & Technology
 
 ### Typography
+
 - **Headings**: Inter font family
 - **Body text**: Open Sans font family
 
 ### Color Palette
+
 - **Primary Color**: #EB8822 (Orange)
 - **Secondary Color**: #1D5F81 (Dark Blue)
 - **Background**: #FFFFFF (White)
 
 ### Tech Stack
+
 - **HTML5** - Semantic markup
 - **CSS3** - Custom properties, Flexbox, Grid, animations
 - **Vanilla JavaScript** - Interactivity and animations
@@ -46,24 +49,28 @@ synkope/
 ## ✨ Features
 
 ### Navigation
+
 - Sticky navigation with scroll effects
 - Smooth scrolling between sections
 - Responsive hamburger menu for mobile devices
 - Active link highlighting
 
 ### Animations
+
 - Fade-in effects on scroll
 - Typing effect on hero title
 - Counter animations for statistics
 - Parallax effect on hero section
 
 ### Interactivity
+
 - Contact form with validation
 - Scroll-to-top button
 - Mobile-friendly navigation
 - Lazy loading for images
 
 ### Performance
+
 - Optimized animations (60fps)
 - Throttled scroll events
 - Modern CSS with custom properties
@@ -72,6 +79,7 @@ synkope/
 ## 🚀 Getting Started
 
 ### View Live Site
+
 Visit the live website: **[https://vildestromb.github.io/synkope-website/](https://vildestromb.github.io/synkope-website/)**
 
 ### Local Development
@@ -119,11 +127,13 @@ Edit CSS custom properties in `css/style.css`:
 ```
 
 ### Content
+
 - Edit text directly in `index.html`
 - Add new sections as needed
 - Update contact information
 
 ### Images
+
 - Place new images in the `images/` folder
 - Update image references in HTML/CSS
 - Use lazy loading for large images
@@ -148,6 +158,7 @@ The contact form includes:
 ## 🔄 Updates
 
 ### Version 1.0
+
 - ✅ Responsive design
 - ✅ Modern animations
 - ✅ Contact form
