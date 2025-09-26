@@ -1,12 +1,5 @@
-## Fullført ✅
-- **Tjenestebeskrivelser** - Migrert til JSON-basert innholdssystem (content/no.json)
-  - Alle 4 tjenestesider (IKT-infrastruktur, Prosjektstyring, Informasjonssikkerhet, EMC)
-  - Dynamisk innlasting med service-content-loader.js
-  - Sentralisert innholdsadministrasjon
-  - SEO-optimaliserte meta-beskrivelser
-  - Testside for verifikasjon (test-service-content.html)
-
 ## Tekster
+- Tjenestebeskrivelser
 - "Om synkope" - gjøre litt mer utfyllende
 - "Våre fokusområder" - kalle det noe annet?
 - Beskrivelse av "våre tjenester" på hjem-siden. Noen av dem er litt vel KI.

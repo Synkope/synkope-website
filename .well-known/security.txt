@@ -1,0 +1,34 @@
+Contact: mailto:security@synkope.io
+Contact: mailto:post@synkope.io
+Expires: 2026-01-28T12:00:00.000Z
+Encryption: https://synkope.github.io/synkope-website/.well-known/pgp-key.txt
+Acknowledgments: https://synkope.github.io/synkope-website/.well-known/acknowledgments.txt
+Preferred-Languages: no, en
+Canonical: https://synkope.github.io/synkope-website/.well-known/security.txt
+Policy: https://synkope.github.io/synkope-website/security-policy.html
+
+# Security Policy for Synkope AS
+#
+# We take the security of our systems seriously and appreciate
+# responsible disclosure of any security vulnerabilities.
+#
+# Please report security vulnerabilities to: security@synkope.io
+#
+# What to include in your report:
+# - A detailed description of the vulnerability
+# - Steps to reproduce the issue
+# - Potential impact assessment
+# - Any suggested fixes or mitigations
+#
+# We commit to:
+# - Acknowledge receipt within 48 hours
+# - Provide regular updates on our investigation
+# - Credit researchers (with permission) for responsible disclosure
+# - Work with you to understand and resolve the issue
+#
+# Please do not:
+# - Access or modify data that is not your own
+# - Disrupt our services or degrade user experience
+# - Publicly disclose the vulnerability before we have addressed it
+#
+# Thank you for helping keep Synkope and our clients secure.
