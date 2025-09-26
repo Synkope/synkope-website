@@ -1,0 +1,65 @@
+{
+  "name": "Synkope - Erfarne rådgivere",
+  "short_name": "Synkope",
+  "description": "Ekspertise innen prosjektledelse, IT-infrastruktur, informasjonssikkerhet og EMC-testing",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#EB8822",
+  "background_color": "#FFFFFF",
+  "lang": "no",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "images/logo-standard.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Tjenester",
+      "short_name": "Tjenester",
+      "description": "Se våre tjenester",
+      "url": "/#tjenester",
+      "icons": [
+        {
+          "src": "images/logo-standard.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Kontakt",
+      "short_name": "Kontakt",
+      "description": "Kontakt oss",
+      "url": "/#kontakt",
+      "icons": [
+        {
+          "src": "images/logo-standard.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}
