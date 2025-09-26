@@ -5,15 +5,14 @@
   },
   "navigation": {
     "home": "Hjem",
-    "about": "Om oss",
+    "about": "Om Oss",
     "team": "Team",
     "services": "Tjenester",
     "contact": "Kontakt"
   },
   "hero": {
     "title": "Erfarne rådgivere<br />med spisskompetanse",
-    "subtitle": "Synkope består av erfarne rådgivere med ulike kompetanseområder. Vi hjelper kunder i både privat og offentlig sektor med å løse komplekse utfordringer innen teknologi og prosjektledelse.",
-    "cta": "Kontakt oss",
+    "subtitle": "Vi tilbyr ekspertise innen prosjektledelse, IT-infrastruktur, informasjonssikkerhet og EMC-testing for både privat og offentlig sektor.",
     "stats": {
       "experience": "15+ års erfaring",
       "projects": "100+ prosjekter",
@@ -21,7 +20,7 @@
     }
   },
   "about": {
-    "title": "Om oss",
+    "title": "Om Synkope",
     "description": "Synkope består av erfarne rådgivere med ulike kompetanseområder. Vi hjelper kunder i både privat og offentlig sektor med å løse komplekse utfordringer innen teknologi og prosjektledelse.",
     "mission": "Vår misjon er å levere skreddersydde løsninger som skaper verdi for våre kunder.",
     "focus_areas": {
@@ -47,21 +46,21 @@
     }
   },
   "team": {
-    "title": "Team",
+    "title": "Vårt team",
     "subtitle": "Møt våre erfarne rådgivere",
     "members": [
       {
         "name": "Andreas Strøm",
-        "title": "Daglig leder og senior rådgiver",
-        "description": "Systemarkitekt og utvikler med lang erfaring fra store infrastrukturprosjekter og programmer. Andreas har spesialkompetanse på utvikling og sikkerhetsgodkjenning av gradert infrastruktur, og etablering av systemer for sikkerhetsgodkjenning av graderte informasjonssystemer.",
+        "title": "Seniorrådgiver",
+        "description": "Erfaren leder med bred kompetanse innen IT-infrastruktur og prosjektledelse.",
         "expertise": "Systemarkitektur, DevOps, smidig utvikling",
         "certifications": "PRINCE2®, Sertifisert prosjektleder",
         "linkedin": "https://www.linkedin.com/in/andreas-strom/"
       },
       {
         "name": "Irene Driveklepp",
-        "title": "Senior rådgiver",
-        "description": "Prosjektleder med lang erfaring fra anskaffelser, leveranseprosjekter og overlevering til drift, hovedsakelig i offentlig forvaltning. Irene er utdannet forvaltningsinformatiker fra Universitetet i Oslo.",
+        "title": "Daglig leder og seniorrådgiver",
+        "description": "Spesialist innen informasjonssikkerhet og risikovurderinger.",
         "expertise": "Informasjonssikkerhet, risikoanalyse",
         "certifications": "CISSP, Sertifisert sikkerhetskonsulent",
         "linkedin": "https://www.linkedin.com/in/irene-driveklepp-5a54ab/"
@@ -69,7 +68,7 @@
       {
         "name": "Erik Stræde",
         "title": "Senior prosjektleder",
-        "description": "Sertifisert prosjektleder fra Forsvaret, med bred erfaring fra flere komplekse anskaffelses-, utviklings- og implementeringsprosjekter. Erik har kompetanse på økonomi- og kontraktsoppfølging i store prosjekter.",
+        "description": "Erfaren prosjektleder med fokus på store og komplekse prosjekter.",
         "expertise": "Prosjektledelse, SAFe, Scrum",
         "certifications": "PRINCE2®, SAFe Program Consultant",
         "linkedin": "https://www.linkedin.com/in/erik-straede/"
@@ -77,7 +76,7 @@
       {
         "name": "Torkell Bogstad",
         "title": "EMC-spesialist",
-        "description": "EMC-seniorrådgiver med bakgrunn fra Forsvaret. Torkell har bred kompetanse innenfor fagfeltet EMC, alt fra kravstilling og oppfølging av leverandører, til planlegging og gjennomføring av EMC-testing.",
+        "description": "Ekspert på elektromagnetisk kompatibilitet og testing av militært utstyr.",
         "expertise": "EMC-testing, militære standarder",
         "certifications": "EMC-sertifisert testteknikker",
         "linkedin": "https://www.linkedin.com/in/torkell-bogstad-49262282/"
@@ -85,7 +84,7 @@
     ]
   },
   "services": {
-    "title": "Tjenester",
+    "title": "Våre tjenester",
     "subtitle": "Skreddersydde løsninger for komplekse utfordringer",
     "list": [
       {
@@ -227,7 +226,7 @@
     }
   },
   "footer": {
-    "copyright": "© 2024 Synkope AS. Alle rettigheter forbeholdt.",
+    "copyright": "© 2025 Synkope AS. Alle rettigheter forbeholdt.",
     "built_with": "Bygget med ❤️ for Synkope",
     "contact_info": {
       "company": "Synkope AS",
