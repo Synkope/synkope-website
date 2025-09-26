@@ -33,9 +33,7 @@ class ContentLoader {
     // Site metadata
     if (this.content.site) {
       document.title = this.content.site.title;
-      const metaDescription = document.querySelector(
-        'meta[name="description"]',
-      );
+      const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
         metaDescription.setAttribute("content", this.content.site.description);
       }
@@ -145,9 +143,7 @@ class ContentLoader {
         focusTitle.textContent = about.focus_areas.title;
       }
 
-      const focusItems = document.querySelectorAll(
-        ".about-features .feature-item",
-      );
+      const focusItems = document.querySelectorAll(".about-features .feature-item");
       if (focusItems.length >= about.focus_areas.areas.length) {
         about.focus_areas.areas.forEach((area, index) => {
           const item = focusItems[index];
@@ -200,9 +196,7 @@ class ContentLoader {
           }
 
           // Update LinkedIn link
-          const linkedinLink = memberElement.querySelector(
-            'a[href*="linkedin"]',
-          );
+          const linkedinLink = memberElement.querySelector('a[href*="linkedin"]');
           if (linkedinLink && member.linkedin) {
             linkedinLink.href = member.linkedin;
           }
@@ -352,9 +346,7 @@ class ContentLoader {
 // Auto-initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", async () => {
   // Check if content should be loaded from JSON
-  const useContentLoader = document.querySelector(
-    'meta[name="use-content-loader"]',
-  );
+  const useContentLoader = document.querySelector('meta[name="use-content-loader"]');
 
   if (useContentLoader && useContentLoader.getAttribute("content") === "true") {
     window.contentLoader = new ContentLoader();

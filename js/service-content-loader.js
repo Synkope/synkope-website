@@ -96,20 +96,20 @@ class ServiceContentLoader {
 
     // Add content based on service type
     switch (this.serviceName) {
-    case "ikt_infrastruktur":
-      this.buildIktInfrastructureContent(serviceSection, serviceData.content);
-      break;
-    case "prosjektstyring":
-      this.buildProjectManagementContent(serviceSection, serviceData.content);
-      break;
-    case "informasjonssikkerhet":
-      this.buildInfoSecContent(serviceSection, serviceData.content);
-      break;
-    case "emc":
-      this.buildEmcContent(serviceSection, serviceData.content);
-      break;
-    default:
-      this.buildGenericContent(serviceSection, serviceData.content);
+      case "ikt_infrastruktur":
+        this.buildIktInfrastructureContent(serviceSection, serviceData.content);
+        break;
+      case "prosjektstyring":
+        this.buildProjectManagementContent(serviceSection, serviceData.content);
+        break;
+      case "informasjonssikkerhet":
+        this.buildInfoSecContent(serviceSection, serviceData.content);
+        break;
+      case "emc":
+        this.buildEmcContent(serviceSection, serviceData.content);
+        break;
+      default:
+        this.buildGenericContent(serviceSection, serviceData.content);
     }
   }
 

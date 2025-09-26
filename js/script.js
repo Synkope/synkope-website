@@ -10,7 +10,7 @@ hamburger.addEventListener("click", () => {
 
 // Close mobile menu when clicking on a link
 navLinks.forEach((link) => {
-  link.addEventListener("click", function() {
+  link.addEventListener("click", function () {
     hamburger.classList.remove("active");
     navMenu.classList.remove("active");
     this.blur(); // Remove focus to prevent sticky border
@@ -39,7 +39,7 @@ if (dropdown && dropdownToggle && dropdownMenu) {
   // Close dropdown when clicking on dropdown links
   const dropdownLinks = document.querySelectorAll(".nav-dropdown-link");
   dropdownLinks.forEach((link) => {
-    link.addEventListener("click", function() {
+    link.addEventListener("click", function () {
       dropdown.classList.remove("active");
       this.blur(); // Remove focus to prevent sticky border
     });
@@ -72,15 +72,14 @@ window.addEventListener("scroll", () => {
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function(e) {
+  anchor.addEventListener("click", function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute("href"));
 
     if (target) {
       const headerOffset = 80; // Height of fixed navbar
       const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
@@ -131,9 +130,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Add fade-in class to elements and observe them
 document.addEventListener("DOMContentLoaded", () => {
-  const fadeElements = document.querySelectorAll(
-    ".service-card, .portfolio-item, .stat, .about-text, .contact-item",
-  );
+  const fadeElements = document.querySelectorAll(".service-card, .portfolio-item, .stat, .about-text, .contact-item");
 
   fadeElements.forEach((el) => {
     el.classList.add("fade-in");
@@ -145,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const contactForm = document.getElementById("kontaktskjema");
 
 if (contactForm) {
-  contactForm.addEventListener("submit", function(e) {
+  contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form data
@@ -180,10 +177,7 @@ if (contactForm) {
 
     // Simulate form submission (replace with actual form handling)
     setTimeout(() => {
-      showMessage(
-        "Takk for din henvendelse! Vi kommer tilbake til deg så snart som mulig.",
-        "success",
-      );
+      showMessage("Takk for din henvendelse! Vi kommer tilbake til deg så snart som mulig.", "success");
       this.reset();
 
       // Reset button
