@@ -31,7 +31,7 @@ Synkope skal posisjoneres som:
 6. **Minimal bruk av adjektiver**: Unngå beskrivende ord som ikke tilfører verdi
 
 ### Unngå
-- Buzzwords og tomme fraser ("best practice", "state-of-the-art", "innovative", "cutting-edge")
+- Buzzwords og tomme fraser ("best practice", "state-of-the-art", "innovative", "cutting-edge", "comprehensive")
 - Adjektiver og superlativer ("beste", "ledende", "fantastisk", "utmerket", "enestående")
 - Forslitte uttrykk ("skreddersydd", "helhetlig", "brukerorientert", "kundefokusert")
 - Passive formuleringer som skaper avstand
@@ -166,6 +166,8 @@ Longer description if needed, explaining:
 - Why the change was made
 - Any consequences or considerations
 ```
+
+**Viktig:** Unngå ordet "comprehensive" i commit-meldinger og all annen tekst.
 
 ### Commit types
 - **content**: Changes to content/text
