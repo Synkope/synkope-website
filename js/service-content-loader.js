@@ -15,7 +15,7 @@ class ServiceContentLoader {
 
     // Map filenames to JSON keys
     const serviceMap = {
-      "ikt-infrastruktur": "ikt_infrastruktur",
+      "it-infrastruktur": "it_infrastruktur",
       prosjektstyring: "prosjektstyring",
       informasjonssikkerhet: "informasjonssikkerhet",
       emc: "emc",
@@ -96,8 +96,8 @@ class ServiceContentLoader {
 
     // Add content based on service type
     switch (this.serviceName) {
-      case "ikt_infrastruktur":
-        this.buildIktInfrastructureContent(serviceSection, serviceData.content);
+      case "it_infrastruktur":
+        this.buildItInfrastructureContent(serviceSection, serviceData.content);
         break;
       case "prosjektstyring":
         this.buildProjectManagementContent(serviceSection, serviceData.content);
@@ -113,7 +113,7 @@ class ServiceContentLoader {
     }
   }
 
-  buildIktInfrastructureContent(container, content) {
+  buildItInfrastructureContent(container, content) {
     // Add intro paragraphs
     content.intro.forEach((paragraph) => {
       const p = document.createElement("p");
@@ -121,8 +121,99 @@ class ServiceContentLoader {
       container.appendChild(p);
     });
 
+    // Add approach list
+    if (content.approach && content.approach.length > 0) {
+      const ul = document.createElement("ul");
+      ul.className = "service-list";
+
+      content.approach.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+      });
+
+      container.appendChild(ul);
+    }
+
+    // Add technologies section
+    if (content.technologies) {
+      const h2 = document.createElement("h2");
+      h2.textContent = content.technologies.title;
+      container.appendChild(h2);
+
+      // Cloud platforms
+      if (content.technologies.cloud_platforms) {
+        const h3 = document.createElement("h3");
+        h3.textContent = "Cloud-plattformer";
+        container.appendChild(h3);
+
+        const ul = document.createElement("ul");
+        ul.className = "service-list";
+
+        content.technologies.cloud_platforms.forEach((platform) => {
+          const li = document.createElement("li");
+          li.textContent = platform;
+          ul.appendChild(li);
+        });
+
+        container.appendChild(ul);
+      }
+
+      // Tools
+      if (content.technologies.tools) {
+        const h3 = document.createElement("h3");
+        h3.textContent = "Verktøy";
+        container.appendChild(h3);
+
+        const ul = document.createElement("ul");
+        ul.className = "service-list";
+
+        content.technologies.tools.forEach((tool) => {
+          const li = document.createElement("li");
+          li.textContent = tool;
+          ul.appendChild(li);
+        });
+
+        container.appendChild(ul);
+      }
+    }
+
+    // Add services section
+    if (content.services) {
+      const h2 = document.createElement("h2");
+      h2.textContent = content.services.title;
+      container.appendChild(h2);
+
+      content.services.list.forEach((service) => {
+        const h3 = document.createElement("h3");
+        h3.textContent = service.title;
+        container.appendChild(h3);
+
+        const p = document.createElement("p");
+        p.textContent = service.description;
+        container.appendChild(p);
+
+        if (service.deliverables) {
+          const ul = document.createElement("ul");
+          ul.className = "service-list";
+
+          service.deliverables.forEach((deliverable) => {
+            const li = document.createElement("li");
+            li.textContent = deliverable;
+            ul.appendChild(li);
+          });
+
+          container.appendChild(ul);
+        }
+      });
+    }
+
     // Add competencies list
     if (content.competencies && content.competencies.length > 0) {
+      const h2 = document.createElement("h2");
+      h2.textContent = "Kompetanseområder";
+      container.appendChild(h2);
+
       const ul = document.createElement("ul");
       ul.className = "service-list";
 
