@@ -138,12 +138,48 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Security: Rate limiting for form submissions
+const formSubmissionTracker = {
+  submissions: [],
+  maxSubmissions: 3,
+  timeWindow: 300000, // 5 minutes
+
+  canSubmit() {
+    const now = Date.now();
+    // Remove old submissions outside time window
+    this.submissions = this.submissions.filter((time) => now - time < this.timeWindow);
+
+    if (this.submissions.length >= this.maxSubmissions) {
+      return false;
+    }
+
+    this.submissions.push(now);
+    return true;
+  },
+
+  getTimeUntilNextSubmission() {
+    if (this.submissions.length === 0) {
+      return 0;
+    }
+    const oldestSubmission = Math.min(...this.submissions);
+    const timeLeft = this.timeWindow - (Date.now() - oldestSubmission);
+    return Math.max(0, Math.ceil(timeLeft / 1000 / 60)); // minutes
+  },
+};
+
 // Contact form handling
 const contactForm = document.getElementById("kontaktskjema");
 
 if (contactForm) {
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
+
+    // Check rate limiting first
+    if (!formSubmissionTracker.canSubmit()) {
+      const timeLeft = formSubmissionTracker.getTimeUntilNextSubmission();
+      showMessage(`For mange forsøk. Vent ${timeLeft} minutter før du prøver igjen.`, "error");
+      return;
+    }
 
     // Get form data
     const formData = new FormData(this);
@@ -190,50 +226,11 @@ if (contactForm) {
 // Email validation function
 // Enhanced form validation
 function validateForm({ navn, epost, emne, melding }) {
-  // Security: Check for suspicious patterns
-  const suspiciousPatterns = [
-    /<script/i,
-    /javascript:/i,
-    /onload=/i,
-    /onerror=/i,
-    /onclick=/i,
-    /<iframe/i,
-    /<embed/i,
-    /<object/i,
-    /data:text\/html/i,
-  ];
-
-  const allInputs = [navn, epost, emne, melding].join(" ");
-  for (const pattern of suspiciousPatterns) {
-    if (pattern.test(allInputs)) {
-      return {
-        isValid: false,
-        message: "Innholdet inneholder ikke tillatte tegn eller koder.",
-        field: "security",
-      };
-    }
-  }
-
-  // Sanitize inputs
-  navn = sanitizeInput(navn);
-  epost = sanitizeInput(epost);
-  emne = sanitizeInput(emne);
-  melding = sanitizeInput(melding);
-
   // Check for empty fields
   if (!navn || navn.trim().length < 2) {
     return {
       isValid: false,
       message: "Navn må være minst 2 tegn langt.",
-      field: "navn",
-    };
-  }
-
-  // Security: Check name length and characters
-  if (navn.length > 100) {
-    return {
-      isValid: false,
-      message: "Navn kan ikke være lengre enn 100 tegn.",
       field: "navn",
     };
   }
@@ -246,28 +243,10 @@ function validateForm({ navn, epost, emne, melding }) {
     };
   }
 
-  // Security: Check email length
-  if (epost.length > 254) {
-    return {
-      isValid: false,
-      message: "E-postadresse er for lang.",
-      field: "epost",
-    };
-  }
-
   if (!emne || emne.trim().length < 3) {
     return {
       isValid: false,
       message: "Emne må være minst 3 tegn langt.",
-      field: "emne",
-    };
-  }
-
-  // Security: Check subject length
-  if (emne.length > 200) {
-    return {
-      isValid: false,
-      message: "Emne kan ikke være lengre enn 200 tegn.",
       field: "emne",
     };
   }
@@ -280,56 +259,8 @@ function validateForm({ navn, epost, emne, melding }) {
     };
   }
 
-  // Security: Check message length
-  if (melding.length > 5000) {
-    return {
-      isValid: false,
-      message: "Melding kan ikke være lengre enn 5000 tegn.",
-      field: "melding",
-    };
-  }
-
   return { isValid: true };
 }
-
-// Security: Input sanitization function
-function sanitizeInput(input) {
-  if (!input) return input;
-
-  return input
-    .trim()
-    .replace(/[<>]/g, "") // Remove < and > characters
-    .replace(/javascript:/gi, "") // Remove javascript: protocol
-    .replace(/on\w+=/gi, "") // Remove event handlers like onclick=
-    .slice(0, 10000); // Limit input length as additional security
-}
-
-// Security: Rate limiting for form submissions
-const formSubmissionTracker = {
-  submissions: [],
-  maxSubmissions: 3,
-  timeWindow: 300000, // 5 minutes
-
-  canSubmit() {
-    const now = Date.now();
-    // Remove old submissions outside time window
-    this.submissions = this.submissions.filter((time) => now - time < this.timeWindow);
-
-    if (this.submissions.length >= this.maxSubmissions) {
-      return false;
-    }
-
-    this.submissions.push(now);
-    return true;
-  },
-
-  getTimeUntilNextSubmission() {
-    if (this.submissions.length === 0) return 0;
-    const oldestSubmission = Math.min(...this.submissions);
-    const timeLeft = this.timeWindow - (Date.now() - oldestSubmission);
-    return Math.max(0, Math.ceil(timeLeft / 1000 / 60)); // minutes
-  },
-};
 
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
