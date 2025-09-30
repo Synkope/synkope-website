@@ -1,22 +1,22 @@
 #!/usr/bin/env node
 
-import imagemin from 'imagemin';
-import imageminMozjpeg from 'imagemin-mozjpeg';
-import imageminPngquant from 'imagemin-pngquant';
-import imageminSvgo from 'imagemin-svgo';
-import imageminWebp from 'imagemin-webp';
-import { promises as fs } from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import imagemin from "imagemin";
+import imageminMozjpeg from "imagemin-mozjpeg";
+import imageminPngquant from "imagemin-pngquant";
+import imageminSvgo from "imagemin-svgo";
+import imageminWebp from "imagemin-webp";
+import { promises as fs } from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Configuration
 const CONFIG = {
-  inputDir: path.join(__dirname, '../images'),
-  outputDir: path.join(__dirname, '../dist/images'),
-  backupDir: path.join(__dirname, '../images-backup'),
+  inputDir: path.join(__dirname, "../images"),
+  outputDir: path.join(__dirname, "../dist/images"),
+  backupDir: path.join(__dirname, "../images-backup"),
   quality: {
     jpeg: 85,
     png: 90,
@@ -44,7 +44,7 @@ async function ensureDir(dirPath) {
 async function getFileSize(filePath) {
   try {
     const stats = await fs.stat(filePath);
-    return Math.round(stats.size / 1024 * 100) / 100;
+    return Math.round((stats.size / 1024) * 100) / 100;
   } catch {
     return 0;
   }
@@ -56,15 +56,13 @@ async function getFileSize(filePath) {
 async function createBackup() {
   if (!CONFIG.createBackup) return;
 
-  console.log('💾 Creating backup of original images...');
+  console.log("💾 Creating backup of original images...");
 
   try {
     await ensureDir(CONFIG.backupDir);
 
     const files = await fs.readdir(CONFIG.inputDir);
-    const imageFiles = files.filter(file =>
-      /\.(jpe?g|png|svg|gif)$/i.test(file)
-    );
+    const imageFiles = files.filter((file) => /\.(jpe?g|png|svg|gif)$/i.test(file));
 
     for (const file of imageFiles) {
       const sourcePath = path.join(CONFIG.inputDir, file);
@@ -79,7 +77,7 @@ async function createBackup() {
       }
     }
   } catch (error) {
-    console.error('❌ Error creating backup:', error.message);
+    console.error("❌ Error creating backup:", error.message);
     throw error;
   }
 }
@@ -88,7 +86,7 @@ async function createBackup() {
  * Optimize JPEG images
  */
 async function optimizeJPEG() {
-  console.log('🖼️  Optimizing JPEG images...');
+  console.log("🖼️  Optimizing JPEG images...");
 
   const files = await imagemin([`${CONFIG.inputDir}/*.{jpg,jpeg}`], {
     destination: CONFIG.outputDir,
@@ -107,7 +105,7 @@ async function optimizeJPEG() {
  * Optimize PNG images
  */
 async function optimizePNG() {
-  console.log('🎨 Optimizing PNG images...');
+  console.log("🎨 Optimizing PNG images...");
 
   const files = await imagemin([`${CONFIG.inputDir}/*.png`], {
     destination: CONFIG.outputDir,
@@ -126,7 +124,7 @@ async function optimizePNG() {
  * Optimize SVG images
  */
 async function optimizeSVG() {
-  console.log('🎯 Optimizing SVG images...');
+  console.log("🎯 Optimizing SVG images...");
 
   const files = await imagemin([`${CONFIG.inputDir}/*.svg`], {
     destination: CONFIG.outputDir,
@@ -134,15 +132,15 @@ async function optimizeSVG() {
       imageminSvgo({
         plugins: [
           {
-            name: 'removeViewBox',
+            name: "removeViewBox",
             active: false,
           },
           {
-            name: 'removeDimensions',
+            name: "removeDimensions",
             active: true,
           },
           {
-            name: 'cleanupNumericValues',
+            name: "cleanupNumericValues",
             params: {
               floatPrecision: 2,
             },
@@ -161,7 +159,7 @@ async function optimizeSVG() {
 async function createWebPVersions() {
   if (!CONFIG.createWebP) return [];
 
-  console.log('🚀 Creating WebP versions...');
+  console.log("🚀 Creating WebP versions...");
 
   const files = await imagemin([`${CONFIG.inputDir}/*.{jpg,jpeg,png}`], {
     destination: CONFIG.outputDir,
@@ -186,13 +184,11 @@ async function createWebPVersions() {
  * Copy non-optimizable images (GIF, etc.)
  */
 async function copyOtherImages() {
-  console.log('📄 Copying other image formats...');
+  console.log("📄 Copying other image formats...");
 
   try {
     const files = await fs.readdir(CONFIG.inputDir);
-    const otherFiles = files.filter(file =>
-      /\.(gif|ico|webp)$/i.test(file)
-    );
+    const otherFiles = files.filter((file) => /\.(gif|ico|webp)$/i.test(file));
 
     const copiedFiles = [];
     for (const file of otherFiles) {
@@ -210,7 +206,7 @@ async function copyOtherImages() {
 
     return copiedFiles;
   } catch (error) {
-    console.warn('⚠️  No other image formats to copy:', error.message);
+    console.warn("⚠️  No other image formats to copy:", error.message);
     return [];
   }
 }
@@ -219,8 +215,8 @@ async function copyOtherImages() {
  * Generate optimization report
  */
 async function generateReport(optimizedFiles) {
-  console.log('\n📊 Optimization Report');
-  console.log('='.repeat(50));
+  console.log("\n📊 Optimization Report");
+  console.log("=".repeat(50));
 
   let totalOriginalSize = 0;
   let totalOptimizedSize = 0;
@@ -236,7 +232,7 @@ async function generateReport(optimizedFiles) {
         const savingsPercent = Math.round((savings / originalSize) * 100);
 
         console.log(
-          `📁 ${path.basename(file.sourcePath)}: ${originalSize}KB → ${optimizedSize}KB (${savingsPercent}% saved)`
+          `📁 ${path.basename(file.sourcePath)}: ${originalSize}KB → ${optimizedSize}KB (${savingsPercent}% saved)`,
         );
 
         totalOriginalSize += originalSize;
@@ -250,12 +246,12 @@ async function generateReport(optimizedFiles) {
     const totalSavings = totalOriginalSize - totalOptimizedSize;
     const totalSavingsPercent = Math.round((totalSavings / totalOriginalSize) * 100);
 
-    console.log('='.repeat(50));
+    console.log("=".repeat(50));
     console.log(`📈 Total: ${totalOriginalSize}KB → ${totalOptimizedSize}KB`);
     console.log(`💾 Total savings: ${totalSavings}KB (${totalSavingsPercent}%)`);
     console.log(`🗂️  Files processed: ${fileCount}`);
   } else {
-    console.log('ℹ️  No files processed or no size data available');
+    console.log("ℹ️  No files processed or no size data available");
   }
 }
 
@@ -263,7 +259,7 @@ async function generateReport(optimizedFiles) {
  * Main optimization function
  */
 async function optimizeImages() {
-  console.log('🚀 Starting image optimization...\n');
+  console.log("🚀 Starting image optimization...\n");
 
   try {
     // Ensure output directory exists
@@ -272,24 +268,24 @@ async function optimizeImages() {
     // Create backup
     await createBackup();
 
-    console.log('\n🔄 Processing images...');
+    console.log("\n🔄 Processing images...");
 
     // Run optimizations in parallel
     const [jpegFiles, pngFiles, svgFiles, webpFiles, otherFiles] = await Promise.all([
-      optimizeJPEG().catch(err => {
-        console.warn('⚠️  JPEG optimization warning:', err.message);
+      optimizeJPEG().catch((err) => {
+        console.warn("⚠️  JPEG optimization warning:", err.message);
         return [];
       }),
-      optimizePNG().catch(err => {
-        console.warn('⚠️  PNG optimization warning:', err.message);
+      optimizePNG().catch((err) => {
+        console.warn("⚠️  PNG optimization warning:", err.message);
         return [];
       }),
-      optimizeSVG().catch(err => {
-        console.warn('⚠️  SVG optimization warning:', err.message);
+      optimizeSVG().catch((err) => {
+        console.warn("⚠️  SVG optimization warning:", err.message);
         return [];
       }),
-      createWebPVersions().catch(err => {
-        console.warn('⚠️  WebP creation warning:', err.message);
+      createWebPVersions().catch((err) => {
+        console.warn("⚠️  WebP creation warning:", err.message);
         return [];
       }),
       copyOtherImages(),
@@ -301,7 +297,7 @@ async function optimizeImages() {
     // Generate report
     await generateReport(allFiles);
 
-    console.log('\n✅ Image optimization completed successfully!');
+    console.log("\n✅ Image optimization completed successfully!");
     console.log(`📍 Optimized images saved to: ${CONFIG.outputDir}`);
 
     if (CONFIG.createBackup) {
@@ -311,10 +307,9 @@ async function optimizeImages() {
     if (CONFIG.createWebP && webpFiles.length > 0) {
       console.log(`🚀 ${webpFiles.length} WebP versions created for modern browsers`);
     }
-
   } catch (error) {
-    console.error('\n❌ Image optimization failed:', error.message);
-    console.error('Stack trace:', error.stack);
+    console.error("\n❌ Image optimization failed:", error.message);
+    console.error("Stack trace:", error.stack);
     process.exit(1);
   }
 }
@@ -326,7 +321,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   // Parse command line arguments
   const args = process.argv.slice(2);
 
-  if (args.includes('--help') || args.includes('-h')) {
+  if (args.includes("--help") || args.includes("-h")) {
     console.log(`
 🖼️  Image Optimization Script
 
@@ -347,17 +342,17 @@ Examples:
   }
 
   // Parse options
-  if (args.includes('--no-backup')) {
+  if (args.includes("--no-backup")) {
     CONFIG.createBackup = false;
   }
 
-  if (args.includes('--no-webp')) {
+  if (args.includes("--no-webp")) {
     CONFIG.createWebP = false;
   }
 
-  const qualityArg = args.find(arg => arg.startsWith('--quality='));
+  const qualityArg = args.find((arg) => arg.startsWith("--quality="));
   if (qualityArg) {
-    const quality = parseInt(qualityArg.split('=')[1]);
+    const quality = parseInt(qualityArg.split("=")[1]);
     if (quality >= 1 && quality <= 100) {
       CONFIG.quality.jpeg = quality;
       CONFIG.quality.png = quality;

@@ -10,7 +10,7 @@ hamburger.addEventListener("click", () => {
 
 // Close mobile menu when clicking on a link
 navLinks.forEach((link) => {
-  link.addEventListener("click", function() {
+  link.addEventListener("click", function () {
     hamburger.classList.remove("active");
     navMenu.classList.remove("active");
     this.blur(); // Remove focus to prevent sticky border
@@ -39,7 +39,7 @@ if (dropdown && dropdownToggle && dropdownMenu) {
   // Close dropdown when clicking on dropdown links
   const dropdownLinks = document.querySelectorAll(".nav-dropdown-link");
   dropdownLinks.forEach((link) => {
-    link.addEventListener("click", function() {
+    link.addEventListener("click", function () {
       dropdown.classList.remove("active");
       this.blur(); // Remove focus to prevent sticky border
     });
@@ -72,7 +72,7 @@ window.addEventListener("scroll", () => {
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function(e) {
+  anchor.addEventListener("click", function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute("href"));
 
@@ -171,7 +171,7 @@ const formSubmissionTracker = {
 const contactForm = document.getElementById("kontaktskjema");
 
 if (contactForm) {
-  contactForm.addEventListener("submit", function(e) {
+  contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Check rate limiting first
