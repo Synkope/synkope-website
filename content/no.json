@@ -89,8 +89,8 @@
     "list": [
       {
         "title": "IT-infrastruktur og cloud",
-        "description": "GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i cloud-miljøer.",
-        "details": "Vi bistår med arkitektur, utvikling og drift av IT-infrastruktur i cloud og on-premise. Våre konsulenter har erfaring med Kubernetes, Terraform og moderne DevOps-verktøy.",
+        "description": "GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i skymiljøer.",
+        "details": "Vi bistår med arkitektur, utvikling og drift av IT-infrastruktur i sky og on-premise. Våre konsulenter har erfaring med Kubernetes, Terraform og moderne DevOps-verktøy.",
         "link": "tjenester/it-infrastruktur.html"
       },
       {
@@ -146,12 +146,12 @@
   "service_pages": {
     "it_infrastruktur": {
       "title": "IT-infrastruktur og cloud",
-      "meta_description": "GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i cloud-miljøer. Vi bistår med Kubernetes, Terraform og moderne DevOps-verktøy.",
+      "meta_description": "GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i skymiljøer. Vi bistår med Kubernetes, Terraform og moderne DevOps-verktøy.",
       "content": {
         "intro": [
-          "Organisasjoner flytter IT-infrastruktur til cloud for å redusere kostnader og øke fleksibilitet. GitOps og infrastruktur som kode gir kontroll og sporbarhet i denne prosessen.",
+          "Organisasjoner flytter IT-infrastruktur til skyen for å redusere kostnader og øke fleksibilitet. GitOps og infrastruktur som kode gir kontroll og sporbarhet i denne prosessen.",
           "Vi bruker Git som eneste kilde til sannhet og definerer alt infrastruktur som kode. Dette muliggjør automatiserte deployments gjennom CI/CD-pipelines og kontinuerlig overvåking av alle systemer.",
-          "Vår tilnærming kombinerer cloud-plattformer som AWS, Azure og GCP med moderne verktøy som Kubernetes, Terraform og ArgoCD. Dette gir organisasjoner full kontroll over infrastrukturen samtidig som de drar nytte av cloud-fordelene.",
+          "Vår tilnærming kombinerer cloud-plattformer som AWS, Azure og GCP med moderne verktøy som Kubernetes, Terraform og ArgoCD. Dette gir organisasjoner full kontroll over infrastrukturen samtidig som de drar nytte av skyfordelene.",
           "Vi hjelper med alt fra planlegging og gjennomføring av cloud migration til implementering av Kubernetes-kluster og etablering av GitOps-arbeidsflyt. Sikkerhet og overvåking er integrert i alle løsninger fra dag én.",
           "Terraform-moduler sikrer reproducerbar infrastruktur, mens ArgoCD og Flux automatiserer deployments basert på endringer i Git. Prometheus og Grafana gir kontinuerlig innsikt i systemenes helse og ytelse."
         ],
@@ -162,7 +162,7 @@
           "GitOps med ArgoCD og Flux",
           "CI/CD-pipelines med Jenkins, GitLab eller GitHub Actions",
           "Observability med Prometheus, Grafana og ELK-stack",
-          "Sikkerhet i cloud-infrastruktur og container-miljøer"
+          "Sikkerhet i cloud-infrastruktur og containermiljøer"
         ]
       }
     },
