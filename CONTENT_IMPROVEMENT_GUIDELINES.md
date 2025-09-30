@@ -58,6 +58,7 @@ Synkope skal posisjoneres som:
 - Bruk "avsnitt" (ikke "paragraf")
 - Bruk "innhold" (ikke "content")
 - Bruk "nettside" (ikke "website")
+- Bruk "virksomhet" (ikke "organisasjon")
 
 ## Spesifikke forbedringsområder
 

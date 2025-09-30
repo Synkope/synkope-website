@@ -96,13 +96,13 @@
       {
         "title": "Prosjektstyring",
         "description": "Erfarne prosjektledere med PRINCE2® og SAFe-sertifiseringer.",
-        "details": "Vi tilbyr prosjektledelse på alle nivåer, fra små interne prosjekter til store organisasjonsendringer. Våre prosjektledere har dokumentert erfaring og relevante sertifiseringer.",
+        "details": "Vi tilbyr prosjektledelse på alle nivåer, fra små interne prosjekter til store virksomhetsendringer. Våre prosjektledere har dokumentert erfaring og relevante sertifiseringer.",
         "link": "tjenester/prosjektstyring.html"
       },
       {
         "title": "Informasjonssikkerhet",
         "description": "Risikovurderinger og sikkerhetstiltak for kritisk infrastruktur.",
-        "details": "Vi hjelper organisasjoner med å identifisere, vurdere og håndtere sikkerhetsrisiko. Våre tjenester spenner fra strategisk rådgivning til praktisk implementering av sikkerhetstiltak.",
+        "details": "Vi hjelper virksomheter med å identifisere, vurdere og håndtere sikkerhetsrisiko. Våre tjenester spenner fra strategisk rådgivning til praktisk implementering av sikkerhetstiltak.",
         "link": "tjenester/informasjonssikkerhet.html"
       },
       {
@@ -149,9 +149,9 @@
       "meta_description": "GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i skymiljøer. Vi bistår med Terraform og moderne DevOps-verktøy for tradisjonell og skybasert infrastruktur.",
       "content": {
         "intro": [
-          "Organisasjoner flytter IT-infrastruktur til skyen for å redusere kostnader og øke fleksibilitet. GitOps og infrastruktur som kode gir kontroll og sporbarhet i denne prosessen.",
+          "Virksomheter flytter IT-infrastruktur til skyen for å redusere kostnader og øke fleksibilitet. GitOps og infrastruktur som kode gir kontroll og sporbarhet i denne prosessen.",
           "Vi bruker Git som eneste kilde til sannhet og definerer alt infrastruktur som kode. Dette muliggjør automatiserte deployments gjennom CI/CD-pipelines og kontinuerlig overvåking av alle systemer.",
-          "Vår tilnærming kombinerer cloud-plattformer som AWS, Azure og GCP med moderne verktøy som Terraform og ArgoCD. Dette gir organisasjoner full kontroll over infrastrukturen samtidig som de drar nytte av skyfordelene.",
+          "Vår tilnærming kombinerer cloud-plattformer som AWS, Azure og GCP med moderne verktøy som Terraform og ArgoCD. Dette gir virksomheter full kontroll over infrastrukturen samtidig som de drar nytte av skyfordelene.",
           "Vi hjelper med alt fra planlegging og gjennomføring av cloud migration til etablering av GitOps-arbeidsflyt og omstilling til kodebasert infrastruktur. Sikkerhet og overvåking er integrert i alle løsninger fra dag én.",
           "Terraform-moduler sikrer reproducerbar infrastruktur, mens ArgoCD og Flux automatiserer deployments basert på endringer i Git. Prometheus og Grafana gir kontinuerlig innsikt i systemenes helse og ytelse."
         ],
