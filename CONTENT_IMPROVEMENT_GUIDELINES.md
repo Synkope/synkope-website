@@ -29,6 +29,7 @@ Synkope skal posisjoneres som:
 4. **Substansielt innhold**: Fokus på hva som leveres, ikke hvordan vi er
 5. **Norsk terminologi**: Bruk norske fagtermer der det finnes alternativer
 6. **Minimal bruk av adjektiver**: Unngå beskrivende ord som ikke tilfører verdi
+7. **Norsk språkstruktur**: Bruk "avsnitt" i stedet for "paragraf"
 
 ### Unngå
 - Buzzwords og tomme fraser ("best practice", "state-of-the-art", "innovative", "cutting-edge", "comprehensive")
@@ -52,6 +53,11 @@ Synkope skal posisjoneres som:
 - **Ingress/subtitle**: 1-2 setninger som utdyper overskriften
 - **Hovedtekst avsnitt**: 2-4 setninger per avsnitt
 - **Listepunkter**: Maksimalt 15-20 ord per punkt
+
+### Terminologi
+- Bruk "avsnitt" (ikke "paragraf")
+- Bruk "innhold" (ikke "content")
+- Bruk "nettside" (ikke "website")
 
 ## Spesifikke forbedringsområder
 
