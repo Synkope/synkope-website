@@ -217,18 +217,16 @@
         "intro": [
           "Elektromagnetisk kompatibilitet (EMC) handler om at elektronisk utstyr skal fungere som tiltenkt uten å forstyrre andre systemer, og samtidig være motstandsdyktig mot elektromagnetiske forstyrrelser fra omgivelsene.",
           "EMC-testing er påkrevd for alt elektronisk utstyr som skal selges i Europa og Norge, og er spesielt kritisk for militært utstyr og systemer som brukes i sikkerhetskritiske miljøer. Manglende EMC-compliance kan føre til kostbare forsinkelser, tilbakekalling av produkter eller at utstyr ikke fungerer som forventet.",
-          "Vi støtter både kunder som skal anskaffe utstyr og leverandører som skal dokumentere EMC-egenskaper. Vår erfaring spenner fra tidlig planlegging og kravstilling til gjennomføring av tester og tolkning av resultater.",
+          "Vi støtter både kunder som skal anskaffe utstyr og leverandører som skal teste ogdokumentere EMC-egenskaper. Vår erfaring spenner fra tidlig planlegging og kravstilling til gjennomføring av tester og tolkning av resultater.",
           "For leverandører hjelper vi med testplanlegging, risikovurderinger og praktisk gjennomføring av EMC-tester etter relevante standarder. For kunder bidrar vi med utarbeidelse av EMC-krav, vurdering av testrapporter og oppfølging av leverandører.",
-          "Våre konsulenter har bred erfaring med både sivile og militære EMC-standarder, og kjenner godt til utfordringene knyttet til testing av komplekst utstyr i krevende miljøer."
+          "Synkope har lang erfaring med både sivile og militære EMC-standarder, og kjenner godt til utfordringene knyttet til testing av komplekst utstyr i krevende miljøer."
         ],
         "competencies": [
           "Militære EMC-standarder (MIL-STD-461, STANAG, DEF STAN)",
           "Sivile EMC-standarder (EN, IEC, CISPR)",
           "Utarbeidelse av EMC-krav og testspesifikasjoner",
           "Planlegging og gjennomføring av EMC-tester",
-          "Tolkning og vurdering av testrapporter",
-          "Risikovurderinger og problemløsning",
-          "Leverandøroppfølging og kvalitetssikring"
+          "Tolkning og vurdering av testrapporter"
         ]
       }
     }
