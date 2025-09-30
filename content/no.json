@@ -149,76 +149,12 @@
       "meta_description": "GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i cloud-miljøer. Vi bistår med Kubernetes, Terraform og moderne DevOps-verktøy.",
       "content": {
         "intro": [
-          "Organisasjoner flytter IT-infrastruktur til cloud for å redusere kostnader og øke fleksibilitet.",
-          "GitOps og infrastruktur som kode gir kontroll og sporbarhet i denne prosessen.",
-          "Vi leverer løsninger basert på:"
+          "Organisasjoner flytter IT-infrastruktur til cloud for å redusere kostnader og øke fleksibilitet. GitOps og infrastruktur som kode gir kontroll og sporbarhet i denne prosessen.",
+          "Vi bruker Git som eneste kilde til sannhet og definerer alt infrastruktur som kode. Dette muliggjør automatiserte deployments gjennom CI/CD-pipelines og kontinuerlig overvåking av alle systemer.",
+          "Vår tilnærming kombinerer cloud-plattformer som AWS, Azure og GCP med moderne verktøy som Kubernetes, Terraform og ArgoCD. Dette gir organisasjoner full kontroll over infrastrukturen samtidig som de drar nytte av cloud-fordelene.",
+          "Vi hjelper med alt fra planlegging og gjennomføring av cloud migration til implementering av Kubernetes-kluster og etablering av GitOps-arbeidsflyt. Sikkerhet og overvåking er integrert i alle løsninger fra dag én.",
+          "Terraform-moduler sikrer reproducerbar infrastruktur, mens ArgoCD og Flux automatiserer deployments basert på endringer i Git. Prometheus og Grafana gir kontinuerlig innsikt i systemenes helse og ytelse."
         ],
-        "approach": [
-          "Alt infrastruktur defineres som kode",
-          "Git som eneste kilde til sannhet (single source of truth)",
-          "Automatiserte deployments gjennom CI/CD-pipelines",
-          "Kontinuerlig overvåking og observability"
-        ],
-        "technologies": {
-          "title": "Teknologier vi jobber med",
-          "cloud_platforms": [
-            "Amazon Web Services (AWS)",
-            "Microsoft Azure",
-            "Google Cloud Platform (GCP)"
-          ],
-          "tools": [
-            "Kubernetes for containerorkstrering",
-            "Terraform for infrastruktur som kode",
-            "ArgoCD og Flux for GitOps",
-            "Prometheus og Grafana for overvåking",
-            "HashiCorp Vault for secret management"
-          ]
-        },
-        "services": {
-          "title": "Våre tjenester",
-          "list": [
-            {
-              "title": "Cloud migration",
-              "description": "Planlegging og gjennomføring av flytting fra on-premise til cloud",
-              "deliverables": [
-                "Migrationsplan",
-                "Risikoanalyse",
-                "Kostnadsestimater",
-                "Implementering"
-              ]
-            },
-            {
-              "title": "Kubernetes-implementering",
-              "description": "Oppsett og drift av Kubernetes-kluster med sikkerhet og overvåking",
-              "deliverables": [
-                "Klusteroppsett",
-                "Sikkerhetskonfigurasjon",
-                "Monitoring",
-                "Backup-rutiner"
-              ]
-            },
-            {
-              "title": "GitOps-innføring",
-              "description": "Etablering av GitOps-arbeidsflyt for automatiserte deployments",
-              "deliverables": [
-                "Git-repository struktur",
-                "CI/CD-pipelines",
-                "Deployment-automatisering",
-                "Rollback-prosedyrer"
-              ]
-            },
-            {
-              "title": "Infrastruktur som kode",
-              "description": "Terraform-moduler for reproducerbar infrastruktur",
-              "deliverables": [
-                "Terraform-moduler",
-                "State management",
-                "Dokumentasjon",
-                "Opplæring"
-              ]
-            }
-          ]
-        },
         "competencies": [
           "Cloud-arkitektur for AWS, Azure og GCP",
           "Kubernetes deployment og sikkerhet",
