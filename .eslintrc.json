@@ -9,7 +9,7 @@
     "sourceType": "script"
   },
   "rules": {
-    "indent": ["warn", 2],
+    "indent": "off",
     "linebreak-style": ["error", "unix"],
     "quotes": [
       "warn",
@@ -27,10 +27,7 @@
     "comma-dangle": ["warn", "always-multiline"],
     "no-trailing-spaces": "warn",
     "eol-last": "warn",
-    "space-before-function-paren": [
-      "warn",
-      { "anonymous": "never", "named": "never", "asyncArrow": "always" }
-    ],
+    "space-before-function-paren": "off",
     "keyword-spacing": "warn",
     "space-infix-ops": "warn",
     "object-curly-spacing": ["warn", "always"],
