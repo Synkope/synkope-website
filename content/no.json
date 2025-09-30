@@ -146,24 +146,21 @@
   "service_pages": {
     "it_infrastruktur": {
       "title": "IT-infrastruktur og cloud",
-      "meta_description": "GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i skymiljøer. Vi bistår med Terraform og moderne DevOps-verktøy for tradisjonell og skybasert infrastruktur.",
+      "meta_description": "GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i skymiljøer. Vi bistår med Ansible, Terraform og moderne DevOps-verktøy for tradisjonell og skybasert infrastruktur.",
       "content": {
         "intro": [
-          "Virksomheter flytter IT-infrastruktur til skyen for å redusere kostnader og øke fleksibilitet. GitOps og infrastruktur som kode gir kontroll og sporbarhet i denne prosessen.",
-          "Vi bruker Git som eneste kilde til sannhet og definerer alt infrastruktur som kode. Dette muliggjør automatiserte deployments gjennom CI/CD-pipelines og kontinuerlig overvåking av alle systemer.",
-          "Vår tilnærming kombinerer cloud-plattformer som AWS, Azure og GCP med moderne verktøy som Terraform og ArgoCD. Dette gir virksomheter full kontroll over infrastrukturen samtidig som de drar nytte av skyfordelene.",
-          "Vi hjelper med alt fra planlegging og gjennomføring av cloud migration til etablering av GitOps-arbeidsflyt og omstilling til kodebasert infrastruktur. Sikkerhet og overvåking er integrert i alle løsninger fra dag én.",
-          "Terraform-moduler sikrer reproducerbar infrastruktur, mens ArgoCD og Flux automatiserer deployments basert på endringer i Git. Prometheus og Grafana gir kontinuerlig innsikt i systemenes helse og ytelse."
+          "Moderne infrastruktur og plattformerutvikles som kode og lagres i Git! Automatisering responderer på endringer i kode og konfigurasjon gjennom CI/CD eller GitOps.",
+          "De beste teamene tar i bruk verktøy og praksis fra programvareutvikling for å bygge kodebaser som både er robuste og enkle å endre og vedlikeholde. Vi hjelper å utvikle en moderne, kodebasert praksis, med alt som trengs av verktøy og prosesser for å skape nyesuksesshistorier.",
+          "Synkope har spilt en viktig rolle i flere av de største infrastrukturprosjektene i Norge. Vi kan tradisjonelle prosjektmetoder, men foretrekker mer moderne og smidige måter å jobbe på. Vi er vant til Scrum og Kanban, og rammeverk som Scaled Agile Framework (SAFe).",
+          "Teknisk har vi mange års erfaring med Ansible og Terraform, og innføring og drift av verktøy som GitHub, GitLab, Artifactory, Hashicorp Vault, Prometheus, Thanos, Grafana og SonarQube"
         ],
         "competencies": [
-          "Cloud-arkitektur for AWS, Azure og GCP",
-          "Omstilling til kodebasert infrastruktur",
-          "Terraform og infrastruktur som kode",
-          "GitOps med ArgoCD og Flux",
+          "Omstilling til kodebasert infrastruktur og etablering av praksiser og verktøy",
+          "Ansible, Terraform og infrastruktur som kode",
           "CI/CD-pipelines med Jenkins, GitLab eller GitHub Actions",
-          "Observability med Prometheus, Grafana og ELK-stack",
-          "Tradisjonell infrastruktur og modernisering",
-          "Sikkerhet i cloud-infrastruktur og containermiljøer"
+          "Observability med Prometheus, Grafana og Thanos",
+          "Veiledning i trygg bruk av KI/AI til utvikling av infrastruktur og plattformer",
+          "Dokumentert erfaring i roller som utvikler, arkitekt, og Tech Lead"
         ]
       }
     },
@@ -215,16 +212,23 @@
     },
     "emc": {
       "title": "Elektromagnetisk kompatibilitet (EMC)",
-      "meta_description": "Elektromagnetisk kompatibilitet for militært utstyr og kritiske systemer. Rådgivning, testplanlegging og testing innenfor EMC-feltet.",
+      "meta_description": "EMC-testing sikrer at utstyr fungerer uten å forstyrre eller bli forstyrret av andre elektroniske systemer. Vi støtter både kunder og leverandører gjennom hele prosessen.",
       "content": {
         "intro": [
-          "Synkope kan bistå med rådgivning, testplanlegging og testing innenfor EMC-feltet.",
-          "Vi kan tilby konsulenter som har følgende nøkkelkompetanse:"
+          "Elektromagnetisk kompatibilitet (EMC) handler om at elektronisk utstyr skal fungere som tiltenkt uten å forstyrre andre systemer, og samtidig være motstandsdyktig mot elektromagnetiske forstyrrelser fra omgivelsene.",
+          "EMC-testing er påkrevd for alt elektronisk utstyr som skal selges i Europa og Norge, og er spesielt kritisk for militært utstyr og systemer som brukes i sikkerhetskritiske miljøer. Manglende EMC-compliance kan føre til kostbare forsinkelser, tilbakekalling av produkter eller at utstyr ikke fungerer som forventet.",
+          "Vi støtter både kunder som skal anskaffe utstyr og leverandører som skal dokumentere EMC-egenskaper. Vår erfaring spenner fra tidlig planlegging og kravstilling til gjennomføring av tester og tolkning av resultater.",
+          "For leverandører hjelper vi med testplanlegging, risikovurderinger og praktisk gjennomføring av EMC-tester etter relevante standarder. For kunder bidrar vi med utarbeidelse av EMC-krav, vurdering av testrapporter og oppfølging av leverandører.",
+          "Våre konsulenter har bred erfaring med både sivile og militære EMC-standarder, og kjenner godt til utfordringene knyttet til testing av komplekst utstyr i krevende miljøer."
         ],
         "competencies": [
-          "Inngående kunnskap om militære standarder på området",
-          "Utarbeidelse av krav i forbindelse med anskaffelser",
-          "Planlegge og gjennomføre EMC-tester"
+          "Militære EMC-standarder (MIL-STD-461, STANAG, DEF STAN)",
+          "Sivile EMC-standarder (EN, IEC, CISPR)",
+          "Utarbeidelse av EMC-krav og testspesifikasjoner",
+          "Planlegging og gjennomføring av EMC-tester",
+          "Tolkning og vurdering av testrapporter",
+          "Risikovurderinger og problemløsning",
+          "Leverandøroppfølging og kvalitetssikring"
         ]
       }
     }
