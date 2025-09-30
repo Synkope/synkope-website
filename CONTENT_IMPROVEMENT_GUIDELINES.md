@@ -197,3 +197,4 @@ Longer description if needed, explaining:
 - Be specific about which part is changed
 - Explain "why" in longer description when needed
 - Group related changes in the same commit
+- Always run `make lint` before committing to avoid pipeline failures
