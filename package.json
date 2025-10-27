@@ -42,7 +42,7 @@
   "devDependencies": {
     "@playwright/test": "^1.55.1",
     "clean-css-cli": "^5.6.2",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "imagemin": "^9.0.1",
     "imagemin-mozjpeg": "^10.0.0",
     "imagemin-pngquant": "^10.0.0",
