@@ -7,12 +7,10 @@ import { chromium } from "@playwright/test";
 async function globalSetup() {
   console.log("🚀 Starting global test setup...");
 
-  // Check if we're running in CI or local environment
-  const isCI = !!process.env.CI;
-  const baseURL = process.env.CI ? "https://synkope.github.io/synkope-website/" : "http://localhost:8000";
+  // Use localhost in all environments (webServer handles starting the dev server)
+  const baseURL = "http://localhost:8000";
 
   console.log(`📍 Testing against: ${baseURL}`);
-  console.log(`🔧 Environment: ${isCI ? "CI" : "Local Development"}`);
 
   // Launch a browser to verify the site is accessible
   const browser = await chromium.launch();
@@ -67,15 +65,7 @@ async function globalSetup() {
     }
   } catch (error) {
     console.error("❌ Global setup failed:", error.message);
-
-    if (isCI) {
-      // In CI, this might be expected if the site hasn't deployed yet
-      console.log("🔄 This might be expected in CI if deployment is still in progress");
-    } else {
-      // In local development, this is more serious
-      console.error('💡 Make sure you have started the local server with "npm run serve" or "make serve"');
-    }
-
+    console.error("💡 Make sure the server is running. Playwright should auto-start it via webServer config.");
     throw error;
   } finally {
     await page.close();
@@ -86,7 +76,6 @@ async function globalSetup() {
 
   return {
     baseURL,
-    isCI,
     setupTime: new Date().toISOString(),
   };
 }
