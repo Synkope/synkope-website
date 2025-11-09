@@ -44,7 +44,7 @@ jobs:
           cp -f favicon.ico robots.txt sitemap.xml manifest.json dist/ 2>/dev/null || true
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./dist
 
