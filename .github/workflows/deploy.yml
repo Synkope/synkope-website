@@ -1,87 +1,55 @@
 name: Deploy to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
-          node-version: "24"
+          node-version: "20"
           cache: "npm"
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint JavaScript
-        run: npm run lint || npx eslint js/**/*.js
-
-      - name: Check code formatting
-        run: npm run format:check || npx prettier --check "**/*.{html,css,js,json}" --ignore-path .gitignore
+      - name: Lint and format check
+        run: npm run build:fast
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Build website
+      - name: Build site
         run: |
-          # Create dist directory
           mkdir -p dist
-
-          # Copy all necessary files to dist
-          cp -r *.html dist/
-          cp -r css dist/
-          cp -r js dist/
-          cp -r images dist/
-          cp -r content dist/
-          cp -r tjenester dist/
-
-          # Copy other necessary files
-          [ -f favicon.ico ] && cp favicon.ico dist/ || true
-          [ -f robots.txt ] && cp robots.txt dist/ || true
-          [ -f sitemap.xml ] && cp sitemap.xml dist/ || true
-
-      - name: Optimize images (if tools available)
-        run: |
-          # Optional: optimize images if imagemin is available
-          if command -v npx &> /dev/null && npx imagemin --version &> /dev/null; then
-            echo "Optimizing images..."
-            npx imagemin dist/images/* --out-dir=dist/images
-          else
-            echo "Image optimization skipped - imagemin not available"
-          fi
-        continue-on-error: true
+          cp -r *.html css js images content tjenester dist/
+          cp -f favicon.ico robots.txt sitemap.xml manifest.json dist/ 2>/dev/null || true
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
-  # Deployment job
   deploy:
+    name: Deploy
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
