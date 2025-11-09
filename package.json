@@ -4,6 +4,7 @@
   "description": "A modern, responsive website for Synkope consulting company",
   "main": "index.html",
   "scripts": {
+    "prepare": "husky install",
     "lint": "eslint js/**/*.js",
     "lint:fix": "eslint js/**/*.js --fix",
     "format": "prettier --write \"**/*.{html,css,js,json}\" --ignore-path .gitignore",
@@ -40,9 +41,12 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.55.1",
     "clean-css-cli": "^5.6.2",
     "eslint": "^9.0.0",
+    "globals": "^16.5.0",
+    "husky": "^9.1.7",
     "imagemin": "^9.0.1",
     "imagemin-mozjpeg": "^10.0.0",
     "imagemin-pngquant": "^10.0.0",
