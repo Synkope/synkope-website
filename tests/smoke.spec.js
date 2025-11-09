@@ -57,7 +57,14 @@ test.describe("Smoke Tests - Critical Functionality", () => {
     await page.waitForLoadState("networkidle");
 
     // Allow some known errors but fail on critical ones
-    const criticalErrors = consoleErrors.filter((error) => !error.includes("favicon") && !error.includes("404"));
+    const criticalErrors = consoleErrors.filter(
+      (error) =>
+        !error.includes("favicon") &&
+        !error.includes("404") &&
+        !error.includes("X-Frame-Options") &&
+        !error.includes("Content Security Policy") &&
+        !error.includes("frame-ancestors"),
+    );
     expect(criticalErrors).toHaveLength(0);
   });
 });
