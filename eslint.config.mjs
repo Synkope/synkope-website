@@ -27,11 +27,7 @@ export default [
     rules: {
       indent: "off",
       "linebreak-style": ["error", "unix"],
-      quotes: [
-        "warn",
-        "double",
-        { allowTemplateLiterals: true, avoidEscape: true },
-      ],
+      quotes: ["warn", "double", { allowTemplateLiterals: true, avoidEscape: true }],
       semi: ["error", "always"],
       "no-unused-vars": "warn",
       "no-console": "off",
@@ -48,10 +44,18 @@ export default [
       "space-infix-ops": "warn",
       "object-curly-spacing": ["warn", "always"],
       "array-bracket-spacing": ["warn", "never"],
-      "max-len": [
-        "warn",
-        { code: 120, ignoreUrls: true, ignoreStrings: true },
-      ],
+      "max-len": ["warn", { code: 120, ignoreUrls: true, ignoreStrings: true }],
+    },
+  },
+  {
+    files: ["tests/**/*.js", "*.spec.js", "*.test.js"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
     },
   },
 ];

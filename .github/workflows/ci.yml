@@ -48,7 +48,12 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps
 
-      - name: Run tests
+      - name: Run smoke tests (PR)
+        if: github.event_name == 'pull_request'
+        run: npx playwright test tests/smoke.spec.js
+
+      - name: Run full test suite (main branch)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: npm test
 
       - name: Upload test results
