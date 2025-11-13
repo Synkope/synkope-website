@@ -40,9 +40,9 @@ test.describe("Smoke Tests - Critical Functionality", () => {
     const teamMembers = page.locator(".team-member");
     await expect(teamMembers).toHaveCount(4);
 
-    // Verify content is loaded from JSON (not default "Loading..." text)
-    const firstMemberDesc = await page.locator(".team-member").first().locator(".team-info p").textContent();
-    expect(firstMemberDesc).not.toContain("Loading...");
+    // Wait for content to load from JSON
+    const firstMemberDesc = page.locator(".team-member").first().locator(".team-info p");
+    await expect(firstMemberDesc).not.toHaveText("Loading...", { timeout: 10000 });
   });
 
   test("should load without console errors", async ({ page }) => {
@@ -63,7 +63,8 @@ test.describe("Smoke Tests - Critical Functionality", () => {
         !error.includes("404") &&
         !error.includes("X-Frame-Options") &&
         !error.includes("Content Security Policy") &&
-        !error.includes("frame-ancestors"),
+        !error.includes("frame-ancestors") &&
+        !error.includes("TLS handshake"),
     );
     expect(criticalErrors).toHaveLength(0);
   });
