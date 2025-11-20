@@ -5,7 +5,7 @@
   },
   "navigation": {
     "home": "Hjem",
-    "about": "Om Oss",
+    "about": "Om oss",
     "team": "Team",
     "services": "Tjenester",
     "contact": "Kontakt"
@@ -46,7 +46,7 @@
     }
   },
   "team": {
-    "title": "Vårt team",
+    "title": "Teamet vårt",
     "subtitle": "Møt våre erfarne rådgivere",
     "members": [
       {
@@ -149,8 +149,8 @@
       "meta_description": "GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i skymiljøer. Vi bistår med Ansible, Terraform og moderne DevOps-verktøy for tradisjonell og skybasert infrastruktur.",
       "content": {
         "intro": [
-          "Moderne infrastruktur og plattformerutvikles som kode og lagres i Git! Automatisering responderer på endringer i kode og konfigurasjon gjennom CI/CD eller GitOps.",
-          "De beste teamene tar i bruk verktøy og praksis fra programvareutvikling for å bygge kodebaser som både er robuste og enkle å endre og vedlikeholde. Vi hjelper å utvikle en moderne, kodebasert praksis, med alt som trengs av verktøy og prosesser for å skape nyesuksesshistorier.",
+          "Moderne infrastruktur og plattformer utvikles som kode og lagres i Git! Automatisering responderer på endringer i kode og konfigurasjon gjennom CI/CD eller GitOps.",
+          "De beste teamene tar i bruk verktøy og praksis fra programvareutvikling for å bygge kodebaser som både er robuste og enkle å endre og vedlikeholde. Vi hjelper å utvikle en moderne, kodebasert praksis, med alt som trengs av verktøy og prosesser for å skape nye suksesshistorier.",
           "Synkope har spilt en viktig rolle i flere av de største infrastrukturprosjektene i Norge. Vi kan tradisjonelle prosjektmetoder, men foretrekker mer moderne og smidige måter å jobbe på. Vi er vant til Scrum og Kanban, og rammeverk som Scaled Agile Framework (SAFe).",
           "Teknisk har vi mange års erfaring med Ansible og Terraform, og innføring og drift av verktøy som GitHub, GitLab, Artifactory, Hashicorp Vault, Prometheus, Thanos, Grafana og SonarQube"
         ],
@@ -217,7 +217,7 @@
         "intro": [
           "Elektromagnetisk kompatibilitet (EMC) handler om at elektronisk utstyr skal fungere som tiltenkt uten å forstyrre andre systemer, og samtidig være motstandsdyktig mot elektromagnetiske forstyrrelser fra omgivelsene.",
           "EMC-testing er påkrevd for alt elektronisk utstyr som skal selges i Europa og Norge, og er spesielt kritisk for militært utstyr og systemer som brukes i sikkerhetskritiske miljøer. Manglende EMC-compliance kan føre til kostbare forsinkelser, tilbakekalling av produkter eller at utstyr ikke fungerer som forventet.",
-          "Vi støtter både kunder som skal anskaffe utstyr og leverandører som skal teste ogdokumentere EMC-egenskaper. Vår erfaring spenner fra tidlig planlegging og kravstilling til gjennomføring av tester og tolkning av resultater.",
+          "Vi støtter både kunder som skal anskaffe utstyr og leverandører som skal teste og dokumentere EMC-egenskaper. Vår erfaring spenner fra tidlig planlegging og kravstilling til gjennomføring av tester og tolkning av resultater.",
           "For leverandører hjelper vi med testplanlegging, risikovurderinger og praktisk gjennomføring av EMC-tester etter relevante standarder. For kunder bidrar vi med utarbeidelse av EMC-krav, vurdering av testrapporter og oppfølging av leverandører.",
           "Synkope har lang erfaring med både sivile og militære EMC-standarder, og kjenner godt til utfordringene knyttet til testing av komplekst utstyr i krevende miljøer."
         ],
