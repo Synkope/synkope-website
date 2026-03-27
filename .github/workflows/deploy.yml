@@ -41,7 +41,8 @@ jobs:
         run: |
           mkdir -p dist
           cp -r *.html css js images content tjenester dist/
-          cp -f favicon.ico robots.txt sitemap.xml manifest.json dist/ 2>/dev/null || true
+          cp -f robots.txt sitemap.xml manifest.json dist/ 2>/dev/null || true
+          cp -r .well-known dist/ 2>/dev/null || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
