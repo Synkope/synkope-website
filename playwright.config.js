@@ -84,7 +84,7 @@ export default defineConfig({
   outputDir: "test-results/",
 
   /* Global setup and teardown */
-  globalSetup: require.resolve("./tests/global-setup.js"),
+  globalSetup: "./tests/global-setup.js",
 
   /* Test timeout */
   timeout: 30000,
