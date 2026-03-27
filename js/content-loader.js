@@ -326,16 +326,6 @@ class ContentLoader {
     }
   }
 
-  // Get validation messages for forms
-  getValidationMessage(field) {
-    return this.content?.contact?.validation?.[field] || "Ugyldig verdi";
-  }
-
-  // Get form messages
-  getFormMessage(key) {
-    return this.content?.contact?.form?.[key] || "";
-  }
-
   // Initialize content loader
   async init(language = "no") {
     await this.loadContent(language);
