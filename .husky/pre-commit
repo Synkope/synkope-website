@@ -2,62 +2,49 @@
 
 echo "🔍 Running pre-commit checks..."
 
-# Check if we're in a git repository
-if ! git rev-parse --git-dir > /dev/null 2>&1; then
-    echo "❌ Not in a git repository"
-    exit 1
-fi
-
-# Get list of staged files
+# Staged files that are added, copied, or modified (not deleted)
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
 
-# Check if there are any staged files
 if [ -z "$STAGED_FILES" ]; then
-    echo "⚠️  No staged files to check"
-    exit 0
+  echo "⚠️  No staged files to check"
+  exit 0
 fi
 
-# Check for JS files
 JS_FILES=$(echo "$STAGED_FILES" | grep -E '\.js$' || true)
-
-# Check for HTML/CSS/JSON files
 FORMAT_FILES=$(echo "$STAGED_FILES" | grep -E '\.(html|css|js|json)$' || true)
-
-# Run ESLint on staged JS files
-if [ -n "$JS_FILES" ]; then
-    echo "📝 Linting JavaScript files..."
-    echo "$JS_FILES" | xargs npm run lint
-    if [ $? -ne 0 ]; then
-        echo "❌ ESLint found issues. Please fix them before committing."
-        echo "   Tip: Run 'npm run lint:fix' to auto-fix some issues."
-        exit 1
-    fi
-fi
-
-# Run Prettier check on staged files
-if [ -n "$FORMAT_FILES" ]; then
-    echo "✨ Checking code formatting..."
-    echo "$FORMAT_FILES" | xargs npx prettier --check
-    if [ $? -ne 0 ]; then
-        echo "❌ Code formatting issues found. Please fix them before committing."
-        echo "   Tip: Run 'npm run format' to auto-format all files."
-        exit 1
-    fi
-fi
-
-# Validate JSON files
 JSON_FILES=$(echo "$STAGED_FILES" | grep -E '\.json$' || true)
+
+if [ -n "$JS_FILES" ]; then
+  echo "📝 Linting JavaScript files..."
+  echo "$JS_FILES" | xargs npx eslint
+  if [ $? -ne 0 ]; then
+    echo "❌ ESLint found issues. Please fix them before committing."
+    echo "   Tip: Run 'npm run lint:fix' to auto-fix some issues."
+    exit 1
+  fi
+fi
+
+if [ -n "$FORMAT_FILES" ]; then
+  echo "✨ Checking code formatting..."
+  echo "$FORMAT_FILES" | xargs npx prettier --check
+  if [ $? -ne 0 ]; then
+    echo "❌ Code formatting issues found. Please fix them before committing."
+    echo "   Tip: Run 'npm run format' to auto-format all files."
+    exit 1
+  fi
+fi
+
 if [ -n "$JSON_FILES" ]; then
-    echo "🔧 Validating JSON files..."
-    for file in $JSON_FILES; do
-        if [ -f "$file" ]; then
-            node -e "try { JSON.parse(require('fs').readFileSync('$file', 'utf8')); console.log('✓ $file'); } catch(e) { console.error('✗ $file: ' + e.message); process.exit(1); }"
-            if [ $? -ne 0 ]; then
-                echo "❌ Invalid JSON in $file"
-                exit 1
-            fi
-        fi
-    done
+  echo "🔧 Validating JSON files..."
+  for file in $JSON_FILES; do
+    if [ -f "$file" ]; then
+      node -e "try { JSON.parse(require('fs').readFileSync('$file', 'utf8')); console.log('✓ $file'); } catch(e) { console.error('✗ $file: ' + e.message); process.exit(1); }"
+      if [ $? -ne 0 ]; then
+        echo "❌ Invalid JSON in $file"
+        exit 1
+      fi
+    fi
+  done
 fi
 
 echo "✅ Pre-commit checks passed!"
