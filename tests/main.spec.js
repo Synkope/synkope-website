@@ -22,23 +22,23 @@ test.describe("Synkope Website - Main Functionality", () => {
   test("should have working navigation menu", async ({ page }) => {
     // Check navigation links are visible
     await expect(page.locator(".nav-menu")).toBeVisible();
-    await expect(page.locator('a[href="#hjem"]')).toBeVisible();
-    await expect(page.locator('a[href="#om"]')).toBeVisible();
-    await expect(page.locator('a[href="#team"]')).toBeVisible();
-    await expect(page.locator('a[href="#tjenester"]')).toBeVisible();
-    await expect(page.locator('a[href="#kontakt"]')).toBeVisible();
+    await expect(page.locator('.nav-menu a[href="#hjem"]')).toBeVisible();
+    await expect(page.locator('.nav-menu a[href="#om"]')).toBeVisible();
+    await expect(page.locator('.nav-menu a[href="#team"]')).toBeVisible();
+    await expect(page.locator('.nav-menu a[href="#tjenester"]')).toBeVisible();
+    await expect(page.locator('.nav-menu a[href="#kontakt"]')).toBeVisible();
 
     // Test navigation clicks
-    await page.click('a[href="#om"]');
+    await page.click('.nav-menu a[href="#om"]');
     await expect(page.locator("#om")).toBeInViewport();
 
-    await page.click('a[href="#team"]');
+    await page.click('.nav-menu a[href="#team"]');
     await expect(page.locator("#team")).toBeInViewport();
 
-    await page.click('a[href="#tjenester"]');
+    await page.click('.nav-menu a[href="#tjenester"]');
     await expect(page.locator("#tjenester")).toBeInViewport();
 
-    await page.click('a[href="#kontakt"]');
+    await page.click('.nav-menu a[href="#kontakt"]');
     await expect(page.locator("#kontakt")).toBeInViewport();
   });
 
@@ -50,10 +50,10 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(page.locator(".nav-dropdown-menu")).toBeVisible();
 
     // Check all service links are present
-    await expect(page.locator('a[href="tjenester/it-infrastruktur.html"]')).toBeVisible();
-    await expect(page.locator('a[href="tjenester/prosjektstyring.html"]')).toBeVisible();
-    await expect(page.locator('a[href="tjenester/informasjonssikkerhet.html"]')).toBeVisible();
-    await expect(page.locator('a[href="tjenester/emc.html"]')).toBeVisible();
+    await expect(page.locator('.nav-dropdown-menu a[href="tjenester/it-infrastruktur.html"]')).toBeVisible();
+    await expect(page.locator('.nav-dropdown-menu a[href="tjenester/prosjektstyring.html"]')).toBeVisible();
+    await expect(page.locator('.nav-dropdown-menu a[href="tjenester/informasjonssikkerhet.html"]')).toBeVisible();
+    await expect(page.locator('.nav-dropdown-menu a[href="tjenester/emc.html"]')).toBeVisible();
   });
 
   test("should display all main sections", async ({ page }) => {
@@ -111,13 +111,14 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(serviceCards).toHaveCount(4);
 
     // Check service card content
-    await expect(page.locator("text=IT-infrastruktur")).toBeVisible();
-    await expect(page.locator("text=Prosjektstyring")).toBeVisible();
-    await expect(page.locator("text=Informasjonssikkerhet")).toBeVisible();
-    await expect(page.locator("text=Elektromagnetisk kompatibilitet")).toBeVisible();
+    const servicesGrid = page.locator(".services-grid");
+    await expect(servicesGrid.locator("text=IT-infrastruktur")).toBeVisible();
+    await expect(servicesGrid.locator("text=Prosjektstyring")).toBeVisible();
+    await expect(servicesGrid.locator("text=Informasjonssikkerhet")).toBeVisible();
+    await expect(servicesGrid.locator("text=Elektromagnetisk kompatibilitet")).toBeVisible();
 
     // Test service card links
-    const iktLink = page.locator('a[href="tjenester/it-infrastruktur.html"]');
+    const iktLink = servicesGrid.locator('a[href="tjenester/it-infrastruktur.html"]');
     await expect(iktLink).toBeVisible();
   });
 
@@ -162,12 +163,12 @@ test.describe("Synkope Website - Main Functionality", () => {
     await page.locator(".footer").scrollIntoViewIfNeeded();
 
     // Check footer content
-    await expect(page.locator("text=Synkope AS")).toBeVisible();
+    await expect(page.getByText("Synkope AS", { exact: true })).toBeVisible();
     await expect(page.locator("text=Solskinnsveien 6")).toBeVisible();
     await expect(page.locator("text=0376 Oslo")).toBeVisible();
     await expect(page.locator("text=921 125 739")).toBeVisible();
     await expect(page.locator('a[href="mailto:post@synkope.io"]')).toBeVisible();
-    await expect(page.locator("text=© 2025 Synkope")).toBeVisible();
+    await expect(page.getByText("© 2025 Synkope AS. Alle rettigheter forbeholdt.", { exact: true })).toBeVisible();
   });
 
   test("should load external resources correctly", async ({ page }) => {
@@ -193,7 +194,7 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(page.locator('[aria-labelledby="hero-title"]')).toBeVisible();
     await expect(page.locator('[aria-labelledby="about-heading"]')).toBeVisible();
     await expect(page.locator('[aria-labelledby="team-heading"]')).toBeVisible();
-    await expect(page.locator('[aria-labelledby="contact-heading"]')).toBeVisible();
+    await expect(page.locator('section[aria-labelledby="contact-heading"]')).toBeVisible();
 
     // Check form accessibility
     await expect(page.locator('label[for="navn"]')).toBeVisible();
@@ -204,15 +205,15 @@ test.describe("Synkope Website - Main Functionality", () => {
 
   test("should have working smooth scroll navigation", async ({ page }) => {
     // Test smooth scrolling to sections
-    await page.click('a[href="#om"]');
+    await page.click('.nav-menu a[href="#om"]');
     await page.waitForTimeout(500); // Wait for smooth scroll
     await expect(page.locator("#om")).toBeInViewport();
 
-    await page.click('a[href="#team"]');
+    await page.click('.nav-menu a[href="#team"]');
     await page.waitForTimeout(500);
     await expect(page.locator("#team")).toBeInViewport();
 
-    await page.click('a[href="#kontakt"]');
+    await page.click('.nav-menu a[href="#kontakt"]');
     await page.waitForTimeout(500);
     await expect(page.locator("#kontakt")).toBeInViewport();
   });
