@@ -367,7 +367,10 @@
         </div>
         <div class="contact-content">
           <div class="contact-form">
-            <form id="kontaktskjema" aria-labelledby="contact-heading">
+            <form
+              id="kontaktskjema"
+              data-formspree-id="YOUR_FORM_ID"
+              aria-labelledby="contact-heading">
               <div class="form-group">
                 <label for="navn">Navn *</label>
                 <input
@@ -409,6 +412,9 @@
                   aria-required="true"></textarea>
               </div>
               <button type="submit" class="btn btn-primary">Send melding</button>
+              <p class="form-fallback">
+                Du kan også nå oss direkte på <a href="mailto:post@synkope.io">post@synkope.io</a>
+              </p>
             </form>
           </div>
         </div>
