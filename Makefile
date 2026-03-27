@@ -147,6 +147,6 @@ lint-check:
 		echo "Error: js/script.js not found. Are you in the project root?"; \
 		exit 1; \
 	fi
-	@if [ ! -f ".eslintrc.json" ]; then \
-		echo "Warning: .eslintrc.json not found. Using default ESLint configuration."; \
+	@if [ ! -f "eslint.config.mjs" ]; then \
+		echo "Warning: eslint.config.mjs not found. Using default ESLint configuration."; \
 	fi
