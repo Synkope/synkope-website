@@ -32,10 +32,16 @@ Synkope is a consulting company that offers expertise in:
 - **Vanilla JavaScript** - Interactivity and animations
 - **Responsive Design** - Mobile-first approach
 
+### Development Tools
+
+- **ESLint 9** - JavaScript linting with flat config (`eslint.config.mjs`)
+- **Prettier** - Code formatting
+- **Playwright** - End-to-end testing
+
 ## 📁 Project Structure
 
 ```
-synkope/
+synkope-website/
 ├── index.html          # Main page (single-page application)
 ├── css/
 │   └── style.css      # All stylesheets
@@ -43,6 +49,10 @@ synkope/
 │   └── script.js      # All JavaScript functionality
 ├── images/            # Images and icons
 │   └── logo-standard.png
+├── tjenester/          # Service detail pages
+├── content/            # Content and data files
+├── tests/              # Playwright end-to-end tests
+├── scripts/            # Build and utility scripts
 └── README.md          # Documentation
 ```
 
@@ -80,13 +90,13 @@ synkope/
 
 ### View Live Site
 
-Visit the live website: **[https://vildestromb.github.io/synkope-website/](https://vildestromb.github.io/synkope-website/)**
+Visit the live website: **[https://synkope.github.io/synkope-website/](https://synkope.github.io/synkope-website/)**
 
 ### Local Development
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/vildestromb/synkope-website.git
+   git clone https://github.com/synkope/synkope-website.git
    cd synkope-website
    ```
 
@@ -140,7 +150,7 @@ Edit CSS custom properties in `css/style.css`:
 
 ## 🎯 Performance
 
-- **Lighthouse Score**: 95+
+- **Lighthouse Score**: 95+ *(target)*
 - **Mobile-friendly**: Yes
 - **SEO-optimized**: Semantic HTML and meta tags
 - **Accessible**: WCAG 2.1 guidelines followed
