@@ -50,7 +50,7 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(page.locator(".nav-dropdown-menu")).toBeVisible();
 
     // Check all service links are present
-    await expect(page.locator('a[href="tjenester/ikt-infrastruktur.html"]')).toBeVisible();
+    await expect(page.locator('a[href="tjenester/it-infrastruktur.html"]')).toBeVisible();
     await expect(page.locator('a[href="tjenester/prosjektstyring.html"]')).toBeVisible();
     await expect(page.locator('a[href="tjenester/informasjonssikkerhet.html"]')).toBeVisible();
     await expect(page.locator('a[href="tjenester/emc.html"]')).toBeVisible();
@@ -111,13 +111,13 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(serviceCards).toHaveCount(4);
 
     // Check service card content
-    await expect(page.locator("text=IKT-infrastruktur")).toBeVisible();
+    await expect(page.locator("text=IT-infrastruktur")).toBeVisible();
     await expect(page.locator("text=Prosjektstyring")).toBeVisible();
     await expect(page.locator("text=Informasjonssikkerhet")).toBeVisible();
     await expect(page.locator("text=Elektromagnetisk kompatibilitet")).toBeVisible();
 
     // Test service card links
-    const iktLink = page.locator('a[href="tjenester/ikt-infrastruktur.html"]');
+    const iktLink = page.locator('a[href="tjenester/it-infrastruktur.html"]');
     await expect(iktLink).toBeVisible();
   });
 
