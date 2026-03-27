@@ -15,7 +15,7 @@
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Hovednavigasjon">
       <div class="nav-container">
         <div class="nav-logo">
           <a href="../index.html">
@@ -43,7 +43,12 @@
           </div>
           <a href="../index.html#kontakt" class="nav-link">Kontakt</a>
         </div>
-        <div class="hamburger">
+        <div
+          class="hamburger"
+          role="button"
+          aria-label="Åpne meny"
+          aria-expanded="false"
+          tabindex="0">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
