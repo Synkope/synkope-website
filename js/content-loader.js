@@ -320,7 +320,7 @@ class ContentLoader {
       return;
     }
 
-    const copyright = document.querySelector(".footer p:last-child");
+    const copyright = document.querySelector(".footer-bottom p");
     if (copyright && footer.copyright) {
       copyright.textContent = footer.copyright;
     }
