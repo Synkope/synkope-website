@@ -167,8 +167,8 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(page.locator("text=Solskinnsveien 6")).toBeVisible();
     await expect(page.locator("text=0376 Oslo")).toBeVisible();
     await expect(page.locator("text=921 125 739")).toBeVisible();
-    await expect(page.locator('a[href="mailto:post@synkope.io"]')).toBeVisible();
-    await expect(page.getByText("© 2025 Synkope AS. Alle rettigheter forbeholdt.", { exact: true })).toBeVisible();
+    await expect(page.locator('.footer a[href="mailto:post@synkope.io"]')).toBeVisible();
+    await expect(page.getByText("© 2026 Synkope AS. Alle rettigheter forbeholdt.", { exact: true })).toBeVisible();
   });
 
   test("should load external resources correctly", async ({ page }) => {
