@@ -72,9 +72,6 @@ export default defineConfig({
   /* Output directory for test artifacts */
   outputDir: "test-results/",
 
-  /* Global setup and teardown */
-  globalSetup: "./tests/global-setup.js",
-
   /* Test timeout */
   timeout: 30000,
 
