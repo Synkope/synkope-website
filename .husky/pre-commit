@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-
 echo "🔍 Running pre-commit checks..."
 
 # Staged files that are added, copied, or modified (not deleted)
