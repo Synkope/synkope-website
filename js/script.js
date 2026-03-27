@@ -22,7 +22,6 @@ const navMenu = document.querySelector(".nav-menu");
 const navLinks = document.querySelectorAll(".nav-link");
 const navbar = document.querySelector(".navbar");
 const sections = document.querySelectorAll("section");
-const navLinksAll = document.querySelectorAll(".nav-link");
 const contactForm = document.getElementById("kontaktskjema");
 
 let scrollToTopBtn;
@@ -255,25 +254,6 @@ function initFadeAnimations() {
   });
 }
 
-// --- Lazy Image Loading ---
-
-function lazyLoadImages() {
-  const images = document.querySelectorAll("img[data-src]");
-
-  const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src;
-        img.removeAttribute("data-src");
-        imageObserver.unobserve(img);
-      }
-    });
-  });
-
-  images.forEach((img) => imageObserver.observe(img));
-}
-
 // --- Contact Form ---
 
 if (contactForm) {
@@ -361,7 +341,7 @@ function updateActiveNavLink() {
       current = section.getAttribute("id");
     }
   });
-  navLinksAll.forEach((link) => {
+  navLinks.forEach((link) => {
     link.classList.remove("active");
     if (link.getAttribute("href") === `#${current}`) {
       link.classList.add("active");
@@ -401,7 +381,6 @@ function handleScroll() {
 document.addEventListener("DOMContentLoaded", () => {
   initScrollToTopButton();
   initFadeAnimations();
-  lazyLoadImages();
 });
 
 // ============================================================
