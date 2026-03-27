@@ -28,7 +28,7 @@ help:
 	@echo "  make serve      - Start local development server on port $(PORT)"
 	@echo "  make dev        - Install dependencies and start development server"
 	@echo "  make clean      - Remove node_modules and package-lock.json"
-	@echo "  make test       - Run linting (alias for lint)"
+	@echo "  make test       - Run Playwright end-to-end tests"
 	@echo "  make help       - Show this help message"
 	@echo ""
 
@@ -126,8 +126,9 @@ serve:
 # Development workflow - install and serve
 dev: install serve
 
-# Test target (alias for lint)
-test: lint
+# Test target - runs Playwright e2e tests
+test: $(NODE_MODULES)
+	npx playwright test
 
 # Clean development files
 clean:
