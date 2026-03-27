@@ -54,7 +54,9 @@ async function getFileSize(filePath) {
  * Create backup of original images
  */
 async function createBackup() {
-  if (!CONFIG.createBackup) return;
+  if (!CONFIG.createBackup) {
+    return;
+  }
 
   console.log("💾 Creating backup of original images...");
 
@@ -157,7 +159,9 @@ async function optimizeSVG() {
  * Create WebP versions of images
  */
 async function createWebPVersions() {
-  if (!CONFIG.createWebP) return [];
+  if (!CONFIG.createWebP) {
+    return [];
+  }
 
   console.log("🚀 Creating WebP versions...");
 
@@ -167,12 +171,6 @@ async function createWebPVersions() {
       imageminWebp({
         quality: CONFIG.quality.webp,
         method: 6, // Compression method (0-6, 6 is slowest but best)
-        crop: {
-          width: 0,
-          height: 0,
-          x: 0,
-          y: 0,
-        },
       }),
     ],
   });

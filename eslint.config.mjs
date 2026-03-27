@@ -48,7 +48,7 @@ export default [
     },
   },
   {
-    files: ["tests/**/*.js", "*.spec.js", "*.test.js", "playwright.config.js", "*.config.js"],
+    files: ["tests/**/*.js", "*.spec.js", "*.test.js", "playwright.config.js", "*.config.js", "scripts/**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
