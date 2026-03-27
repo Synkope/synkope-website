@@ -95,67 +95,10 @@ class ServiceContentLoader {
     serviceSection.innerHTML = "";
 
     // Add content based on service type
-    switch (this.serviceName) {
-      case "it_infrastruktur":
-        this.buildItInfrastructureContent(serviceSection, serviceData.content);
-        break;
-      case "prosjektstyring":
-        this.buildProjectManagementContent(serviceSection, serviceData.content);
-        break;
-      case "informasjonssikkerhet":
-        this.buildInfoSecContent(serviceSection, serviceData.content);
-        break;
-      case "emc":
-        this.buildEmcContent(serviceSection, serviceData.content);
-        break;
-      default:
-        this.buildGenericContent(serviceSection, serviceData.content);
-    }
-  }
-
-  buildItInfrastructureContent(container, content) {
-    // Add intro paragraphs
-    content.intro.forEach((paragraph) => {
-      const p = document.createElement("p");
-      p.textContent = paragraph;
-      container.appendChild(p);
-    });
-
-    // Add competencies list
-    if (content.competencies && content.competencies.length > 0) {
-      const ul = document.createElement("ul");
-      ul.className = "service-list";
-
-      content.competencies.forEach((competency) => {
-        const li = document.createElement("li");
-        li.textContent = competency;
-        ul.appendChild(li);
-      });
-
-      container.appendChild(ul);
-    }
-  }
-
-  buildProjectManagementContent(container, content) {
-    // Add intro paragraphs
-    content.intro.forEach((paragraph) => {
-      const p = document.createElement("p");
-      p.textContent = paragraph;
-      container.appendChild(p);
-    });
-
-    // Add service areas list
-    if (content.service_areas && content.service_areas.length > 0) {
-      const ul = document.createElement("ul");
-      ul.className = "service-list";
-
-      content.service_areas.forEach((area) => {
-        const li = document.createElement("li");
-        li.textContent = area;
-        ul.appendChild(li);
-      });
-
-      container.appendChild(ul);
+    if (this.serviceName === "informasjonssikkerhet") {
+      this.buildInfoSecContent(serviceSection, serviceData.content);
+    } else {
+      this.buildGenericContent(serviceSection, serviceData.content);
     }
   }
 
@@ -219,29 +162,6 @@ class ServiceContentLoader {
           container.appendChild(ul);
         }
       });
-    }
-  }
-
-  buildEmcContent(container, content) {
-    // Add intro paragraphs
-    content.intro.forEach((paragraph) => {
-      const p = document.createElement("p");
-      p.textContent = paragraph;
-      container.appendChild(p);
-    });
-
-    // Add competencies list
-    if (content.competencies && content.competencies.length > 0) {
-      const ul = document.createElement("ul");
-      ul.className = "service-list";
-
-      content.competencies.forEach((competency) => {
-        const li = document.createElement("li");
-        li.textContent = competency;
-        ul.appendChild(li);
-      });
-
-      container.appendChild(ul);
     }
   }
 
