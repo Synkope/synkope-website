@@ -206,15 +206,12 @@ test.describe("Synkope Website - Main Functionality", () => {
   test("should have working smooth scroll navigation", async ({ page }) => {
     // Test smooth scrolling to sections
     await page.click('.nav-menu a[href="#om"]');
-    await page.waitForTimeout(500); // Wait for smooth scroll
     await expect(page.locator("#om")).toBeInViewport();
 
     await page.click('.nav-menu a[href="#team"]');
-    await page.waitForTimeout(500);
     await expect(page.locator("#team")).toBeInViewport();
 
     await page.click('.nav-menu a[href="#kontakt"]');
-    await page.waitForTimeout(500);
     await expect(page.locator("#kontakt")).toBeInViewport();
   });
 });
