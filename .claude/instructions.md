@@ -7,6 +7,7 @@
 - Code, comments, commit messages, and files in `.claude/` are written in English.
 - **Always run the Playwright tests locally before pushing to CI.** Run `npx playwright test --project=chromium` and confirm they pass before committing.
 - **Use conventional commit format for all commits:** `type(scope): short description`. Types: `feat`, `fix`, `refactor`, `test`, `ci`, `docs`, `chore`, `style`. Example: `fix(nav): correct aria-expanded toggle on hamburger`.
+- **To trigger a Renovate rebase, use the Dependency Dashboard** (the GitHub issue Renovate maintains), not PR comments. Each PR has its own checkbox in the dashboard — checking it tells Renovate to rebase that PR onto the current base branch. Commenting `@renovate rebase` on a PR is a Dependabot pattern and does not work with Renovate.
 - **Keep commits targeted and atomic.** Each commit must address exactly one problem, fix, or improvement. Related changes across multiple files are fine if they all serve the same single purpose — e.g. a bug fix that touches HTML, JS, and CSS together is one commit. What is forbidden is bundling unrelated concerns: do not mix a bug fix with a refactor, a refactor with a CI change, or a feature with a style cleanup. Stage files deliberately; never use `git add .` or `git add -A`.
 - **Fix mistakes by amending the original commit, not by stacking correction commits.** If a commit introduced a problem, use `git commit --fixup=<hash>` and then `git rebase -i --autosquash` to fold the fix into the original commit before pushing. A PR should never contain commits like "fix typo in previous commit" or "forgot to update test" — the original commit should simply be correct.
 - **Commit messages must describe the actual change, not the planning context.** Never reference documents, plans, phases, or roadmap items (e.g. do not write "Phase 1", "per improvement plan", "as per TODO"). Describe what changed and why, not where it came from.
@@ -70,7 +71,6 @@ synkope-website/
 ## Improvement Status
 
 Full roadmap: `.claude/IMPROVEMENT_PLAN.md`
-Active branch: `improvement/phase-1-and-2`
 
 ### Completed
 - **Phase 1 — Critical fixes:** filename mismatch, Loading… flash, contact form, deploy pipeline, broken tests
