@@ -338,8 +338,6 @@ p {
 .hero {
   padding: 120px 0 80px;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
   background: linear-gradient(135deg, #faf8f5 0%, #f8f2e8 30%, #f4e9da 70%, #e2cfc3 100%);
   position: relative;
   overflow: hidden;
@@ -769,7 +767,6 @@ section {
 
 .footer-content {
   display: block;
-  margin-bottom: 2rem;
   max-width: 400px;
   margin: 0 0 2rem 0;
 }
@@ -1429,31 +1426,6 @@ section {
   .competence-item {
     padding: 1rem;
   }
-}
-
-/* Additional service page elements */
-.service-list {
-  list-style: none;
-  padding: 0;
-}
-
-.service-list li {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #f0f0f0;
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-.service-list li:before {
-  content: "✓";
-  color: #eb8822;
-  font-weight: bold;
-  position: absolute;
-  left: 0;
-}
-
-.service-list li:last-child {
-  border-bottom: none;
 }
 
 .standards-grid {
