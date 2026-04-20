@@ -1,0 +1,110 @@
+/* ============================================================
+   Synkope — Design Tokens
+   Single source of truth for color, type, spacing, radius, shadow.
+   Import this FIRST in any stylesheet.
+   ============================================================ */
+
+:root {
+  /* ---------- Brand colors ---------- */
+  --s-primary: #eb8822;
+  --s-primary-light: #ff9f50;
+  --s-primary-lighter: #ffb366;
+  --s-primary-dark: #d67316;
+
+  --s-secondary: #1d5f81;
+  --s-text: #1d5f81;
+  --s-bg: #ffffff;
+
+  /* ---------- Warm neutral scale ---------- */
+  --s-cream-1: #faf8f5;
+  --s-cream-2: #f8f2e8;
+  --s-cream-3: #f4e9da;
+  --s-cream-4: #e2cfc3;
+  --s-warm-1: #fbf9f8;
+  --s-warm-2: #fcf8f0;
+  --s-warm-3: #fcf5e8;
+
+  /* ---------- Utility colors ---------- */
+  --s-border-light: #f2f3f5;
+  --s-bg-hover: #f5f7fa;
+  --s-footer: #2c3e50;
+  --s-footer-border: #34495e;
+  --s-footer-muted: #bdc3c7;
+  --s-error: #dc3545;
+
+  /* ---------- Signature gradients ---------- */
+  --s-gradient-hero: linear-gradient(135deg, #faf8f5 0%, #f8f2e8 30%, #f4e9da 70%, #e2cfc3 100%);
+  --s-gradient-section: linear-gradient(135deg, #fcf8f0 0%, #fcf5e8 50%, #ffffff 100%);
+  --s-gradient-about: linear-gradient(135deg, #fbf9f8 0%, #ffffff 50%, #fcf7f2 100%);
+  --s-gradient-brand: linear-gradient(135deg, var(--s-primary) 0%, var(--s-secondary) 100%);
+  --s-gradient-orange: linear-gradient(135deg, var(--s-primary) 0%, var(--s-primary-dark) 100%);
+  --s-gradient-card-surface: linear-gradient(145deg, #ffffff 0%, #fefcfb 100%);
+  --s-gradient-card-team: linear-gradient(145deg, #ffffff 0%, #fefcf8 100%);
+  --s-gradient-card-form: linear-gradient(145deg, #faf9f8 0%, #ffffff 100%);
+  --s-gradient-card-rule: linear-gradient(
+    90deg,
+    var(--s-primary-light) 0%,
+    var(--s-primary-lighter) 50%,
+    var(--s-primary-light) 100%
+  );
+
+  /* ---------- Typography ---------- */
+  --s-font-heading: "Inter", sans-serif;
+  --s-font-body: "Open Sans", sans-serif;
+
+  --s-fs-h1: 3.5rem; /* 56px */
+  --s-fs-h2: 2.5rem; /* 40px */
+  --s-fs-h3: 1.8rem; /* ~29px */
+  --s-fs-lede: 1.25rem; /* 20px */
+  --s-fs-body: 1rem; /* 16px */
+  --s-fs-small: 0.9rem; /* ~14.4px */
+
+  --s-lh-tight: 1.2;
+  --s-lh-body: 1.6;
+
+  /* ---------- Spacing scale (8px base) ---------- */
+  --s-space-xs: 4px;
+  --s-space-sm: 8px;
+  --s-space-md: 16px;
+  --s-space-lg: 24px;
+  --s-space-xl: 40px;
+  --s-space-2xl: 64px;
+  --s-space-3xl: 80px; /* section padding */
+  --s-space-4xl: 120px; /* hero padding */
+
+  /* ---------- Radius scale ---------- */
+  --s-radius-sm: 6px;
+  --s-radius: 8px;
+  --s-radius-lg: 12px;
+  --s-radius-xl: 15px;
+  --s-radius-pill: 999px;
+
+  /* ---------- Shadow scale ---------- */
+  --s-shadow-soft: 0 8px 25px rgba(29, 95, 129, 0.08), 0 3px 10px rgba(255, 165, 80, 0.08);
+  --s-shadow-hover: 0 12px 35px rgba(29, 95, 129, 0.15), 0 4px 15px rgba(255, 165, 80, 0.1);
+  --s-shadow-nav: 0 2px 20px rgba(0, 0, 0, 0.1);
+  --s-shadow-btn: 0 10px 30px rgba(235, 136, 34, 0.3);
+
+  /* ---------- Layout ---------- */
+  --s-container: 1200px;
+  --s-gutter: 20px;
+
+  /* ---------- Motion ---------- */
+  --s-transition: all 0.3s ease;
+  --s-transition-fast: all 0.15s ease;
+
+  /* ---------- Legacy aliases (keep style.css working) ---------- */
+  --primary-color: var(--s-primary);
+  --primary-color-light: var(--s-primary-light);
+  --primary-color-lighter: var(--s-primary-lighter);
+  --secondary-color: var(--s-secondary);
+  --text-color: var(--s-text);
+  --background-color: var(--s-bg);
+  --container-width: var(--s-container);
+  --border-radius: var(--s-radius);
+  --transition: var(--s-transition);
+  --font-family-heading: var(--s-font-heading);
+  --font-family-body: var(--s-font-body);
+  --border-color-light: var(--s-border-light);
+  --bg-hover: var(--s-bg-hover);
+}
