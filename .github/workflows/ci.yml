@@ -29,7 +29,7 @@ jobs:
       - name: Check code formatting
         run: npm run format:check
 
-  test-browser:
+  test:
     name: Test (${{ matrix.browser }})
     runs-on: ubuntu-latest
     needs: lint
@@ -79,9 +79,3 @@ jobs:
           name: playwright-report-${{ matrix.browser }}
           path: playwright-report/
           retention-days: 7
-
-  test:
-    runs-on: ubuntu-latest
-    needs: test-browser
-    steps:
-      - run: echo "All tests passed"
