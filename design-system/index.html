@@ -1,0 +1,2362 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Synkope — Design System</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet" />
+    <style>
+      /* ============================================================
+         TOKENS — lifted 1:1 from synkope-website/css/style.css
+         ============================================================ */
+      :root {
+        /* Brand */
+        --s-primary: #eb8822;
+        --s-primary-light: #ff9f50;
+        --s-primary-lighter: #ffb366;
+        --s-primary-dark: #d67316;
+        --s-secondary: #1d5f81;
+        --s-text: #1d5f81;
+        --s-bg: #ffffff;
+
+        /* Surface neutrals (used in gradients around the site) */
+        --s-cream-1: #faf8f5;
+        --s-cream-2: #f8f2e8;
+        --s-cream-3: #f4e9da;
+        --s-cream-4: #e2cfc3;
+        --s-warm-1: #fbf9f8;
+        --s-warm-2: #fcf8f0;
+        --s-warm-3: #fcf5e8;
+
+        /* Utility */
+        --s-border-light: #f2f3f5;
+        --s-bg-hover: #f5f7fa;
+        --s-footer: #2c3e50;
+        --s-footer-border: #34495e;
+        --s-footer-muted: #bdc3c7;
+        --s-err: #dc3545;
+
+        /* Shape */
+        --s-radius-sm: 6px;
+        --s-radius: 8px;
+        --s-radius-lg: 12px;
+        --s-radius-xl: 15px;
+        --s-radius-pill: 999px;
+
+        /* Shadows (as used by cards) */
+        --s-shadow-soft: 0 8px 25px rgba(29, 95, 129, 0.08), 0 3px 10px rgba(255, 165, 80, 0.08);
+        --s-shadow-hover: 0 12px 35px rgba(29, 95, 129, 0.15), 0 4px 15px rgba(255, 165, 80, 0.1);
+        --s-shadow-nav: 0 2px 20px rgba(0, 0, 0, 0.1);
+        --s-shadow-btn: 0 10px 30px rgba(235, 136, 34, 0.3);
+
+        /* Type */
+        --s-font-heading: "Inter", sans-serif;
+        --s-font-body: "Open Sans", sans-serif;
+        --s-font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+        /* Layout */
+        --s-container: 1200px;
+        --s-transition: all 0.3s ease;
+
+        /* Doc-chrome */
+        --ink: #0e2a3a;
+        --ink-soft: #4a6778;
+        --rule: #e7e2da;
+        --paper: #faf7f2;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--s-font-body);
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      /* ============================================================
+         DOC CHROME
+         ============================================================ */
+      .doc {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100vh;
+        overflow-y: auto;
+        padding: 32px 24px;
+        background: #fff;
+        border-right: 1px solid var(--rule);
+      }
+      .sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 6px;
+      }
+      .sidebar-logo img {
+        height: 42px;
+        width: auto;
+      }
+      .sidebar-title {
+        font-family: var(--s-font-heading);
+        font-weight: 600;
+        font-size: 15px;
+        color: var(--s-primary);
+        letter-spacing: 0.02em;
+      }
+      .sidebar-sub {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        margin-bottom: 28px;
+      }
+      .toc-label {
+        font-family: var(--s-font-mono);
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        margin: 20px 0 8px;
+      }
+      .toc a {
+        display: block;
+        padding: 6px 10px;
+        margin: 0 -10px;
+        font-family: var(--s-font-heading);
+        font-size: 13.5px;
+        color: var(--ink);
+        text-decoration: none;
+        border-radius: var(--s-radius-sm);
+        transition:
+          background 0.15s ease,
+          color 0.15s ease;
+      }
+      .toc a:hover {
+        background: var(--s-bg-hover);
+        color: var(--s-primary);
+      }
+
+      .main {
+        padding: 56px 64px 120px;
+        max-width: 1280px;
+      }
+
+      /* Masthead */
+      .masthead {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: end;
+        padding-bottom: 28px;
+        border-bottom: 1px solid var(--rule);
+        margin-bottom: 56px;
+      }
+      .masthead h1 {
+        font-family: var(--s-font-heading);
+        font-weight: 600;
+        font-size: 56px;
+        letter-spacing: -0.02em;
+        line-height: 1;
+        color: var(--s-primary);
+      }
+      .masthead h1 em {
+        font-style: normal;
+        color: var(--s-secondary);
+      }
+      .masthead-meta {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        text-align: right;
+        line-height: 1.7;
+      }
+      .masthead-meta b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .lede {
+        max-width: 720px;
+        margin-top: 18px;
+        font-size: 18px;
+        color: var(--ink-soft);
+        line-height: 1.55;
+      }
+
+      /* Section scaffolding */
+      section.block {
+        margin-bottom: 88px;
+        scroll-margin-top: 24px;
+      }
+      .block-head {
+        display: flex;
+        align-items: baseline;
+        gap: 16px;
+        margin-bottom: 28px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .block-num {
+        font-family: var(--s-font-mono);
+        font-size: 12px;
+        color: var(--s-primary);
+        letter-spacing: 0.1em;
+      }
+      .block-title {
+        font-family: var(--s-font-heading);
+        font-size: 28px;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+      .block-desc {
+        margin-left: auto;
+        font-size: 13px;
+        color: var(--ink-soft);
+        max-width: 420px;
+        text-align: right;
+        line-height: 1.5;
+      }
+
+      /* ============================================================
+         BRAND
+         ============================================================ */
+      .brand-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 24px;
+      }
+      .brand-card {
+        border: 1px solid var(--rule);
+        border-radius: var(--s-radius-lg);
+        background: #fff;
+        overflow: hidden;
+      }
+      .brand-card-head {
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 18px;
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        border-bottom: 1px solid var(--rule);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .brand-main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 260px;
+        background:
+          radial-gradient(circle at 80% 20%, rgba(255, 165, 80, 0.12) 0%, transparent 60%),
+          linear-gradient(135deg, var(--s-cream-1) 0%, var(--s-cream-2) 40%, var(--s-cream-3) 100%);
+      }
+      .brand-main img {
+        max-height: 180px;
+        width: auto;
+      }
+      .brand-variants {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .brand-variant {
+        padding: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 128px;
+        border-right: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+      }
+      .brand-variant:nth-child(2n) {
+        border-right: none;
+      }
+      .brand-variant:nth-last-child(-n + 2) {
+        border-bottom: none;
+      }
+      .brand-variant img {
+        max-height: 48px;
+        width: auto;
+      }
+      .brand-variant.dark {
+        background: var(--s-footer);
+      }
+      .brand-variant.dark img {
+        filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(235, 136, 34, 0.6));
+      }
+      .brand-variant.dark img.keeps-color {
+        filter: none;
+      }
+      .brand-variant.primary {
+        background: var(--s-primary);
+      }
+      .brand-variant.primary img {
+        filter: brightness(0) invert(1);
+      }
+
+      .brand-side {
+        display: grid;
+        gap: 24px;
+      }
+      .voice-card {
+        border: 1px solid var(--rule);
+        border-radius: var(--s-radius-lg);
+        background: #fff;
+        padding: 24px;
+      }
+      .voice-card h3 {
+        font-family: var(--s-font-heading);
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-bottom: 12px;
+      }
+      .voice-pairs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 18px;
+        font-size: 14px;
+      }
+      .voice-pairs .is {
+        color: var(--s-secondary);
+        font-weight: 600;
+      }
+      .voice-pairs .not {
+        color: #b8441f;
+        text-decoration: line-through;
+        text-decoration-color: rgba(184, 68, 31, 0.4);
+      }
+
+      .clearspace {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 24px;
+        align-items: center;
+        padding: 24px;
+        border: 1px solid var(--rule);
+        border-radius: var(--s-radius-lg);
+        background: #fff;
+      }
+      .clearspace-box {
+        position: relative;
+        padding: 32px;
+        border: 1px dashed var(--s-primary-light);
+        border-radius: var(--s-radius);
+      }
+      .clearspace-box::before,
+      .clearspace-box::after {
+        content: "";
+        position: absolute;
+        background: var(--s-primary-light);
+      }
+      .clearspace-box::before {
+        top: 0;
+        left: 50%;
+        width: 1px;
+        height: 24px;
+        transform: translateX(-50%);
+      }
+      .clearspace-box::after {
+        left: 0;
+        top: 50%;
+        height: 1px;
+        width: 24px;
+        transform: translateY(-50%);
+      }
+      .clearspace-box img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .clearspace-label {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        line-height: 1.7;
+      }
+      .clearspace-label b {
+        color: var(--s-primary);
+      }
+
+      /* ============================================================
+         COLOR
+         ============================================================ */
+      .color-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+      .swatch {
+        border-radius: var(--s-radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--rule);
+        background: #fff;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        min-height: 180px;
+      }
+      .swatch.lg {
+        min-height: 260px;
+      }
+      .chip {
+        padding: 18px;
+        display: flex;
+        align-items: flex-end;
+        color: #fff;
+      }
+      .chip-role {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.9;
+      }
+      .chip.on-light {
+        color: var(--ink);
+      }
+      .chip-info {
+        padding: 12px 16px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4px 12px;
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        border-top: 1px solid var(--rule);
+      }
+      .chip-info b {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .chip-info .token {
+        grid-column: 1 / -1;
+        color: var(--s-primary);
+      }
+
+      .neutrals {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        border: 1px solid var(--rule);
+        border-radius: var(--s-radius-lg);
+        overflow: hidden;
+        background: #fff;
+      }
+      .neutral {
+        padding: 48px 14px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 140px;
+        border-right: 1px solid rgba(0, 0, 0, 0.04);
+      }
+      .neutral:last-child {
+        border-right: none;
+      }
+      .neutral-name {
+        font-family: var(--s-font-mono);
+        font-size: 10.5px;
+        color: var(--ink-soft);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .neutral-hex {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink);
+      }
+
+      .gradient-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+      }
+      .grad {
+        border-radius: var(--s-radius-lg);
+        min-height: 130px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: #fff;
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        border: 1px solid var(--rule);
+      }
+      .grad .label {
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .grad .def {
+        opacity: 0.9;
+        font-size: 10px;
+        line-height: 1.5;
+      }
+      .grad.hero {
+        background: linear-gradient(135deg, #faf8f5 0%, #f8f2e8 30%, #f4e9da 70%, #e2cfc3 100%);
+        color: var(--ink);
+      }
+      .grad.team {
+        background: linear-gradient(135deg, #fcf8f0 0%, #fcf5e8 50%, #ffffff 100%);
+        color: var(--ink);
+      }
+      .grad.brand {
+        background: linear-gradient(135deg, var(--s-primary) 0%, var(--s-secondary) 100%);
+      }
+      .grad.orange {
+        background: linear-gradient(135deg, var(--s-primary) 0%, var(--s-primary-dark) 100%);
+      }
+      .grad.scroll {
+        background: linear-gradient(135deg, var(--s-primary) 0%, var(--s-secondary) 100%);
+      }
+      .grad.card-accent {
+        background: linear-gradient(
+          90deg,
+          var(--s-primary-light) 0%,
+          var(--s-primary-lighter) 50%,
+          var(--s-primary-light) 100%
+        );
+      }
+
+      /* ============================================================
+         TYPOGRAPHY
+         ============================================================ */
+      .type-grid {
+        display: grid;
+        gap: 4px;
+        border: 1px solid var(--rule);
+        border-radius: var(--s-radius-lg);
+        overflow: hidden;
+        background: #fff;
+      }
+      .type-row {
+        display: grid;
+        grid-template-columns: 220px 1fr 220px;
+        align-items: baseline;
+        gap: 24px;
+        padding: 28px 32px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .type-row:last-child {
+        border-bottom: none;
+      }
+      .type-meta {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        line-height: 1.8;
+      }
+      .type-meta b {
+        display: block;
+        color: var(--ink);
+        font-size: 13px;
+        font-family: var(--s-font-heading);
+        font-weight: 600;
+        margin-bottom: 2px;
+      }
+      .type-sample {
+        font-family: var(--s-font-heading);
+        color: var(--s-primary);
+        line-height: 1.15;
+        font-weight: 600;
+      }
+      .type-sample.body {
+        font-family: var(--s-font-body);
+        color: var(--ink);
+      }
+      .type-specs {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        line-height: 1.7;
+        text-align: right;
+      }
+      .type-specs code {
+        color: var(--ink);
+      }
+
+      .type-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-top: 24px;
+      }
+      .type-pair .voice-card {
+        padding: 28px;
+      }
+      .type-pair h4 {
+        font-family: var(--s-font-heading);
+        font-weight: 600;
+        font-size: 13px;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 16px;
+      }
+      .type-specimen {
+        font-family: var(--s-font-heading);
+        font-weight: 600;
+        font-size: 72px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--s-primary);
+      }
+      .type-specimen.body {
+        font-family: var(--s-font-body);
+        font-weight: 400;
+        font-size: 20px;
+        letter-spacing: 0;
+        color: var(--ink);
+        line-height: 1.6;
+      }
+      .font-scale {
+        display: flex;
+        gap: 6px;
+        margin-top: 14px;
+        font-family: var(--s-font-mono);
+        font-size: 10px;
+      }
+      .font-scale span {
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: var(--s-warm-1);
+        color: var(--ink-soft);
+      }
+
+      /* ============================================================
+         SPACING / RADIUS / SHADOW
+         ============================================================ */
+      .token-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .token-card {
+        border: 1px solid var(--rule);
+        border-radius: var(--s-radius-lg);
+        background: #fff;
+        padding: 28px;
+      }
+      .token-card h3 {
+        font-family: var(--s-font-heading);
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-soft);
+        margin-bottom: 20px;
+      }
+
+      .spacing-scale {
+        display: grid;
+        gap: 10px;
+      }
+      .spacing-row {
+        display: grid;
+        grid-template-columns: 60px 1fr 80px;
+        gap: 14px;
+        align-items: center;
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+      }
+      .spacing-bar {
+        height: 14px;
+        background: var(--s-primary-lighter);
+        border-radius: 3px;
+      }
+
+      .radius-row {
+        display: flex;
+        gap: 20px;
+        align-items: flex-end;
+      }
+      .radius-block {
+        flex: 1;
+        text-align: center;
+      }
+      .radius-shape {
+        height: 64px;
+        background: linear-gradient(145deg, #ffffff 0%, #fefcfb 100%);
+        border: 1px solid rgba(255, 165, 80, 0.3);
+        box-shadow: var(--s-shadow-soft);
+        margin-bottom: 8px;
+      }
+      .radius-label {
+        font-family: var(--s-font-mono);
+        font-size: 10.5px;
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+      .radius-label b {
+        color: var(--ink);
+        display: block;
+        font-size: 12px;
+      }
+
+      .shadow-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+      }
+      .shadow-block {
+        text-align: center;
+      }
+      .shadow-shape {
+        height: 80px;
+        background: #fff;
+        border-radius: var(--s-radius-lg);
+        margin-bottom: 10px;
+      }
+      .shadow-shape.soft {
+        box-shadow: var(--s-shadow-soft);
+      }
+      .shadow-shape.hover {
+        box-shadow: var(--s-shadow-hover);
+      }
+      .shadow-shape.nav {
+        box-shadow: var(--s-shadow-nav);
+      }
+
+      /* ============================================================
+         COMPONENTS
+         ============================================================ */
+      .comp {
+        border: 1px solid var(--rule);
+        border-radius: var(--s-radius-lg);
+        background: #fff;
+        margin-bottom: 24px;
+        overflow: hidden;
+      }
+      .comp-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 22px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .comp-head h3 {
+        font-family: var(--s-font-heading);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .comp-head span {
+        font-family: var(--s-font-mono);
+        font-size: 10.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+      }
+      .comp-stage {
+        padding: 48px 32px;
+        background: linear-gradient(135deg, var(--s-warm-1) 0%, #ffffff 50%, var(--s-warm-2) 100%);
+      }
+      .comp-stage.plain {
+        background: #fff;
+      }
+      .comp-stage.navbar-stage {
+        padding: 0;
+        background: var(--s-cream-1);
+      }
+      .comp-stage.hero-stage {
+        padding: 0;
+      }
+
+      /* Buttons (faithful to .btn + .btn-primary / .btn-secondary) */
+      .s-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border: none;
+        border-radius: var(--s-radius);
+        text-decoration: none;
+        font-family: var(--s-font-body);
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: var(--s-transition);
+        text-align: center;
+      }
+      .s-btn--primary {
+        background: var(--s-primary);
+        color: #fff;
+      }
+      .s-btn--primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--s-shadow-btn);
+      }
+      .s-btn--secondary {
+        background: transparent;
+        color: var(--s-primary);
+        border: 2px solid var(--s-primary);
+        padding: 10px 28px;
+      }
+      .s-btn--secondary:hover {
+        background: var(--s-primary);
+        color: #fff;
+        transform: translateY(-2px);
+      }
+      .s-btn--link {
+        color: var(--s-secondary);
+        background: none;
+        padding: 6px 0;
+        border-bottom: 1px solid transparent;
+        border-radius: 0;
+        font-weight: 400;
+        font-size: 14px;
+      }
+      .s-btn--link:hover {
+        color: var(--s-primary-light);
+        border-bottom-color: var(--s-primary-light);
+      }
+
+      .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+      }
+      .btn-label {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        margin-top: 14px;
+      }
+
+      /* Service card (replica of .service-card) */
+      .s-card {
+        background: linear-gradient(145deg, #ffffff 0%, #fefcfb 100%);
+        padding: 40px;
+        border-radius: var(--s-radius-xl);
+        box-shadow: var(--s-shadow-soft);
+        border: 1px solid rgba(255, 165, 80, 0.15);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        transition: var(--s-transition);
+      }
+      .s-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--s-primary-light) 0%,
+          var(--s-primary-lighter) 50%,
+          var(--s-primary-light) 100%
+        );
+        opacity: 0.9;
+      }
+      .s-card h3 {
+        color: var(--s-primary-light);
+        font-family: var(--s-font-heading);
+        font-weight: 600;
+        font-size: 24px;
+        margin-bottom: 14px;
+      }
+      .s-card p {
+        color: var(--s-text);
+        line-height: 1.6;
+        margin-bottom: 24px;
+        font-size: 15px;
+      }
+      .s-card .s-link {
+        color: var(--s-secondary);
+        text-decoration: none;
+        font-size: 14px;
+        border-bottom: 1px solid transparent;
+        padding-bottom: 2px;
+        transition: var(--s-transition);
+      }
+      .s-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--s-shadow-hover);
+      }
+      .s-card:hover .s-link {
+        color: var(--s-primary-light);
+        border-bottom-color: var(--s-primary-light);
+      }
+
+      .card-grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      /* Team card */
+      .s-team {
+        background: linear-gradient(145deg, #ffffff 0%, #fefcf8 100%);
+        border-radius: var(--s-radius-lg);
+        padding: 32px;
+        box-shadow:
+          0 6px 25px rgba(29, 95, 129, 0.12),
+          0 2px 10px rgba(255, 165, 80, 0.08);
+        text-align: center;
+        border: 1px solid rgba(255, 165, 80, 0.12);
+        max-width: 380px;
+      }
+      .s-team-avatar {
+        width: 160px;
+        height: 160px;
+        margin: 0 auto 20px;
+        border-radius: 50%;
+        border: 4px solid var(--s-primary);
+        background: radial-gradient(circle at 50% 40%, #fff 0%, var(--s-cream-3) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--s-font-heading);
+        font-size: 42px;
+        font-weight: 600;
+        color: var(--s-primary);
+      }
+      .s-team h3 {
+        color: var(--s-primary);
+        font-family: var(--s-font-heading);
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .s-team p.bio {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--s-text);
+        text-align: left;
+        margin-bottom: 18px;
+      }
+      .s-team-contact {
+        border-top: 1px solid var(--s-border-light);
+        padding-top: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        text-align: left;
+      }
+      .s-team-contact a {
+        color: var(--s-primary-light);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 13.5px;
+      }
+      .s-team-contact a:hover {
+        color: var(--s-secondary);
+      }
+
+      /* Form */
+      .s-form {
+        background: linear-gradient(145deg, #faf9f8 0%, #ffffff 100%);
+        padding: 32px;
+        border-radius: var(--s-radius-xl);
+        max-width: 560px;
+        box-shadow:
+          0 6px 25px rgba(29, 95, 129, 0.08),
+          0 2px 10px rgba(255, 165, 80, 0.08);
+        border: 1px solid rgba(255, 165, 80, 0.15);
+      }
+      .s-form-group {
+        margin-bottom: 20px;
+      }
+      .s-form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: var(--s-text);
+        font-size: 13px;
+      }
+      .s-form-group input,
+      .s-form-group textarea {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #ddd;
+        border-radius: var(--s-radius);
+        font-family: inherit;
+        font-size: 15px;
+        transition: border-color 0.3s ease;
+        background: #fff;
+      }
+      .s-form-group input:focus,
+      .s-form-group textarea:focus {
+        outline: none;
+        border-color: var(--s-primary-light);
+      }
+      .s-form-group .err {
+        border-color: var(--s-err);
+        box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+      }
+      .s-form-group .help {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        margin-top: 6px;
+      }
+
+      /* Navbar */
+      .s-navbar {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 14px 28px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        box-shadow: var(--s-shadow-nav);
+      }
+      .s-navbar img {
+        height: 56px;
+      }
+      .s-nav-menu {
+        display: flex;
+        gap: 28px;
+        font-family: var(--s-font-body);
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .s-nav-menu a {
+        color: var(--s-text);
+        text-decoration: none;
+        position: relative;
+        padding-bottom: 4px;
+      }
+      .s-nav-menu a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--s-primary);
+        transition: width 0.3s ease;
+      }
+      .s-nav-menu a:hover {
+        color: var(--s-primary);
+      }
+      .s-nav-menu a:hover::after,
+      .s-nav-menu a.active::after {
+        width: 100%;
+      }
+      .s-nav-menu a.active {
+        color: var(--s-primary);
+      }
+
+      /* Hero replica */
+      .s-hero {
+        padding: 60px 40px 56px;
+        background:
+          radial-gradient(circle at 80% 20%, rgba(255, 165, 80, 0.12) 0%, transparent 60%),
+          linear-gradient(135deg, #faf8f5 0%, #f8f2e8 30%, #f4e9da 70%, #e2cfc3 100%);
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        gap: 48px;
+        align-items: center;
+      }
+      .s-hero h1 {
+        font-family: var(--s-font-heading);
+        font-size: 52px;
+        font-weight: 600;
+        color: var(--s-primary);
+        line-height: 1.1;
+        margin-bottom: 18px;
+      }
+      .s-hero p {
+        font-size: 18px;
+        color: var(--s-text);
+        margin-bottom: 28px;
+        line-height: 1.55;
+      }
+      .s-hero-ph {
+        height: 280px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, var(--s-primary) 0%, var(--s-secondary) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .s-hero-ph::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1.5px),
+          radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 1px, transparent 1.5px),
+          radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.1) 1px, transparent 1.5px);
+        background-size: 100px 100px;
+      }
+
+      /* Service contact (accent) card */
+      .s-accent-card {
+        background: linear-gradient(135deg, var(--s-primary) 0%, var(--s-primary-dark) 100%);
+        color: #fff;
+        padding: 32px;
+        border-radius: var(--s-radius-xl);
+        max-width: 420px;
+      }
+      .s-accent-card h3 {
+        font-family: var(--s-font-heading);
+        font-weight: 600;
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+      .s-accent-card p {
+        opacity: 0.9;
+        margin-bottom: 22px;
+        font-size: 15px;
+      }
+      .s-accent-card .s-btn {
+        background: #fff;
+        color: var(--s-primary);
+      }
+
+      /* Service list */
+      .s-list {
+        list-style: none;
+        background: #f8fafc;
+        border-radius: var(--s-radius-lg);
+        padding: 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        max-width: 560px;
+      }
+      .s-list li {
+        position: relative;
+        padding: 12px 0 12px 28px;
+        color: var(--s-text);
+        font-weight: 500;
+        line-height: 1.5;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .s-list li:last-child {
+        border-bottom: none;
+      }
+      .s-list li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        top: 12px;
+        color: var(--s-primary-light);
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      /* Scroll to top */
+      .s-fab {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--s-primary) 0%, var(--s-secondary) 100%);
+        color: #fff;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(235, 136, 34, 0.3);
+      }
+
+      /* Footer */
+      .s-footer {
+        background: var(--s-footer);
+        color: #fff;
+        padding: 36px 40px 18px;
+      }
+      .s-footer h4 {
+        font-family: var(--s-font-heading);
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 14px;
+      }
+      .s-footer p {
+        color: var(--s-footer-muted);
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+      .s-footer a {
+        color: var(--s-primary-light);
+        text-decoration: none;
+      }
+      .s-footer-bottom {
+        border-top: 1px solid var(--s-footer-border);
+        padding-top: 14px;
+        margin-top: 22px;
+        text-align: center;
+        color: var(--s-footer-muted);
+        font-size: 13px;
+      }
+
+      /* Usage tables */
+      .usage-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+      }
+      .usage-table th {
+        text-align: left;
+        font-family: var(--s-font-mono);
+        font-size: 10.5px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        font-weight: 500;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .usage-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--rule);
+        vertical-align: top;
+        color: var(--ink);
+      }
+      .usage-table td code {
+        font-family: var(--s-font-mono);
+        font-size: 12px;
+        background: var(--s-warm-1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: var(--s-primary);
+      }
+      .usage-table tr:last-child td {
+        border-bottom: none;
+      }
+      .usage-table .do {
+        color: var(--s-secondary);
+        font-weight: 600;
+      }
+      .usage-table .dont {
+        color: #b8441f;
+        font-weight: 600;
+      }
+
+      /* Principles */
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .principle {
+        border: 1px solid var(--rule);
+        background: #fff;
+        border-radius: var(--s-radius-lg);
+        padding: 24px;
+      }
+      .principle-num {
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--s-primary);
+        letter-spacing: 0.1em;
+      }
+      .principle h4 {
+        font-family: var(--s-font-heading);
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--ink);
+        margin: 6px 0 10px;
+        letter-spacing: -0.01em;
+      }
+      .principle p {
+        font-size: 14px;
+        color: var(--ink-soft);
+        line-height: 1.55;
+      }
+
+      /* Footer of doc */
+      .doc-foot {
+        margin-top: 80px;
+        padding-top: 24px;
+        border-top: 1px solid var(--rule);
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--s-font-mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+      }
+
+      @media (max-width: 1024px) {
+        .doc {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+          height: auto;
+          border-right: none;
+          border-bottom: 1px solid var(--rule);
+        }
+        .main {
+          padding: 32px 24px 80px;
+        }
+        .card-grid-2,
+        .brand-grid,
+        .type-pair,
+        .token-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="doc">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <img src="assets/logo-standard.png" alt="Synkope" />
+        </div>
+        <div class="sidebar-title">Design System</div>
+        <div class="sidebar-sub">v1.0 · April 2026</div>
+
+        <div class="toc-label">Foundations</div>
+        <nav class="toc">
+          <a href="#principles">Principles</a>
+          <a href="#brand">Brand &amp; Logo</a>
+          <a href="#color">Color</a>
+          <a href="#type">Typography</a>
+          <a href="#spacing">Spacing &amp; Layout</a>
+          <a href="#radii">Radii &amp; Shadow</a>
+        </nav>
+
+        <div class="toc-label">Components</div>
+        <nav class="toc">
+          <a href="#buttons">Buttons</a>
+          <a href="#cards">Cards</a>
+          <a href="#team-cards">Team cards</a>
+          <a href="#forms">Forms</a>
+          <a href="#navigation">Navigation</a>
+          <a href="#hero">Hero</a>
+          <a href="#misc">Lists, FAB, Footer</a>
+        </nav>
+
+        <div class="toc-label">Applied</div>
+        <nav class="toc">
+          <a href="#usage">Usage guidelines</a>
+        </nav>
+      </aside>
+
+      <!-- MAIN -->
+      <main class="main">
+        <!-- MASTHEAD -->
+        <header class="masthead">
+          <div>
+            <h1>Synkope<em>/</em>DS</h1>
+          </div>
+          <div class="masthead-meta">
+            <div><b>Source</b> &nbsp; synkope.io (live)</div>
+            <div><b>Stack</b> &nbsp; HTML · CSS custom properties</div>
+            <div><b>Status</b> &nbsp; Extracted from production</div>
+          </div>
+        </header>
+        <p class="lede">
+          A design system for Synkope — experienced advisors in project management, IT
+          infrastructure, information security and EMC testing. Tokens, components and patterns are
+          extracted directly from the production site so what's documented here is what ships.
+        </p>
+
+        <!-- PRINCIPLES -->
+        <section class="block" id="principles">
+          <div class="block-head">
+            <span class="block-num">00 / FOUNDATION</span>
+            <h2 class="block-title">Principles</h2>
+            <div class="block-desc">
+              Three commitments that keep everything — from a service card to a whole page — feeling
+              like Synkope.
+            </div>
+          </div>
+          <div class="principles">
+            <div class="principle">
+              <div class="principle-num">01</div>
+              <h4>Warm &amp; considered</h4>
+              <p>
+                Cream gradients, soft shadows and a confident orange replace the cold blue-on-white
+                trope of consulting sites. The palette should feel like a Scandinavian autumn, not a
+                server room.
+              </p>
+            </div>
+            <div class="principle">
+              <div class="principle-num">02</div>
+              <h4>Calm density</h4>
+              <p>
+                Plenty of whitespace, a single 1200px column, large body copy and 2‑up grids.
+                Content earns its place; we never pad with filler stats or decorative icons.
+              </p>
+            </div>
+            <div class="principle">
+              <div class="principle-num">03</div>
+              <h4>Expertise, not sales</h4>
+              <p>
+                Copy is declarative and specific (Prince2®, SAFe, EMC standards). We describe what
+                we do for clients; we don't promise magic. The UI follows: no glow, no pop-ups, no
+                hype.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- BRAND -->
+        <section class="block" id="brand">
+          <div class="block-head">
+            <span class="block-num">01 / FOUNDATION</span>
+            <h2 class="block-title">Brand &amp; Logo</h2>
+            <div class="block-desc">
+              The mark is a triquetra of orange and blue nodes — synchrony between disciplines —
+              above a semibold wordmark.
+            </div>
+          </div>
+
+          <div class="brand-grid">
+            <div class="brand-card">
+              <div class="brand-card-head">
+                <span>Primary · full lockup</span>
+                <span>logo-standard.png</span>
+              </div>
+              <div class="brand-main">
+                <img src="assets/logo-standard.png" alt="Synkope logo" />
+              </div>
+              <div class="brand-variants">
+                <div class="brand-variant">
+                  <img src="assets/logo-standard.png" alt="Synkope on light" class="keeps-color" />
+                </div>
+                <div class="brand-variant dark">
+                  <img src="assets/logo-standard.png" alt="Synkope on dark" class="keeps-color" />
+                </div>
+                <div class="brand-variant">
+                  <img
+                    src="assets/logo-desktop.png"
+                    alt="Desktop variant"
+                    class="keeps-color"
+                    style="max-height: 36px" />
+                </div>
+                <div class="brand-variant primary">
+                  <img src="assets/logo-mobile.png" alt="Mobile variant" style="max-height: 48px" />
+                </div>
+              </div>
+            </div>
+
+            <div class="brand-side">
+              <div class="voice-card">
+                <h3>Voice &amp; tone</h3>
+                <div class="voice-pairs">
+                  <span class="is">Declarative</span><span class="not">Promotional</span>
+                  <span class="is">Specific</span><span class="not">Buzzwordy</span>
+                  <span class="is">Understated</span><span class="not">Bombastic</span>
+                  <span class="is">Norwegian‑direct</span><span class="not">American‑pitchy</span>
+                  <span class="is">Proof over claim</span
+                  ><span class="not">Adjective stacking</span>
+                </div>
+              </div>
+
+              <div class="clearspace">
+                <div class="clearspace-box">
+                  <img src="assets/logo-standard.png" alt="Clearspace demo" />
+                </div>
+                <div class="clearspace-label">
+                  <b>Clearspace</b>
+                  Keep margin equal to the cap‑height of the wordmark on all sides. Minimum digital
+                  size 42px tall; minimum print 20mm.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- COLOR -->
+        <section class="block" id="color">
+          <div class="block-head">
+            <span class="block-num">02 / FOUNDATION</span>
+            <h2 class="block-title">Color</h2>
+            <div class="block-desc">
+              Two brand hues do almost all the work: a warm orange for action and identity, a deep
+              blue for text and anchoring. Everything else is a cream neutral.
+            </div>
+          </div>
+
+          <!-- Brand row -->
+          <div class="color-row">
+            <div class="swatch lg">
+              <div class="chip" style="background: var(--s-primary)">
+                <div class="chip-role">Primary — action, headings, brand</div>
+              </div>
+              <div class="chip-info">
+                <div class="token">--s-primary</div>
+                <b>HEX</b><span>#EB8822</span> <b>RGB</b><span>235 136 34</span> <b>On dark</b
+                ><span>AA ✓ @ 16px</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: var(--s-primary-light)">
+                <div class="chip-role">Primary · light</div>
+              </div>
+              <div class="chip-info">
+                <div class="token">--s-primary-light</div>
+                <b>HEX</b><span>#FF9F50</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: var(--s-primary-lighter)">
+                <div class="chip-role">Primary · lighter</div>
+              </div>
+              <div class="chip-info">
+                <div class="token">--s-primary-lighter</div>
+                <b>HEX</b><span>#FFB366</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: var(--s-primary-dark)">
+                <div class="chip-role">Primary · dark</div>
+              </div>
+              <div class="chip-info">
+                <div class="token">--s-primary-dark</div>
+                <b>HEX</b><span>#D67316</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secondary row -->
+          <div class="color-row">
+            <div class="swatch lg">
+              <div class="chip" style="background: var(--s-secondary)">
+                <div class="chip-role">Secondary — body text, anchors, footer accents</div>
+              </div>
+              <div class="chip-info">
+                <div class="token">--s-secondary / --s-text</div>
+                <b>HEX</b><span>#1D5F81</span> <b>RGB</b><span>29 95 129</span> <b>On white</b
+                ><span>AAA ✓ @ 16px</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: var(--s-footer)">
+                <div class="chip-role">Footer ink</div>
+              </div>
+              <div class="chip-info">
+                <div class="token">--s-footer</div>
+                <b>HEX</b><span>#2C3E50</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip on-light" style="background: var(--s-bg-hover)">
+                <div class="chip-role">Bg hover</div>
+              </div>
+              <div class="chip-info">
+                <div class="token">--s-bg-hover</div>
+                <b>HEX</b><span>#F5F7FA</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="chip" style="background: var(--s-err)">
+                <div class="chip-role">Error</div>
+              </div>
+              <div class="chip-info">
+                <div class="token">--s-err</div>
+                <b>HEX</b><span>#DC3545</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Neutrals / cream scale -->
+          <div style="margin-top: 28px; margin-bottom: 10px" class="toc-label">Warm neutrals</div>
+          <div class="neutrals">
+            <div class="neutral" style="background: #ffffff">
+              <div class="neutral-name">Paper</div>
+              <div class="neutral-hex">#FFFFFF</div>
+            </div>
+            <div class="neutral" style="background: var(--s-cream-1)">
+              <div class="neutral-name">Cream 1</div>
+              <div class="neutral-hex">#FAF8F5</div>
+            </div>
+            <div class="neutral" style="background: var(--s-cream-2)">
+              <div class="neutral-name">Cream 2</div>
+              <div class="neutral-hex">#F8F2E8</div>
+            </div>
+            <div class="neutral" style="background: var(--s-cream-3)">
+              <div class="neutral-name">Cream 3</div>
+              <div class="neutral-hex">#F4E9DA</div>
+            </div>
+            <div class="neutral" style="background: var(--s-cream-4)">
+              <div class="neutral-name">Cream 4</div>
+              <div class="neutral-hex">#E2CFC3</div>
+            </div>
+            <div class="neutral" style="background: var(--s-border-light)">
+              <div class="neutral-name">Border</div>
+              <div class="neutral-hex">#F2F3F5</div>
+            </div>
+            <div class="neutral" style="background: var(--s-footer-muted); color: #fff">
+              <div class="neutral-name" style="color: #fff">Footer muted</div>
+              <div class="neutral-hex" style="color: #fff">#BDC3C7</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 28px; margin-bottom: 10px" class="toc-label">
+            Signature gradients
+          </div>
+          <div class="gradient-strip">
+            <div class="grad hero">
+              <div class="label">Hero wash</div>
+              <div class="def">135deg · cream 1 → cream 2 → cream 3 → cream 4</div>
+            </div>
+            <div class="grad team">
+              <div class="label">Section wash</div>
+              <div class="def">135deg · warm 2 → warm 3 → paper</div>
+            </div>
+            <div class="grad brand">
+              <div class="label">Brand fill</div>
+              <div class="def">135deg · primary → secondary</div>
+            </div>
+            <div class="grad orange">
+              <div class="label">Accent card</div>
+              <div class="def">135deg · primary → primary‑dark</div>
+            </div>
+            <div class="grad card-accent">
+              <div class="label">Card top‑rule</div>
+              <div class="def">90deg · light → lighter → light</div>
+            </div>
+            <div class="grad scroll">
+              <div class="label">FAB</div>
+              <div class="def">135deg · primary → secondary · used on round button</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TYPE -->
+        <section class="block" id="type">
+          <div class="block-head">
+            <span class="block-num">03 / FOUNDATION</span>
+            <h2 class="block-title">Typography</h2>
+            <div class="block-desc">
+              Inter for headings, Open Sans for body — a warm humanist pair. Headings always carry
+              the primary orange; body sits in secondary blue.
+            </div>
+          </div>
+
+          <div class="type-pair">
+            <div class="voice-card">
+              <h4>Display — Inter 600</h4>
+              <div class="type-specimen">Aa</div>
+              <div class="font-scale">
+                <span>300</span><span>400</span><span>500</span><span>600</span><span>700</span>
+              </div>
+            </div>
+            <div class="voice-card">
+              <h4>Text — Open Sans 400</h4>
+              <div class="type-specimen body">
+                Erfarne rådgivere med spisskompetanse innen prosjektledelse og
+                informasjons­sikkerhet.
+              </div>
+              <div class="font-scale"><span>300</span><span>400</span><span>600</span></div>
+            </div>
+          </div>
+
+          <div class="type-grid" style="margin-top: 24px">
+            <div class="type-row">
+              <div class="type-meta">
+                <b>H1 · Display</b>
+                Hero titles
+              </div>
+              <div class="type-sample" style="font-size: 56px">Erfarne rådgivere</div>
+              <div class="type-specs">
+                <code>Inter 600</code><br />
+                3.5rem / 56px<br />
+                line-height 1.2<br />
+                color <code>--s-primary</code>
+              </div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><b>H2 · Section</b>Section headers</div>
+              <div class="type-sample" style="font-size: 40px">Tjenester</div>
+              <div class="type-specs">
+                <code>Inter 600</code><br />
+                2.5rem / 40px<br />
+                line-height 1.2<br />
+                color <code>--s-primary</code>
+              </div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><b>H3 · Card</b>Card titles, team names</div>
+              <div class="type-sample" style="font-size: 29px; color: var(--s-primary-light)">
+                IT‑infrastruktur
+              </div>
+              <div class="type-specs">
+                <code>Inter 600</code><br />
+                1.8rem / 29px<br />
+                line-height 1.2<br />
+                color <code>--s-primary-light</code>
+              </div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><b>Lede</b>Hero subtitle, intros</div>
+              <div class="type-sample body" style="font-size: 20px">
+                Vi hjelper kunder i både privat og offentlig sektor med å løse komplekse
+                utfordringer.
+              </div>
+              <div class="type-specs">
+                <code>Open Sans 400</code><br />
+                1.25rem / 20px<br />
+                line-height 1.55<br />
+                color <code>--s-text</code>
+              </div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><b>Body</b>Paragraphs</div>
+              <div class="type-sample body" style="font-size: 16px">
+                Vi tilbyr prosjektledelse med Prince2®‑ og SAFe‑sertifiserte konsulenter som har
+                erfaring fra hele verdikjeden.
+              </div>
+              <div class="type-specs">
+                <code>Open Sans 400</code><br />
+                1rem / 16px<br />
+                line-height 1.6<br />
+                color <code>--s-text</code>
+              </div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><b>Label</b>Form labels, small caps</div>
+              <div class="type-sample body" style="font-size: 13px; font-weight: 600">E‑POST *</div>
+              <div class="type-specs">
+                <code>Open Sans 600</code><br />
+                0.9rem / 13px<br />
+                color <code>--s-text</code>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SPACING -->
+        <section class="block" id="spacing">
+          <div class="block-head">
+            <span class="block-num">04 / FOUNDATION</span>
+            <h2 class="block-title">Spacing &amp; Layout</h2>
+            <div class="block-desc">
+              A single 1200px reading column, generous section rhythm and an 8px base step.
+            </div>
+          </div>
+
+          <div class="token-grid">
+            <div class="token-card">
+              <h3>Spacing scale</h3>
+              <div class="spacing-scale">
+                <div class="spacing-row">
+                  <code>xs</code>
+                  <div class="spacing-bar" style="width: 4px"></div>
+                  <span>4px</span>
+                </div>
+                <div class="spacing-row">
+                  <code>sm</code>
+                  <div class="spacing-bar" style="width: 8px"></div>
+                  <span>8px</span>
+                </div>
+                <div class="spacing-row">
+                  <code>md</code>
+                  <div class="spacing-bar" style="width: 16px"></div>
+                  <span>16px</span>
+                </div>
+                <div class="spacing-row">
+                  <code>lg</code>
+                  <div class="spacing-bar" style="width: 24px"></div>
+                  <span>24px</span>
+                </div>
+                <div class="spacing-row">
+                  <code>xl</code>
+                  <div class="spacing-bar" style="width: 40px"></div>
+                  <span>40px</span>
+                </div>
+                <div class="spacing-row">
+                  <code>2xl</code>
+                  <div class="spacing-bar" style="width: 64px"></div>
+                  <span>64px</span>
+                </div>
+                <div class="spacing-row">
+                  <code>3xl</code>
+                  <div class="spacing-bar" style="width: 80px"></div>
+                  <span>80px · section padding</span>
+                </div>
+                <div class="spacing-row">
+                  <code>4xl</code>
+                  <div class="spacing-bar" style="width: 120px"></div>
+                  <span>120px · hero padding</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="token-card">
+              <h3>Layout</h3>
+              <table class="usage-table">
+                <tr>
+                  <td>Container max</td>
+                  <td><code>1200px</code></td>
+                </tr>
+                <tr>
+                  <td>Gutter</td>
+                  <td><code>20px</code> (mobile) · <code>64px</code> (desktop main)</td>
+                </tr>
+                <tr>
+                  <td>Section padding</td>
+                  <td>
+                    <code>80px 0</code> desktop · <code>60px 0</code> tablet ·
+                    <code>50px 0</code> mobile
+                  </td>
+                </tr>
+                <tr>
+                  <td>Hero padding</td>
+                  <td><code>120px 0 80px</code></td>
+                </tr>
+                <tr>
+                  <td>Grid · services</td>
+                  <td>2 cols → 1 col &lt;768px</td>
+                </tr>
+                <tr>
+                  <td>Grid · team</td>
+                  <td>2 cols → 1 col &lt;768px</td>
+                </tr>
+                <tr>
+                  <td>Grid · portfolio</td>
+                  <td><code>repeat(auto-fit, minmax(350px, 1fr))</code></td>
+                </tr>
+                <tr>
+                  <td>Scroll margin</td>
+                  <td><code>65px</code> (fixed nav offset)</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- RADII + SHADOW -->
+        <section class="block" id="radii">
+          <div class="block-head">
+            <span class="block-num">05 / FOUNDATION</span>
+            <h2 class="block-title">Radii &amp; Shadow</h2>
+            <div class="block-desc">
+              Shadows are warm — two layered drops in blue and orange rather than black — which
+              keeps the surface feeling papery.
+            </div>
+          </div>
+
+          <div class="token-grid">
+            <div class="token-card">
+              <h3>Radius scale</h3>
+              <div class="radius-row">
+                <div class="radius-block">
+                  <div class="radius-shape" style="border-radius: var(--s-radius-sm)"></div>
+                  <div class="radius-label"><b>6px</b>sm · dropdown items</div>
+                </div>
+                <div class="radius-block">
+                  <div class="radius-shape" style="border-radius: var(--s-radius)"></div>
+                  <div class="radius-label"><b>8px</b>default · buttons, inputs</div>
+                </div>
+                <div class="radius-block">
+                  <div class="radius-shape" style="border-radius: var(--s-radius-lg)"></div>
+                  <div class="radius-label"><b>12px</b>lg · team, competence</div>
+                </div>
+                <div class="radius-block">
+                  <div class="radius-shape" style="border-radius: var(--s-radius-xl)"></div>
+                  <div class="radius-label"><b>15px</b>xl · service, form, portfolio</div>
+                </div>
+                <div class="radius-block">
+                  <div
+                    class="radius-shape"
+                    style="border-radius: 50%; height: 56px; width: 56px; margin: 0 auto 8px"></div>
+                  <div class="radius-label"><b>50%</b>avatars, FAB</div>
+                </div>
+              </div>
+            </div>
+            <div class="token-card">
+              <h3>Shadow scale</h3>
+              <div class="shadow-row">
+                <div class="shadow-block">
+                  <div class="shadow-shape soft"></div>
+                  <div class="radius-label"><b>Soft</b>resting card</div>
+                </div>
+                <div class="shadow-block">
+                  <div class="shadow-shape hover"></div>
+                  <div class="radius-label"><b>Hover</b>card lifted</div>
+                </div>
+                <div class="shadow-block">
+                  <div class="shadow-shape nav"></div>
+                  <div class="radius-label"><b>Nav</b>sticky bar</div>
+                </div>
+              </div>
+              <table class="usage-table" style="margin-top: 20px">
+                <tr>
+                  <td><code>Soft</code></td>
+                  <td>
+                    <code>0 8px 25px rgba(29,95,129,0.08), 0 3px 10px rgba(255,165,80,0.08)</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>Hover</code></td>
+                  <td>
+                    <code>0 12px 35px rgba(29,95,129,0.15), 0 4px 15px rgba(255,165,80,0.10)</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>Btn</code></td>
+                  <td><code>0 10px 30px rgba(235,136,34,0.30)</code> · on hover only</td>
+                </tr>
+                <tr>
+                  <td><code>Nav</code></td>
+                  <td><code>0 2px 20px rgba(0,0,0,0.10)</code> · when scrolled</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- BUTTONS -->
+        <section class="block" id="buttons">
+          <div class="block-head">
+            <span class="block-num">06 / COMPONENT</span>
+            <h2 class="block-title">Buttons</h2>
+            <div class="block-desc">
+              Primary for the one action per screen that matters most (Ta kontakt, Send melding).
+              Secondary and link variants handle everything else.
+            </div>
+          </div>
+
+          <div class="comp">
+            <div class="comp-head">
+              <h3>Button variants</h3>
+              <span>.btn</span>
+            </div>
+            <div class="comp-stage">
+              <div class="btn-row">
+                <button class="s-btn s-btn--primary">Ta kontakt</button>
+                <button class="s-btn s-btn--secondary">Les mer</button>
+                <a class="s-btn s-btn--link" href="#">Les mer →</a>
+              </div>
+              <div class="btn-label">Primary · Secondary · Link</div>
+            </div>
+          </div>
+
+          <div class="comp">
+            <div class="comp-head">
+              <h3>Specification</h3>
+              <span>tokens</span>
+            </div>
+            <table class="usage-table">
+              <tr>
+                <th>Prop</th>
+                <th>Value</th>
+              </tr>
+              <tr>
+                <td>Padding</td>
+                <td><code>12px 30px</code></td>
+              </tr>
+              <tr>
+                <td>Radius</td>
+                <td><code>8px</code></td>
+              </tr>
+              <tr>
+                <td>Type</td>
+                <td><code>Open Sans 600 · 1rem</code></td>
+              </tr>
+              <tr>
+                <td>Hover (primary)</td>
+                <td><code>translateY(-2px)</code> + <code>shadow-btn</code></td>
+              </tr>
+              <tr>
+                <td>Focus</td>
+                <td><code>outline: 2px solid --s-primary · offset 2px</code></td>
+              </tr>
+              <tr>
+                <td>Touch</td>
+                <td>Hover transform disabled; active <code>scale(0.98)</code></td>
+              </tr>
+            </table>
+          </div>
+        </section>
+
+        <!-- SERVICE CARD -->
+        <section class="block" id="cards">
+          <div class="block-head">
+            <span class="block-num">07 / COMPONENT</span>
+            <h2 class="block-title">Service card</h2>
+            <div class="block-desc">
+              The workhorse of the homepage. Warm gradient surface, 1px orange tint border, and a
+              gradient rule that brightens on hover.
+            </div>
+          </div>
+
+          <div class="comp">
+            <div class="comp-head">
+              <h3>Service card · 2‑up grid</h3>
+              <span>.service-card</span>
+            </div>
+            <div class="comp-stage">
+              <div class="card-grid-2">
+                <a href="#" style="text-decoration: none">
+                  <div class="s-card">
+                    <h3>IT‑infrastruktur og cloud</h3>
+                    <p>
+                      GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i
+                      skymiljøer.
+                    </p>
+                    <span class="s-link">Les mer →</span>
+                  </div>
+                </a>
+                <a href="#" style="text-decoration: none">
+                  <div class="s-card">
+                    <h3>Informasjonssikkerhet</h3>
+                    <p>
+                      Integrering av sikkerhet i IT‑infrastruktur og systemutvikling. Vi tilbyr
+                      risikovurderinger og sikkerhetstiltak.
+                    </p>
+                    <span class="s-link">Les mer →</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="comp">
+            <div class="comp-head">
+              <h3>Accent card</h3>
+              <span>.service-contact-card</span>
+            </div>
+            <div class="comp-stage">
+              <div class="s-accent-card">
+                <h3>Trenger du rådgivning?</h3>
+                <p>Ta kontakt for en uforpliktende samtale om ditt prosjekt.</p>
+                <a class="s-btn" href="#">Kontakt oss</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TEAM -->
+        <section class="block" id="team-cards">
+          <div class="block-head">
+            <span class="block-num">08 / COMPONENT</span>
+            <h2 class="block-title">Team card</h2>
+            <div class="block-desc">
+              A round portrait ringed in primary orange, a bio set left‑aligned, and a divider that
+              splits story from contact.
+            </div>
+          </div>
+
+          <div class="comp">
+            <div class="comp-head">
+              <h3>Team member</h3>
+              <span>.team-member</span>
+            </div>
+            <div class="comp-stage">
+              <div style="display: flex; justify-content: center">
+                <div class="s-team">
+                  <div class="s-team-avatar">AS</div>
+                  <h3>Andreas Strøm</h3>
+                  <p class="bio">
+                    Systemarkitekt og utvikler med lang erfaring fra store infrastrukturprosjekter i
+                    offentlig og privat sektor. Spesialiserer seg på sikkerhetsgodkjenning av
+                    gradert infrastruktur.
+                  </p>
+                  <div class="s-team-contact">
+                    <a href="#">andreas@synkope.io</a>
+                    <a href="#">900 13 765</a>
+                    <a href="#">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FORMS -->
+        <section class="block" id="forms">
+          <div class="block-head">
+            <span class="block-num">09 / COMPONENT</span>
+            <h2 class="block-title">Forms</h2>
+            <div class="block-desc">
+              Labels sit above fields in bold secondary blue. Focus state turns the border light
+              orange — no heavy ring.
+            </div>
+          </div>
+
+          <div class="comp">
+            <div class="comp-head">
+              <h3>Contact form</h3>
+              <span>#kontaktskjema</span>
+            </div>
+            <div class="comp-stage">
+              <div style="display: flex; justify-content: center">
+                <form class="s-form" onsubmit="event.preventDefault()">
+                  <div class="s-form-group">
+                    <label for="ds-navn">Navn *</label>
+                    <input id="ds-navn" type="text" placeholder="Ditt fulle navn" />
+                  </div>
+                  <div class="s-form-group">
+                    <label for="ds-epost">E‑post *</label>
+                    <input id="ds-epost" type="email" value="din@epost.no" />
+                  </div>
+                  <div class="s-form-group">
+                    <label for="ds-emne">Emne *</label>
+                    <input
+                      id="ds-emne"
+                      type="text"
+                      class="err"
+                      value=""
+                      placeholder="Hva gjelder henvendelsen?" />
+                    <div class="help" style="color: var(--s-err)">Dette feltet er påkrevd.</div>
+                  </div>
+                  <div class="s-form-group">
+                    <label for="ds-melding">Melding *</label>
+                    <textarea
+                      id="ds-melding"
+                      rows="4"
+                      placeholder="Beskriv din henvendelse..."></textarea>
+                  </div>
+                  <button class="s-btn s-btn--primary" type="submit">Send melding</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- NAV -->
+        <section class="block" id="navigation">
+          <div class="block-head">
+            <span class="block-num">10 / COMPONENT</span>
+            <h2 class="block-title">Navigation</h2>
+            <div class="block-desc">
+              Fixed, translucent, backdrop‑blurred. Logo left, nav right aligned to baseline.
+            </div>
+          </div>
+
+          <div class="comp">
+            <div class="comp-head">
+              <h3>Top navigation</h3>
+              <span>.navbar</span>
+            </div>
+            <div class="comp-stage navbar-stage">
+              <div class="s-navbar">
+                <img src="assets/logo-standard.png" alt="Synkope" />
+                <nav class="s-nav-menu">
+                  <a href="#">Hjem</a>
+                  <a href="#" class="active">Om oss</a>
+                  <a href="#">Team</a>
+                  <a href="#">Tjenester ▾</a>
+                  <a href="#">Kontakt</a>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- HERO -->
+        <section class="block" id="hero">
+          <div class="block-head">
+            <span class="block-num">11 / COMPONENT</span>
+            <h2 class="block-title">Hero</h2>
+            <div class="block-desc">
+              A 3:2 split. Cream gradient on the left, a brand‑gradient surface on the right where
+              imagery will live.
+            </div>
+          </div>
+
+          <div class="comp">
+            <div class="comp-head">
+              <h3>Hero · homepage</h3>
+              <span>.hero</span>
+            </div>
+            <div class="comp-stage hero-stage">
+              <div class="s-hero">
+                <div>
+                  <h1>Erfarne rådgivere<br />med spisskompetanse</h1>
+                  <p>
+                    Synkope består av erfarne rådgivere med ulike kompetanseområder. Vi hjelper
+                    kunder i både privat og offentlig sektor.
+                  </p>
+                  <a class="s-btn s-btn--primary" href="#">Ta kontakt</a>
+                </div>
+                <div class="s-hero-ph" aria-hidden="true"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MISC -->
+        <section class="block" id="misc">
+          <div class="block-head">
+            <span class="block-num">12 / COMPONENT</span>
+            <h2 class="block-title">Lists, FAB &amp; Footer</h2>
+            <div class="block-desc">Supporting patterns used across service pages.</div>
+          </div>
+
+          <div class="token-grid">
+            <div class="comp" style="margin: 0">
+              <div class="comp-head">
+                <h3>Bullet list</h3>
+                <span>.service-list</span>
+              </div>
+              <div class="comp-stage">
+                <ul class="s-list">
+                  <li>Prince2®‑sertifisert prosjektledelse</li>
+                  <li>SAFe for smidige programmer</li>
+                  <li>DevOps og CI/CD</li>
+                  <li>Risikovurdering og sikkerhetsgodkjenning</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="comp" style="margin: 0">
+              <div class="comp-head">
+                <h3>Scroll‑to‑top FAB</h3>
+                <span>.scroll-to-top</span>
+              </div>
+              <div
+                class="comp-stage"
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  min-height: 220px;
+                ">
+                <button class="s-fab" aria-label="Scroll to top">↑</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="comp">
+            <div class="comp-head">
+              <h3>Footer</h3>
+              <span>.footer</span>
+            </div>
+            <div class="comp-stage plain" style="padding: 0">
+              <footer class="s-footer">
+                <h4>Kontakt</h4>
+                <p>Synkope AS</p>
+                <p>Solskinnsveien 6</p>
+                <p>0376 Oslo</p>
+                <p>Org. nr. 921 125 739</p>
+                <p><a href="#">post@synkope.io</a></p>
+                <div class="s-footer-bottom">© 2026 Synkope</div>
+              </footer>
+            </div>
+          </div>
+        </section>
+
+        <!-- USAGE -->
+        <section class="block" id="usage">
+          <div class="block-head">
+            <span class="block-num">13 / APPLIED</span>
+            <h2 class="block-title">Usage guidelines</h2>
+            <div class="block-desc">Rules of thumb for applying the system consistently.</div>
+          </div>
+
+          <div class="token-card" style="padding: 0; overflow: hidden">
+            <table class="usage-table">
+              <tr>
+                <th style="width: 180px">Topic</th>
+                <th>Do</th>
+                <th>Don't</th>
+              </tr>
+              <tr>
+                <td><b>Orange</b></td>
+                <td>
+                  <span class="do">Do</span> use on a single primary action per screen, and for all
+                  headings.
+                </td>
+                <td>
+                  <span class="dont">Don't</span> use orange for body paragraphs or for large filled
+                  regions outside heroes and accent cards.
+                </td>
+              </tr>
+              <tr>
+                <td><b>Blue</b></td>
+                <td>
+                  <span class="do">Do</span> use <code>--s-secondary</code> for all body copy and
+                  inline links.
+                </td>
+                <td>
+                  <span class="dont">Don't</span> use near‑black (#000) or pure gray for text — the
+                  blue is the ink.
+                </td>
+              </tr>
+              <tr>
+                <td><b>Gradients</b></td>
+                <td>
+                  <span class="do">Do</span> use the cream section washes to separate long pages.
+                </td>
+                <td>
+                  <span class="dont">Don't</span> stack orange‑to‑blue brand gradients on anything
+                  other than hero imagery and the FAB.
+                </td>
+              </tr>
+              <tr>
+                <td><b>Cards</b></td>
+                <td>
+                  <span class="do">Do</span> leave 40px internal padding and keep copy under 30
+                  words.
+                </td>
+                <td>
+                  <span class="dont">Don't</span> add icons, illustrations or glow effects — the
+                  gradient top‑rule is the only ornament.
+                </td>
+              </tr>
+              <tr>
+                <td><b>Type</b></td>
+                <td>
+                  <span class="do">Do</span> pair Inter headings with Open Sans body. H1 stays on
+                  primary; H3 on primary‑light.
+                </td>
+                <td>
+                  <span class="dont">Don't</span> introduce additional typefaces, condensed styles
+                  or italic display.
+                </td>
+              </tr>
+              <tr>
+                <td><b>Copy</b></td>
+                <td>
+                  <span class="do">Do</span> write short, declarative Norwegian. Name the standard
+                  (Prince2®, SAFe, NATO EMC).
+                </td>
+                <td>
+                  <span class="dont">Don't</span> use consulting clichés ("synergy",
+                  "best-in-class", "world-class"). Avoid emoji.
+                </td>
+              </tr>
+              <tr>
+                <td><b>Imagery</b></td>
+                <td>
+                  <span class="do">Do</span> use real photography of people and labs; fall back to
+                  the brand gradient placeholder.
+                </td>
+                <td>
+                  <span class="dont">Don't</span> use stock business imagery, AI illustrations or
+                  generic circuit‑board visuals.
+                </td>
+              </tr>
+              <tr>
+                <td><b>Motion</b></td>
+                <td>
+                  <span class="do">Do</span> use the 300ms ease transition on color, shadow and
+                  subtle translateY lifts.
+                </td>
+                <td>
+                  <span class="dont">Don't</span> animate on page load beyond a single fade‑in, and
+                  disable hover lifts on touch.
+                </td>
+              </tr>
+            </table>
+          </div>
+        </section>
+
+        <div class="doc-foot">
+          <span>Synkope · Design system v1.0</span>
+          <span>Derived from css/style.css · April 2026</span>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

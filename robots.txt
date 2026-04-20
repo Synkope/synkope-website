@@ -10,6 +10,7 @@ Disallow: /.git/
 Disallow: /*.json$
 Disallow: /package*.json
 Disallow: /Makefile
+Disallow: /design-system/
 Disallow: /.*
 
 # Allow important directories
