@@ -68,6 +68,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap"
@@ -129,7 +131,7 @@
             både privat og offentlig sektor med å løse komplekse utfordringer innen teknologi og
             prosjektledelse.
           </p>
-          <a href="#kontakt" class="btn btn-primary">Ta kontakt</a>
+          <a href="#kontakt" class="s-btn s-btn--primary">Ta kontakt</a>
         </div>
         <div class="hero-image">
           <!-- Placeholder for hero image -->
@@ -176,42 +178,42 @@
         </div>
         <div class="services-grid">
           <a href="tjenester/it-infrastruktur.html" class="service-card-link">
-            <div class="service-card">
+            <div class="s-card">
               <h3>IT-infrastruktur og cloud</h3>
               <p>
                 GitOps og infrastruktur som kode muliggjør rask og sikker utvikling i skymiljøer.
               </p>
-              <span class="service-link">Les mer →</span>
+              <span class="s-btn s-btn--link">Les mer →</span>
             </div>
           </a>
           <a href="tjenester/prosjektstyring.html" class="service-card-link">
-            <div class="service-card">
+            <div class="s-card">
               <h3>Prosjektstyring</h3>
               <p>
                 Våre prosjektledere skaper engasjement og bidrar til effektivt samarbeid og
                 kommunikasjon i prosjekter.
               </p>
-              <span class="service-link">Les mer →</span>
+              <span class="s-btn s-btn--link">Les mer →</span>
             </div>
           </a>
           <a href="tjenester/informasjonssikkerhet.html" class="service-card-link">
-            <div class="service-card">
+            <div class="s-card">
               <h3>Informasjonssikkerhet</h3>
               <p>
                 Integrering av sikkerhet i IT-infrastruktur og systemutvikling. Vi tilbyr
                 risikovurderinger og sikkerhetstiltak for kritiske systemer.
               </p>
-              <span class="service-link">Les mer →</span>
+              <span class="s-btn s-btn--link">Les mer →</span>
             </div>
           </a>
           <a href="tjenester/emc.html" class="service-card-link">
-            <div class="service-card">
+            <div class="s-card">
               <h3>Elektromagnetisk kompatibilitet (EMC)</h3>
               <p>
                 Med spisskompetanse innenfor EMC hjelper vi leverandører med å forstå, teste og
                 oppfylle militære krav til utstyr, systemer og fartøy.
               </p>
-              <span class="service-link">Les mer →</span>
+              <span class="s-btn s-btn--link">Les mer →</span>
             </div>
           </a>
         </div>
@@ -225,8 +227,8 @@
           <h2 id="team-heading">Team</h2>
         </div>
         <div class="team-grid">
-          <div class="team-member">
-            <div class="team-photo">
+          <div class="s-team">
+            <div class="s-team-photo">
               <img src="images/andreas-strom.jpg" alt="Andreas Strøm" loading="lazy" />
             </div>
             <div class="team-info">
@@ -250,8 +252,8 @@
             </div>
           </div>
 
-          <div class="team-member">
-            <div class="team-photo">
+          <div class="s-team">
+            <div class="s-team-photo">
               <img src="images/irene-driveklepp.jpg" alt="Irene Driveklepp" loading="lazy" />
             </div>
             <div class="team-info">
@@ -274,8 +276,8 @@
             </div>
           </div>
 
-          <div class="team-member">
-            <div class="team-photo">
+          <div class="s-team">
+            <div class="s-team-photo">
               <img src="images/erik-straede.jpg" alt="Erik Stræde" loading="lazy" />
             </div>
             <div class="team-info">
@@ -298,8 +300,8 @@
             </div>
           </div>
 
-          <div class="team-member">
-            <div class="team-photo">
+          <div class="s-team">
+            <div class="s-team-photo">
               <img src="images/torkell-bogstad.jpg" alt="Torkell Bogstad" loading="lazy" />
             </div>
             <div class="team-info">
@@ -364,13 +366,13 @@
           <h2 id="contact-heading">Kontakt oss</h2>
         </div>
         <div class="contact-content">
-          <div class="contact-form">
+          <div class="s-form">
             <!-- TODO: Replace YOUR_FORM_ID with the real Formspree form ID before going live -->
             <form
               id="kontaktskjema"
               data-formspree-id="YOUR_FORM_ID"
               aria-labelledby="contact-heading">
-              <div class="form-group">
+              <div class="s-form-group">
                 <label for="navn">Navn *</label>
                 <input
                   type="text"
@@ -380,7 +382,7 @@
                   required
                   aria-required="true" />
               </div>
-              <div class="form-group">
+              <div class="s-form-group">
                 <label for="epost">E-post *</label>
                 <input
                   type="email"
@@ -390,7 +392,7 @@
                   required
                   aria-required="true" />
               </div>
-              <div class="form-group">
+              <div class="s-form-group">
                 <label for="emne">Emne *</label>
                 <input
                   type="text"
@@ -400,7 +402,7 @@
                   required
                   aria-required="true" />
               </div>
-              <div class="form-group">
+              <div class="s-form-group">
                 <label for="melding">Melding *</label>
                 <textarea
                   id="melding"
@@ -410,7 +412,7 @@
                   required
                   aria-required="true"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Send melding</button>
+              <button type="submit" class="s-btn s-btn--primary">Send melding</button>
               <p class="form-fallback">
                 Du kan også nå oss direkte på <a href="mailto:post@synkope.io">post@synkope.io</a>
               </p>

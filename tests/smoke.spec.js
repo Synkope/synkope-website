@@ -55,7 +55,7 @@ test.describe("Smoke Tests - Critical Functionality", () => {
     await page.waitForSelector("#team", { state: "visible" });
 
     // Wait for team members to be present in DOM
-    const teamMembers = page.locator(".team-member");
+    const teamMembers = page.locator(".s-team");
     await teamMembers.first().waitFor({ state: "visible", timeout: 15000 });
 
     // Check we have the expected number of team members
@@ -63,7 +63,7 @@ test.describe("Smoke Tests - Critical Functionality", () => {
 
     // Wait for content to load from JSON by checking all team member descriptions
     // Some browsers (especially webkit/Safari) can be slower to load JSON
-    const firstMemberDesc = page.locator(".team-member").first().locator(".team-info p");
+    const firstMemberDesc = page.locator(".s-team").first().locator(".team-info p");
 
     // Wait for the JSON content to actually load - retry with polling
     await expect(async () => {

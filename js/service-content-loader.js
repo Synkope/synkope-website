@@ -113,7 +113,7 @@ class ServiceContentLoader {
     // Add key competencies list
     if (content.key_competencies && content.key_competencies.length > 0) {
       const ul = document.createElement("ul");
-      ul.className = "service-list";
+      ul.className = "s-list";
 
       content.key_competencies.forEach((competency) => {
         const li = document.createElement("li");
@@ -151,7 +151,7 @@ class ServiceContentLoader {
         // Add section services list
         if (section.services && section.services.length > 0) {
           const ul = document.createElement("ul");
-          ul.className = "service-list";
+          ul.className = "s-list";
 
           section.services.forEach((service) => {
             const li = document.createElement("li");
@@ -180,7 +180,7 @@ class ServiceContentLoader {
     listFields.forEach((field) => {
       if (content[field] && Array.isArray(content[field])) {
         const ul = document.createElement("ul");
-        ul.className = "service-list";
+        ul.className = "s-list";
 
         content[field].forEach((item) => {
           const li = document.createElement("li");

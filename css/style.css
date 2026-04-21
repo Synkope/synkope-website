@@ -1,19 +1,4 @@
-/* CSS Custom Properties */
-:root {
-  --primary-color: #eb8822;
-  --secondary-color: #1d5f81;
-  --text-color: #1d5f81;
-  --background-color: #ffffff;
-  --container-width: 1200px;
-  --border-radius: 8px;
-  --transition: all 0.3s ease;
-  --font-family-heading: "Inter", sans-serif;
-  --font-family-body: "Open Sans", sans-serif;
-  --primary-color-light: #ff9f50;
-  --primary-color-lighter: #ffb366;
-  --border-color-light: #f2f3f5;
-  --bg-hover: #f5f7fa;
-}
+/* Tokens are defined in tokens.css — loaded before this file */
 
 /* ================================
    SKIP LINK
@@ -94,46 +79,7 @@ p {
   color: var(--text-color);
 }
 
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: 12px 30px;
-  border: none;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.btn:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-.btn-primary {
-  background: var(--primary-color);
-  color: white;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(235, 136, 34, 0.3);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
-}
-
-.btn-secondary:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-}
+/* Buttons — .s-btn / .s-btn--primary / .s-btn--secondary defined in components.css */
 
 /* Navigation */
 .navbar {
@@ -487,41 +433,7 @@ section {
   gap: 2rem;
 }
 
-.service-card {
-  background: linear-gradient(145deg, #ffffff 0%, #fefcfb 100%);
-  padding: 2.5rem;
-  border-radius: 15px;
-  box-shadow:
-    0 8px 25px rgba(29, 95, 129, 0.08),
-    0 3px 10px rgba(255, 165, 80, 0.08);
-  text-align: center;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 165, 80, 0.15);
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.service-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    var(--primary-color-light) 0%,
-    var(--primary-color-lighter) 50%,
-    var(--primary-color-light) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
+/* Service cards — .s-card defined in components.css; flex layout overrides below */
 .service-card-link {
   text-decoration: none;
   color: inherit;
@@ -529,51 +441,25 @@ section {
   transition: all 0.3s ease;
 }
 
-.service-card-link:hover .service-card,
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    0 12px 35px rgba(29, 95, 129, 0.15),
-    0 4px 15px rgba(255, 165, 80, 0.1);
+.services-grid .s-card {
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.service-card:hover::before {
-  opacity: 0.6;
-}
-
-.service-card h3 {
-  color: var(--primary-color-light);
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.service-card p {
-  color: var(--text-color);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+.services-grid .s-card p {
   flex-grow: 1;
 }
 
-.service-link {
-  display: inline-block;
-  color: var(--secondary-color);
-  text-decoration: none;
-  font-weight: 400;
-  padding: 0.3rem 0;
-  border: none;
-  border-bottom: 1px solid transparent;
-  border-radius: 0;
-  transition: all 0.3s ease;
-  margin-top: auto;
-  font-size: 0.9rem;
+.service-card-link:hover .s-card {
+  transform: translateY(-5px);
+  box-shadow: var(--s-shadow-hover);
+  cursor: pointer;
 }
 
-.service-link:hover {
-  color: var(--primary-color-light);
-  border-bottom-color: var(--primary-color-light);
-  background: transparent;
-  transform: none;
+.services-grid .s-btn--link {
+  margin-top: auto;
 }
 
 /* Portfolio Section */
@@ -646,62 +532,15 @@ section {
   align-items: center;
 }
 
-.contact-form {
-  background: linear-gradient(145deg, #faf9f8 0%, #ffffff 100%);
-  padding: 2rem;
-  border-radius: 15px;
+/* Contact form — .s-form / .s-form-group defined in components.css */
+.s-form {
   max-width: 600px;
   width: 100%;
-  box-shadow:
-    0 6px 25px rgba(29, 95, 129, 0.08),
-    0 2px 10px rgba(255, 165, 80, 0.08);
-  border: 1px solid rgba(255, 165, 80, 0.15);
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--text-color);
-  font-size: 0.9rem;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary-color-light);
-}
-
-.form-group textarea {
+.s-form-group textarea {
   resize: vertical;
   min-height: 120px;
-}
-
-.form-group input.error,
-.form-group textarea.error {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-
-.form-group input.error:focus,
-.form-group textarea.error:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
 
 /* Form Messages */
@@ -869,42 +708,7 @@ section {
   }
 }
 
-.team-member {
-  background: linear-gradient(145deg, #ffffff 0%, #fefcf8 100%);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow:
-    0 6px 25px rgba(29, 95, 129, 0.12),
-    0 2px 10px rgba(255, 165, 80, 0.08);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  text-align: center;
-  border: 1px solid rgba(255, 165, 80, 0.12);
-}
-
-.team-member:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    0 15px 45px rgba(29, 95, 129, 0.18),
-    0 5px 20px rgba(255, 165, 80, 0.12);
-}
-
-.team-photo {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto 1.5rem;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid var(--primary-color);
-}
-
-.team-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
+/* Team cards — .s-team / .s-team-photo defined in components.css */
 
 .team-info h3 {
   color: var(--primary-color);
@@ -950,12 +754,12 @@ section {
     margin-top: 2rem;
   }
 
-  .team-member {
+  .s-team {
     padding: 1.5rem;
     margin: 0 1rem;
   }
 
-  .team-photo {
+  .s-team-photo {
     width: 150px;
     height: 150px;
   }
@@ -1065,7 +869,7 @@ section {
     padding: 0 1rem;
   }
 
-  .contact-form {
+  .s-form {
     max-width: none;
   }
 
@@ -1074,7 +878,7 @@ section {
     gap: 2rem;
   }
 
-  .service-card {
+  .services-grid .s-card {
     text-align: center;
     padding: 2rem 1.5rem;
   }
@@ -1122,17 +926,17 @@ section {
     font-size: 1.1rem;
   }
 
-  .service-card,
-  .contact-form {
+  .services-grid .s-card,
+  .s-form {
     padding: 1.5rem;
   }
 
-  .team-member {
+  .s-team {
     padding: 1.2rem;
     margin: 0 0.5rem;
   }
 
-  .team-photo {
+  .s-team-photo {
     width: 120px;
     height: 120px;
   }
@@ -1148,7 +952,7 @@ section {
     font-size: 0.85rem;
   }
 
-  .btn {
+  .s-btn {
     padding: 12px 24px;
     font-size: 0.9rem;
   }
@@ -1173,13 +977,13 @@ section {
 
 /* Touch improvements */
 @media (hover: none) and (pointer: coarse) {
-  .btn:hover,
+  .s-btn:hover,
   .nav-link:hover,
-  .team-member:hover {
+  .s-team:hover {
     transform: none;
   }
 
-  .btn:active {
+  .s-btn:active {
     transform: scale(0.98);
   }
 
@@ -1275,39 +1079,7 @@ section {
   border-bottom: 2px solid #e5e7eb;
 }
 
-.service-list {
-  list-style: none;
-  padding: 0;
-  margin: 3rem 0;
-  background: #f8fafc;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.service-list li {
-  position: relative;
-  padding: 1rem 0 1rem 2rem;
-  color: var(--text-color);
-  font-weight: 500;
-  line-height: 1.6;
-  border-bottom: 1px solid #e2e8f0;
-  font-size: 1.05rem;
-}
-
-.service-list li:last-child {
-  border-bottom: none;
-}
-
-.service-list li::before {
-  content: "▸";
-  position: absolute;
-  left: 0;
-  top: 1rem;
-  color: var(--primary-color-light);
-  font-weight: bold;
-  font-size: 1.2rem;
-}
+/* Service list — .s-list defined in components.css */
 
 .competence-grid {
   display: grid;
@@ -1338,25 +1110,6 @@ section {
   color: var(--text-color);
   font-size: 0.9rem;
   margin-bottom: 0;
-}
-
-.service-contact-card {
-  background: linear-gradient(135deg, #eb8822 0%, #d67316 100%);
-  color: white;
-  padding: 2rem;
-  border-radius: 15px;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.service-contact-card h3 {
-  color: white;
-  margin-bottom: 1rem;
-}
-
-.service-contact-card p {
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1.5rem;
 }
 
 .service-related {

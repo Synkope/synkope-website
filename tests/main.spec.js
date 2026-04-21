@@ -85,7 +85,7 @@ test.describe("Synkope Website - Main Functionality", () => {
     await page.click('a[href="#team"]');
 
     // Check team member cards are visible
-    const teamMembers = page.locator(".team-member");
+    const teamMembers = page.locator(".s-team");
     await expect(teamMembers).toHaveCount(4);
 
     // Check specific team members
@@ -95,7 +95,7 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(page.locator("text=Torkell Bogstad")).toBeVisible();
 
     // Check team member images are loaded
-    const teamImages = page.locator(".team-photo img");
+    const teamImages = page.locator(".s-team-photo img");
     await expect(teamImages).toHaveCount(4);
 
     // Check contact links are present
@@ -107,15 +107,15 @@ test.describe("Synkope Website - Main Functionality", () => {
     await page.click('a[href="#tjenester"]');
 
     // Check service cards are visible
-    const serviceCards = page.locator(".service-card");
+    const serviceCards = page.locator(".s-card");
     await expect(serviceCards).toHaveCount(4);
 
     // Check service card content
     const servicesGrid = page.locator(".services-grid");
-    await expect(servicesGrid.locator("text=IT-infrastruktur")).toBeVisible();
-    await expect(servicesGrid.locator("text=Prosjektstyring")).toBeVisible();
-    await expect(servicesGrid.locator("text=Informasjonssikkerhet")).toBeVisible();
-    await expect(servicesGrid.locator("text=Elektromagnetisk kompatibilitet")).toBeVisible();
+    await expect(servicesGrid.locator("h3", { hasText: "IT-infrastruktur" })).toBeVisible();
+    await expect(servicesGrid.locator("h3", { hasText: "Prosjektstyring" })).toBeVisible();
+    await expect(servicesGrid.locator("h3", { hasText: "Informasjonssikkerhet" })).toBeVisible();
+    await expect(servicesGrid.locator("h3", { hasText: "Elektromagnetisk kompatibilitet" })).toBeVisible();
 
     // Test service card links
     const iktLink = servicesGrid.locator('a[href="tjenester/it-infrastruktur.html"]');
@@ -180,7 +180,7 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(logo).toBeVisible();
 
     // Check that team images are loaded
-    const teamImages = page.locator(".team-photo img");
+    const teamImages = page.locator(".s-team-photo img");
     const imageCount = await teamImages.count();
 
     for (let i = 0; i < imageCount; i++) {
