@@ -366,18 +366,10 @@ function updateScrollToTopButton() {
   }
 }
 
-function updateParallax() {
-  const heroImage = document.querySelector(".hero-placeholder");
-  if (heroImage) {
-    heroImage.style.transform = `translateY(${window.scrollY * 0.3}px)`;
-  }
-}
-
 function handleScroll() {
   updateNavbar();
   updateActiveNavLink();
   updateScrollToTopButton();
-  updateParallax();
 }
 
 // ============================================================
