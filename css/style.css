@@ -62,16 +62,16 @@ h6 {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: var(--s-fs-h1);
   font-weight: 600;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: var(--s-fs-h2);
 }
 
 h3 {
-  font-size: 1.8rem;
+  font-size: var(--s-fs-h3);
 }
 
 p {
@@ -94,7 +94,7 @@ p {
 }
 
 .navbar.scrolled {
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--s-shadow-nav);
 }
 
 .nav-container {
@@ -193,11 +193,11 @@ p {
   background: white;
   min-width: 200px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  border-radius: var(--s-radius);
   padding: 0.5rem 0;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: var(--s-transition);
   z-index: 1000;
 }
 
@@ -288,7 +288,7 @@ p {
 .hero {
   padding: 120px 0 80px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #faf8f5 0%, #f8f2e8 30%, #f4e9da 70%, #e2cfc3 100%);
+  background: var(--s-gradient-hero);
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -340,7 +340,7 @@ p {
 .hero-placeholder {
   width: 100%;
   height: 400px;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: var(--s-gradient-brand);
   border-radius: 20px;
   position: relative;
   overflow: hidden;
@@ -381,7 +381,7 @@ section {
 /* About Section */
 .about {
   padding: 50px 0 30px 0;
-  background: linear-gradient(135deg, #fbf9f8 0%, #ffffff 50%, #fcf7f2 100%);
+  background: var(--s-gradient-about);
 }
 
 .about-content {
@@ -442,7 +442,7 @@ section {
   text-decoration: none;
   color: inherit;
   display: block;
-  transition: all 0.3s ease;
+  transition: var(--s-transition);
 }
 
 .services-grid .s-card {
@@ -475,11 +475,11 @@ section {
 }
 
 .portfolio-item {
-  background: white;
-  border-radius: 15px;
+  background: var(--s-bg);
+  border-radius: var(--s-radius-xl);
   overflow: hidden;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  transition: var(--s-transition);
   cursor: pointer;
 }
 
@@ -512,7 +512,7 @@ section {
 
 .portfolio-content {
   padding: 1.5rem;
-  transition: all 0.3s ease;
+  transition: var(--s-transition);
 }
 
 .portfolio-item:hover .portfolio-content {
@@ -587,7 +587,7 @@ section {
 
 /* Portfolio Image Gradients */
 .portfolio-image-gradient {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: var(--s-gradient-brand);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -597,7 +597,7 @@ section {
 
 /* Footer */
 .footer {
-  background: #2c3e50;
+  background: var(--s-footer);
   color: white;
   padding: 3rem 0 1rem;
 }
@@ -621,7 +621,7 @@ section {
 }
 
 .footer-section p {
-  color: #bdc3c7;
+  color: var(--s-footer-muted);
   margin-bottom: 1rem;
 }
 
@@ -645,7 +645,7 @@ section {
 }
 
 .footer-section ul li a {
-  color: #bdc3c7;
+  color: var(--s-footer-muted);
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -669,13 +669,13 @@ section {
 }
 
 .footer-bottom {
-  border-top: 1px solid #34495e;
+  border-top: 1px solid var(--s-footer-border);
   padding-top: 1rem;
   text-align: center;
 }
 
 .footer-bottom p {
-  color: #bdc3c7;
+  color: var(--s-footer-muted);
   margin: 0;
 }
 
@@ -692,7 +692,7 @@ section {
 /* Team Section */
 .team {
   padding: 80px 0;
-  background: linear-gradient(135deg, #fcf8f0 0%, #fcf5e8 50%, #ffffff 100%);
+  background: var(--s-gradient-section);
 }
 
 .team-grid {
@@ -802,7 +802,7 @@ section {
     margin-top: 1rem;
     max-height: 0;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: var(--s-transition);
   }
 
   .nav-dropdown.active .nav-dropdown-menu {
@@ -814,7 +814,7 @@ section {
   .nav-dropdown-link {
     padding: 0.5rem 1rem;
     margin: 0 1rem;
-    border-radius: 6px;
+    border-radius: var(--s-radius-sm);
   }
 
   .nav-dropdown-toggle::after {
@@ -1027,7 +1027,7 @@ section {
 /* Service Pages Styles */
 .service-hero {
   padding: 140px 0 30px;
-  background: linear-gradient(135deg, #faf7f5 0%, #f8f2e8 50%, #e2d5c3 100%);
+  background: var(--s-gradient-hero);
   position: relative;
   overflow: hidden;
 }
@@ -1103,11 +1103,11 @@ section {
 }
 
 .competence-item {
-  background: white;
+  background: var(--s-bg);
   padding: 1.5rem;
-  border-radius: 10px;
+  border-radius: var(--s-radius-lg);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: var(--s-transition);
 }
 
 .competence-item:hover {
@@ -1127,9 +1127,9 @@ section {
 }
 
 .service-related {
-  background: white;
+  background: var(--s-bg);
   padding: 2rem;
-  border-radius: 15px;
+  border-radius: var(--s-radius-xl);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -1144,10 +1144,10 @@ section {
   text-decoration: none;
   color: inherit;
   padding: 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: var(--s-radius);
+  transition: var(--s-transition);
   margin-bottom: 1rem;
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--s-border-light);
 }
 
 .related-service:hover {
@@ -1205,7 +1205,7 @@ section {
 .standard-item {
   background: #f8f9fa;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: var(--s-radius);
   border-left: 4px solid var(--primary-color);
 }
 
@@ -1217,10 +1217,10 @@ section {
 }
 
 .test-category {
-  background: white;
+  background: var(--s-bg);
   padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid #e9ecef;
+  border-radius: var(--s-radius-lg);
+  border: 1px solid var(--s-border-light);
 }
 
 .test-category h3 {
@@ -1262,7 +1262,7 @@ section {
   height: 50px;
   border: none;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  background: var(--s-gradient-brand);
   color: white;
   font-size: 1.5rem;
   cursor: pointer;
