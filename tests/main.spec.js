@@ -112,10 +112,10 @@ test.describe("Synkope Website - Main Functionality", () => {
 
     // Check service card content
     const servicesGrid = page.locator(".services-grid");
-    await expect(servicesGrid.locator("text=IT-infrastruktur")).toBeVisible();
-    await expect(servicesGrid.locator("text=Prosjektstyring")).toBeVisible();
-    await expect(servicesGrid.locator("text=Informasjonssikkerhet")).toBeVisible();
-    await expect(servicesGrid.locator("text=Elektromagnetisk kompatibilitet")).toBeVisible();
+    await expect(servicesGrid.locator("h3", { hasText: "IT-infrastruktur" })).toBeVisible();
+    await expect(servicesGrid.locator("h3", { hasText: "Prosjektstyring" })).toBeVisible();
+    await expect(servicesGrid.locator("h3", { hasText: "Informasjonssikkerhet" })).toBeVisible();
+    await expect(servicesGrid.locator("h3", { hasText: "Elektromagnetisk kompatibilitet" })).toBeVisible();
 
     // Test service card links
     const iktLink = servicesGrid.locator('a[href="tjenester/it-infrastruktur.html"]');
