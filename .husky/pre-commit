@@ -14,7 +14,7 @@ JSON_FILES=$(echo "$STAGED_FILES" | grep -E '\.json$' || true)
 
 if [ -n "$JS_FILES" ]; then
   echo "📝 Linting JavaScript files..."
-  echo "$JS_FILES" | xargs npx eslint
+  echo "$JS_FILES" | xargs npx eslint --no-warn-ignored
   if [ $? -ne 0 ]; then
     echo "❌ ESLint found issues. Please fix them before committing."
     echo "   Tip: Run 'npm run lint:fix' to auto-fix some issues."
