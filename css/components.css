@@ -152,6 +152,7 @@
   color: var(--s-primary);
   font-family: var(--s-font-heading);
   font-weight: 600;
+  font-size: var(--s-fs-h3);
   margin-bottom: 0.5rem;
 }
 
