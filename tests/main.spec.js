@@ -150,9 +150,10 @@ test.describe("Synkope Website - Main Functionality", () => {
 
     await page.click('button[type="submit"]');
 
+    // Assert the transient .error class before any other awaits consume the 3 s removal timeout
+    await expect(page.locator("#navn")).toHaveClass(/error/);
     await expect(page.locator(".form-message.error")).toBeVisible();
     await expect(page.locator(".form-message.error")).toContainText("Navn må være minst 2 tegn");
-    await expect(page.locator("#navn")).toHaveClass(/error/);
   });
 
   test("should have correct footer information", async ({ page }) => {
