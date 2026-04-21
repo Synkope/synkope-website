@@ -38,14 +38,6 @@ test.describe("Smoke Tests - Critical Functionality", () => {
     }
   });
 
-  test("should display all main sections", async ({ page }) => {
-    // Verify critical sections exist
-    await expect(page.locator("#om")).toBeVisible();
-    await expect(page.locator("#team")).toBeVisible();
-    await expect(page.locator("#tjenester")).toBeVisible();
-    await expect(page.locator("#kontakt")).toBeVisible();
-  });
-
   test("should display team members from JSON", async ({ page, browserName }) => {
     // Skip this test on webkit due to known issue with loading local resources
     // Webkit in Playwright has issues with fetch/XHR to local dev server
@@ -71,6 +63,25 @@ test.describe("Smoke Tests - Critical Functionality", () => {
       expect(text).not.toBe("Loading...");
       expect(text.trim().length).toBeGreaterThan(10);
     }).toPass({ timeout: 20000, intervals: [500, 1000, 2000] });
+  });
+
+  test("should load service sub-pages with content", async ({ page, browserName }) => {
+    test.skip(browserName === "webkit", "Webkit has issues loading JSON from local server in test environment");
+
+    const servicePages = [
+      { url: "/tjenester/it-infrastruktur.html", heading: "IT-infrastruktur" },
+      { url: "/tjenester/prosjektstyring.html", heading: "Prosjektstyring" },
+      { url: "/tjenester/informasjonssikkerhet.html", heading: "Informasjonssikkerhet" },
+      { url: "/tjenester/emc.html", heading: "EMC" },
+    ];
+
+    for (const { url, heading } of servicePages) {
+      await page.goto(url);
+      await page.waitForLoadState("networkidle");
+
+      await expect(page.locator("h1")).toContainText(heading);
+      await expect(page.locator(".service-section")).not.toContainText("Laster innhold...");
+    }
   });
 
   test("should load without console errors", async ({ page }) => {

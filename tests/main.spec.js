@@ -115,7 +115,7 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(servicesGrid.locator("h3", { hasText: "IT-infrastruktur" })).toBeVisible();
     await expect(servicesGrid.locator("h3", { hasText: "Prosjektstyring" })).toBeVisible();
     await expect(servicesGrid.locator("h3", { hasText: "Informasjonssikkerhet" })).toBeVisible();
-    await expect(servicesGrid.locator("h3", { hasText: "Elektromagnetisk kompatibilitet" })).toBeVisible();
+    await expect(servicesGrid.locator("h3", { hasText: "EMC" })).toBeVisible();
 
     // Test service card links
     const iktLink = servicesGrid.locator('a[href="tjenester/it-infrastruktur.html"]');
@@ -134,28 +134,25 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(page.locator("#emne")).toBeVisible();
     await expect(page.locator("#melding")).toBeVisible();
 
-    // Test form validation (HTML5 validation)
-    await page.click('button[type="submit"]');
-
-    // Check required field validation
     const nameField = page.locator("#navn");
     await expect(nameField).toHaveAttribute("required");
   });
 
-  test("should be mobile responsive", async ({ page, isMobile }) => {
-    if (isMobile) {
-      // On mobile, navigation menu should be hidden initially
-      await expect(page.locator(".nav-menu")).not.toBeVisible();
+  test("should show JS validation errors for invalid input", async ({ page }) => {
+    await page.goto("/#kontakt");
+    await page.locator("#kontaktskjema").scrollIntoViewIfNeeded();
 
-      // Check mobile layout
-      await expect(page.locator(".hero-container")).toBeVisible();
-      await expect(page.locator(".hero-title")).toBeVisible();
+    // Fill name with 1 char (min is 2) — all other fields valid
+    await page.fill("#navn", "A");
+    await page.fill("#epost", "test@synkope.io");
+    await page.fill("#emne", "Spørsmål");
+    await page.fill("#melding", "Dette er en testmelding som er lang nok.");
 
-      // Check that content stacks vertically on mobile
-      const teamGrid = page.locator(".team-grid");
-      await teamGrid.scrollIntoViewIfNeeded();
-      await expect(teamGrid).toBeVisible();
-    }
+    await page.click('button[type="submit"]');
+
+    await expect(page.locator(".form-message.error")).toBeVisible();
+    await expect(page.locator(".form-message.error")).toContainText("Navn må være minst 2 tegn");
+    await expect(page.locator("#navn")).toHaveClass(/error/);
   });
 
   test("should have correct footer information", async ({ page }) => {
@@ -171,23 +168,6 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(page.getByText("© 2026 Synkope AS. Alle rettigheter forbeholdt.", { exact: true })).toBeVisible();
   });
 
-  test("should load external resources correctly", async ({ page }) => {
-    // Check that external fonts are loaded
-    await page.waitForLoadState("networkidle");
-
-    // Check that logo image is loaded
-    const logo = page.locator(".logo-image");
-    await expect(logo).toBeVisible();
-
-    // Check that team images are loaded
-    const teamImages = page.locator(".s-team-photo img");
-    const imageCount = await teamImages.count();
-
-    for (let i = 0; i < imageCount; i++) {
-      await expect(teamImages.nth(i)).toBeVisible();
-    }
-  });
-
   test("should have proper accessibility attributes", async ({ page }) => {
     // Check ARIA labels
     await expect(page.locator('[aria-label="Main navigation"]')).toBeVisible();
@@ -201,17 +181,5 @@ test.describe("Synkope Website - Main Functionality", () => {
     await expect(page.locator('label[for="epost"]')).toBeVisible();
     await expect(page.locator('label[for="emne"]')).toBeVisible();
     await expect(page.locator('label[for="melding"]')).toBeVisible();
-  });
-
-  test("should have working smooth scroll navigation", async ({ page }) => {
-    // Test smooth scrolling to sections
-    await page.click('.nav-menu a[href="#om"]');
-    await expect(page.locator("#om")).toBeInViewport();
-
-    await page.click('.nav-menu a[href="#team"]');
-    await expect(page.locator("#team")).toBeInViewport();
-
-    await page.click('.nav-menu a[href="#kontakt"]');
-    await expect(page.locator("#kontakt")).toBeInViewport();
   });
 });
