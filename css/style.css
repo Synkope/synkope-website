@@ -333,27 +333,36 @@ p {
   margin-bottom: 2rem;
 }
 
-.hero-image {
-  position: relative;
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-lg);
+  justify-content: center;
 }
 
-.hero-placeholder {
-  width: 100%;
-  height: 400px;
-  background: var(--s-gradient-brand);
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
+.hero-stat {
+  background: var(--s-bg);
+  border-radius: var(--s-radius-xl);
+  padding: var(--s-space-lg) var(--s-space-xl);
+  box-shadow: var(--s-shadow-soft);
+  border-left: 4px solid var(--s-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-xs);
 }
 
-.hero-placeholder::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+.hero-stat-number {
+  font-family: var(--s-font-heading);
+  font-size: var(--s-fs-h2);
+  font-weight: 700;
+  color: var(--s-primary);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: var(--s-fs-small);
+  color: var(--s-text);
+  font-weight: 500;
 }
 
 /* Section Styles */
@@ -884,6 +893,18 @@ section {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 2rem;
+  }
+
+  .hero-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--s-space-md);
+  }
+
+  .hero-stat {
+    flex: 1 1 140px;
+    text-align: left;
   }
 
   .about-content {
