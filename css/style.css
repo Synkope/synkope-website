@@ -142,10 +142,14 @@ p {
   }
 }
 
-/* Larger logo for big screens */
+/* Larger logo for big screens — navbar is ~138px tall (90px logo + 2×24px padding) */
 @media (min-width: 1200px) {
   .logo-image {
     height: 90px;
+  }
+
+  .hero {
+    padding-top: 150px;
   }
 }
 
@@ -847,7 +851,7 @@ section {
   }
 
   .hero {
-    padding: 105px 0 80px;
+    padding: 120px 0 80px;
   }
 
   .hero-container {
@@ -919,7 +923,7 @@ section {
   }
 
   .hero {
-    padding: 85px 0 60px;
+    padding: 120px 0 60px;
   }
 
   .hero-subtitle {
@@ -993,9 +997,21 @@ section {
   }
 }
 
-/* Smooth scrolling offset for fixed navbar */
+/* Smooth scrolling offset for fixed navbar (~102px desktop, ~122px wide, ~108px mobile) */
 section {
-  scroll-margin-top: 65px;
+  scroll-margin-top: 110px;
+}
+
+@media (min-width: 1200px) {
+  section {
+    scroll-margin-top: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    scroll-margin-top: 115px;
+  }
 }
 
 /* Loading animation for better UX */
