@@ -142,10 +142,14 @@ p {
   }
 }
 
-/* Larger logo for big screens */
+/* Larger logo for big screens — navbar is ~122px tall (90px logo + 2×16px padding) */
 @media (min-width: 1200px) {
   .logo-image {
     height: 90px;
+  }
+
+  .hero {
+    padding-top: 150px;
   }
 }
 
@@ -846,10 +850,6 @@ section {
     font-size: 2rem;
   }
 
-  .hero {
-    padding: 105px 0 80px;
-  }
-
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
@@ -919,7 +919,7 @@ section {
   }
 
   .hero {
-    padding: 85px 0 60px;
+    padding: 120px 0 60px;
   }
 
   .hero-subtitle {
@@ -993,9 +993,23 @@ section {
   }
 }
 
-/* Smooth scrolling offset for fixed navbar */
+/* Smooth scrolling offset for fixed navbar.
+   Base (110px) covers the 768–1199px desktop range (~102px navbar + buffer).
+   Overrides handle narrower/wider ranges where the navbar is taller. */
 section {
-  scroll-margin-top: 65px;
+  scroll-margin-top: 110px;
+}
+
+@media (min-width: 1200px) {
+  section {
+    scroll-margin-top: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    scroll-margin-top: 115px;
+  }
 }
 
 /* Loading animation for better UX */
@@ -1156,7 +1170,7 @@ section {
 /* Mobile styles for service pages */
 @media (max-width: 768px) {
   .service-hero {
-    padding: 105px 0 20px;
+    padding: 120px 0 20px;
   }
 
   .service-hero h1 {
