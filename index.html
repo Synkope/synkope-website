@@ -55,7 +55,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; base-uri 'self'; font-src 'self' https://fonts.gstatic.com; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: https:; object-src 'none'; script-src 'self' https://plausible.io; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; upgrade-insecure-requests;" />
+      content="default-src 'self'; base-uri 'self'; connect-src 'self' https://plausible.io; font-src 'self' https://fonts.gstatic.com; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: https:; object-src 'none'; script-src 'self'; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; upgrade-insecure-requests;" />
     <meta
       http-equiv="Permissions-Policy"
       content="geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), speaker=(), vibrate=(), fullscreen=(self)" />
@@ -75,6 +75,30 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Open+Sans:wght@300;400;600&display=swap"
       rel="stylesheet" />
     <script src="js/content-loader.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Synkope AS",
+        "url": "https://synkope.github.io/synkope-website/",
+        "logo": "https://synkope.github.io/synkope-website/images/logo-standard.png",
+        "email": "post@synkope.io",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Solskinnsveien 6",
+          "postalCode": "0376",
+          "addressLocality": "Oslo",
+          "addressCountry": "NO"
+        },
+        "vatID": "921 125 739",
+        "knowsAbout": [
+          "Prosjektledelse",
+          "IT-infrastruktur",
+          "Informasjonssikkerhet",
+          "Elektromagnetisk kompatibilitet"
+        ]
+      }
+    </script>
   </head>
   <body>
     <a href="#hjem" class="skip-link">Hopp til hovedinnhold</a>
@@ -444,7 +468,7 @@
     </footer>
 
     <!-- Privacy-friendly Analytics -->
-    <script defer data-domain="synkope.github.io" src="https://plausible.io/js/script.js"></script>
+    <script defer data-domain="synkope.github.io" src="js/plausible.js"></script>
 
     <script src="js/script.js"></script>
   </body>

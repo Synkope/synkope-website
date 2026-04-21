@@ -11,6 +11,7 @@ export default [
       "test-results/**",
       "temp/**",
       "*.min.js",
+      "js/plausible.js",
     ],
   },
   js.configs.recommended,
