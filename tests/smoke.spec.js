@@ -67,22 +67,19 @@ test.describe("Smoke Tests - Critical Functionality", () => {
     }).toPass({ timeout: 20000, intervals: [500, 1000, 2000] });
   });
 
-  test("should load service sub-pages with content", async ({ page, browserName }) => {
-    test.skip(browserName === "webkit", "Webkit has issues loading JSON from local server in test environment");
-
+  test("should load service sub-pages with content", async ({ page }) => {
     const servicePages = [
-      { url: "/tjenester/it-infrastruktur.html", heading: "IT-infrastruktur" },
-      { url: "/tjenester/prosjektstyring.html", heading: "Prosjektstyring" },
-      { url: "/tjenester/informasjonssikkerhet.html", heading: "Informasjonssikkerhet" },
-      { url: "/tjenester/emc.html", heading: "Elektromagnetisk" },
+      { url: "/tjenester/it-infrastruktur.html", heading: "IT-infrastruktur", text: "infrastruktur" },
+      { url: "/tjenester/prosjektstyring.html", heading: "Prosjektstyring", text: "prosjektleder" },
+      { url: "/tjenester/informasjonssikkerhet.html", heading: "Informasjonssikkerhet", text: "ISO-27000" },
+      { url: "/tjenester/emc.html", heading: "Elektromagnetisk", text: "MIL-STD" },
     ];
 
-    for (const { url, heading } of servicePages) {
+    for (const { url, heading, text } of servicePages) {
       await page.goto(url);
-      await page.waitForLoadState("networkidle");
 
       await expect(page.locator("h1")).toContainText(heading);
-      await expect(page.locator(".service-section")).not.toContainText("Laster innhold...");
+      await expect(page.locator(".service-section")).toContainText(text);
     }
   });
 
