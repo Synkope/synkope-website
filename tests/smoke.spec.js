@@ -17,21 +17,23 @@ test.describe("Smoke Tests - Critical Functionality", () => {
   });
 
   test("should have working navigation", async ({ page }) => {
-    // Check navigation container exists (nav-menu might be hidden on mobile)
     const navMenu = page.locator(".nav-menu");
     const viewport = page.viewportSize();
     const isMobile = viewport && viewport.width < 768;
 
     if (isMobile) {
-      // On mobile, nav-menu is intentionally hidden (no hamburger menu in current design)
-      // Just verify the navigation structure exists in DOM
-      await expect(navMenu).toBeAttached();
+      // Hamburger opens the nav-menu
+      const hamburger = page.locator(".hamburger");
+      await expect(hamburger).toBeVisible();
+      await expect(navMenu).not.toBeVisible();
 
-      // Test that sections are accessible directly without navigation
-      await page.goto("/#om");
+      await hamburger.click();
+      await expect(navMenu).toBeVisible();
+
+      await page.click('a[href="#om"]');
       await expect(page.locator("#om")).toBeInViewport();
+      await expect(navMenu).not.toBeVisible();
     } else {
-      // On desktop, nav-menu should be visible
       await expect(navMenu).toBeVisible();
       await page.click('a[href="#om"]');
       await expect(page.locator("#om")).toBeInViewport();

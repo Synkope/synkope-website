@@ -152,6 +152,12 @@ navLinks.forEach((link) => {
   });
 });
 
+document.addEventListener("click", (e) => {
+  if (navMenu.classList.contains("active") && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+    toggleMobileMenu(false);
+  }
+});
+
 // --- Dropdown Menu ---
 
 const dropdown = document.querySelector(".nav-dropdown");
