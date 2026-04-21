@@ -72,7 +72,7 @@ test.describe("Smoke Tests - Critical Functionality", () => {
       { url: "/tjenester/it-infrastruktur.html", heading: "IT-infrastruktur" },
       { url: "/tjenester/prosjektstyring.html", heading: "Prosjektstyring" },
       { url: "/tjenester/informasjonssikkerhet.html", heading: "Informasjonssikkerhet" },
-      { url: "/tjenester/emc.html", heading: "EMC" },
+      { url: "/tjenester/emc.html", heading: "Elektromagnetisk" },
     ];
 
     for (const { url, heading } of servicePages) {
