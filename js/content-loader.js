@@ -180,7 +180,7 @@ class ContentLoader {
     }
 
     // Team members
-    const teamMembers = document.querySelectorAll(".team-member");
+    const teamMembers = document.querySelectorAll(".s-team");
     if (teamMembers.length >= team.members.length) {
       team.members.forEach((member, index) => {
         const memberElement = teamMembers[index];
@@ -223,7 +223,7 @@ class ContentLoader {
     }
 
     // Service items
-    const serviceElements = document.querySelectorAll(".service-card");
+    const serviceElements = document.querySelectorAll(".s-card");
     if (serviceElements.length >= services.list.length) {
       services.list.forEach((service, index) => {
         const serviceElement = serviceElements[index];
