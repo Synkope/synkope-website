@@ -89,7 +89,7 @@ test.describe("Smoke Tests - Critical Functionality", () => {
     await page.goto("/personvern.html");
     await expect(page).toHaveTitle(/Personvern/);
     await expect(page.locator("h1")).toContainText("Personvern");
-    await expect(page.locator(".service-section")).toContainText("GDPR");
+    await expect(page.locator("main")).toContainText("GDPR");
   });
 
   test("should load without console errors", async ({ page }) => {
