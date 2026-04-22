@@ -106,8 +106,8 @@ test.describe("Synkope Website - Main Functionality", () => {
   test("should have working service cards", async ({ page }) => {
     await page.click('a[href="#tjenester"]');
 
-    // Check service cards are visible
-    const serviceCards = page.locator(".s-card");
+    // Check service cards in the services grid are visible
+    const serviceCards = page.locator(".services-grid .s-card");
     await expect(serviceCards).toHaveCount(4);
 
     // Check service card content
