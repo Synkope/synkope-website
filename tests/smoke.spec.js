@@ -67,20 +67,29 @@ test.describe("Smoke Tests - Critical Functionality", () => {
     }).toPass({ timeout: 20000, intervals: [500, 1000, 2000] });
   });
 
-  test("should load service sub-pages with content", async ({ page }) => {
+  test("should load service sub-pages with content immediately (no FOUC)", async ({ page }) => {
     const servicePages = [
-      { url: "/tjenester/it-infrastruktur.html", heading: "IT-infrastruktur", text: "infrastruktur" },
+      { url: "/tjenester/it-infrastruktur.html", heading: "IT-infrastruktur", text: "Terraform" },
       { url: "/tjenester/prosjektstyring.html", heading: "Prosjektstyring", text: "prosjektleder" },
       { url: "/tjenester/informasjonssikkerhet.html", heading: "Informasjonssikkerhet", text: "ISO-27000" },
       { url: "/tjenester/emc.html", heading: "Elektromagnetisk", text: "MIL-STD" },
     ];
 
     for (const { url, heading, text } of servicePages) {
-      await page.goto(url);
+      // Wait only for DOMContentLoaded — content must be in the initial HTML parse, not injected later
+      await page.goto(url, { waitUntil: "domcontentloaded" });
 
       await expect(page.locator("h1")).toContainText(heading);
-      await expect(page.locator(".service-section")).toContainText(text);
+      const sectionText = await page.locator(".service-section").textContent();
+      expect(sectionText).toContain(text);
     }
+  });
+
+  test("should load personvern page", async ({ page }) => {
+    await page.goto("/personvern.html");
+    await expect(page).toHaveTitle(/Personvern/);
+    await expect(page.locator("h1")).toContainText("Personvern");
+    await expect(page.locator(".service-section")).toContainText("GDPR");
   });
 
   test("should load without console errors", async ({ page }) => {
