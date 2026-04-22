@@ -483,59 +483,16 @@ section {
   gap: 2rem;
 }
 
-.portfolio-item {
-  background: var(--s-bg);
-  border-radius: var(--s-radius-xl);
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  transition: var(--s-transition);
-  cursor: pointer;
+.cert-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--s-space-md);
+  color: var(--s-primary);
 }
 
-.portfolio-item:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.portfolio-image {
-  height: 200px;
-  background: #f8f9fa;
-  position: relative;
-  overflow: hidden;
-}
-
-.portfolio-image::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
+.cert-icon svg {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.6s ease;
-}
-
-.portfolio-item:hover .portfolio-image::after {
-  left: 100%;
-}
-
-.portfolio-content {
-  padding: 1.5rem;
-  transition: var(--s-transition);
-}
-
-.portfolio-item:hover .portfolio-content {
-  transform: translateY(-5px);
-}
-
-.portfolio-content h3 {
-  color: var(--primary-color-light);
-  margin-bottom: 0.5rem;
-}
-
-.portfolio-content p {
-  color: var(--text-color);
-  margin-bottom: 1.5rem;
 }
 
 /* Contact Section */
@@ -592,16 +549,6 @@ section {
 .form-fallback a {
   color: var(--primary-color);
   text-decoration: underline;
-}
-
-/* Portfolio Image Gradients */
-.portfolio-image-gradient {
-  background: var(--s-gradient-brand);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  color: white;
 }
 
 /* Footer */
