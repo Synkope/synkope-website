@@ -1207,11 +1207,6 @@ section {
 }
 
 @media (max-width: 768px) {
-  .standards-grid,
-  .test-categories {
-    grid-template-columns: 1fr;
-  }
-
   .footer-content {
     text-align: left;
     max-width: 100%;
