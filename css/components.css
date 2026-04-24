@@ -217,30 +217,39 @@
 /* ---------- Bullet list ---------- */
 .s-list {
   list-style: none;
-  background: #f8fafc;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1.5px solid #e2e8f0;
   border-radius: var(--s-radius-lg);
-  padding: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  background: #f8fafc;
+  padding: 0.5rem 0;
 }
 .s-list li {
   position: relative;
-  padding: 1rem 0 1rem 2rem;
+  padding: 0.3rem 0.75rem 0.3rem 1.5rem;
   color: var(--s-text);
   font-weight: 500;
-  line-height: var(--s-lh-body);
-  border-bottom: 1px solid #e2e8f0;
-}
-.s-list li:last-child {
-  border-bottom: none;
+  line-height: 1.45;
 }
 .s-list li::before {
-  content: "▸";
+  content: "";
   position: absolute;
-  left: 0;
-  top: 1rem;
-  color: var(--s-primary-light);
-  font-weight: bold;
-  font-size: 1.2rem;
+  left: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--s-primary);
+}
+.s-list li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+@media (max-width: 600px) {
+  .s-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------- Reduced motion ---------- */
