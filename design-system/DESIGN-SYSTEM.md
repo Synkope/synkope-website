@@ -2,6 +2,13 @@
 
 The Synkope visual system — tokens, components and usage rules — lives in this repo alongside the site it powers.
 
+> **Mirror, not source.** The canonical stylesheets are `css/tokens.css` and
+> `css/components.css` at the repo root — those are what the live site loads.
+> The copies under `design-system/css/` are a **mirror** kept only to render
+> this standalone specimen page; nothing deploys them. When you change a
+> component, edit the root `css/` files first, then copy them here so the two
+> stay in sync.
+
 ## Files
 
 | File | Role |
